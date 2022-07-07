@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,400;0,700;1,400&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Oxygen:wght@300;400;700&family=Poppins&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
 :root {
     --bgcolor1: #0B1313;
     --color1: #11D6B2;
@@ -8,4 +10,29 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
+
+/* Typefaces */
+.opensans {
+    font-family: 'Open Sans', sans-serif;
+}
+.oxygen {
+    font-family: 'Oxygen', sans-serif;
+}
+
+body::-webkit-scrollbar {
+    width: 12px;           
+  }
+  
+  body::-webkit-scrollbar-track {
+    background: var(--bgcolor1);        
+  }
+  
+  body::-webkit-scrollbar-thumb {
+    background-color: var(--color1);   
+    border-radius: 20px;       
+    border: 3px solid var(--bgcolor1);
+  }
