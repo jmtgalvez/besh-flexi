@@ -1,10 +1,14 @@
 import React from "react";
+import {BrowserRouter as Router, Routes, Route} from 'react-router';
+import FrontPage from "./components/Body/FrontPage";
 
 function App() {
     return(
-        <div className="main-component">
-            <h1>Hello World</h1>
-        </div>
+        <Router>
+        <Routes>
+            <Route path='/' elements={<FrontPage/>}/>
+        </Routes>
+        </Router>
     )
 }
 

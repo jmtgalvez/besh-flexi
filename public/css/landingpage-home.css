@@ -1,3 +1,4 @@
 .main-component {
-    background: black;
+    background: var(--bgcolor1);
+    color: var(--textcolor1);
 }
