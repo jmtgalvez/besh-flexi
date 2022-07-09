@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import Unsplash1 from '../../../images/unsplash1.webp';
 
 export default function Register() {
   return (
@@ -30,6 +31,9 @@ export default function Register() {
 
           <input type="submit" value="Register" className='general__btns'/>
         </form>
+      </section>
+      <section className="register__section__container__image">
+        <img src={Unsplash1} alt="Abstract" />
       </section>
     </div>
   )

@@ -3,18 +3,23 @@
   width: 100vw;
   font-family: "Open Sans", "Oxygen", sans-serif;
   font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   .register__section__container__form {
+    width: 50vw;
+    overflow: hidden;
 
     .register__form {
       display: grid;
-      place-content: center;
+      place-items: center;
       height: max-content;
       padding: 2rem;
 
       div {
         position: relative;
-        width: 20rem;
+        width: clamp(14rem, 20rem, 300px);
         height: 3rem;
         margin: 20px auto;
 
@@ -63,6 +68,17 @@
     top: 0.24rem;
     left: 0.72rem;
     color: var(--color1);
+}
+
+.register__section__container__image {
+  width: 50vw;
+  height: 100%;
+
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+  }
 }
 
 // FOR ERRORS
@@ -120,4 +136,24 @@
     top: 0.24rem;
     left: 0.72rem;
     color: var(--color1);
+}
+
+@media screen and (max-width: 685px) {
+  .register__section {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .register__section__container__form {
+      width: 100vw;
+      height: max-content;
+      position: relative;
+      z-index: 1;
+    }
+    .register__section__container__image {
+      width: 100vw;
+      height: 100%;
+      position: absolute;
+    }
+  }
 }

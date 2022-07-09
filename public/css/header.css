@@ -3,7 +3,7 @@
     width: 100vw;
     padding: 1rem;
     justify-content: space-between;
-    background: var(--textcolor1);
+    background: transparent;
     align-items: center;
 }
 .header__navbar nav {
