@@ -7,7 +7,7 @@ export default function Header() {
   return (
     <header className='header__navbar opensans'>
       <div id='frontpage__logo'>
-        <Link to='#' className='opensans'>Logo</Link> 
+        <Link to='/' className='opensans'>Logo</Link> 
       </div>
       <nav>
         <ul>

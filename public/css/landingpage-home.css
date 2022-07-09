@@ -21,7 +21,9 @@
     gap: clamp(25px, 15vw, 35px);
     padding: 1rem;
     width: clamp(max-content, 30vw, 50vw);
-    overflow: visible;
+    transform: scale(1.1);
+    margin-left: 1rem;
+    overflow: none;
 }
 .landing__page__section1 h1 {
     font-size: clamp(20px, 12vw, 50px);
@@ -30,12 +32,14 @@
     background: linear-gradient(
         to right, var(--bgcolor1), var(--color1), var(--bgcolor1)
         );
+    overflow: hidden;
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
 }
 /* SECTION 2 */
 #landing__page__section1__btn {
     background: var(--color1);
+    text-decoration: none;
     color: #0b1313;
     width: clamp(100px, 12vw, 300px);
     font-weight: 700;
@@ -63,7 +67,7 @@
     height: 100%;
 }
 .landing__page__img__human__standing {
-    width: clamp(250px, 45vw, 500px);
+    width: clamp(350px, 45vw, 500px);
 }
 
 
@@ -84,7 +88,12 @@
         place-content: center;
         text-align: center;
     }
+    .landing__page__section2 {
+        padding: 0;
+    }
     .landing__page__section1__div1 {
         place-items: center;
+        margin-left: 0;
+        padding: 1rem;
     }
 }

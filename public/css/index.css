@@ -3,6 +3,7 @@
 :root {
     --bgcolor1: #0B1313;
     --color1: #11D6B2;
+    --color2: #eff6f6;
     --textcolor1: #FFFFFF;
 }
 
@@ -13,6 +14,11 @@
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+h1 {
+  overflow-y: hidden;
+  height: max-content;
+  padding: .25rem 0;
 }
 
 /* Typefaces */
@@ -28,11 +34,26 @@ body::-webkit-scrollbar {
   }
   
   body::-webkit-scrollbar-track {
-    background: var(--textcolor1);        
+    background: var(--color);        
   }
   
   body::-webkit-scrollbar-thumb {
     background-color: var(--bgcolor1);   
     border-radius: 20px;       
     border: 3px solid var(--bgcolor1);
+  }
+  /* Button */
+  .general__btns {
+    border-radius: 10px;
+    width: max-content;
+    padding: .5rem;
+    background: var(--color1);
+    color: var(--bgcolor1);
+    border: 1.5px solid transparent;
+    outline: none;
+    transition: all 250ms ease-in-out;
+    font-size: clamp(10px, 10vw, 15px);
+  }
+  .general__btns:hover {
+    border: 1.5px solid var(--bgcolor1);
   }

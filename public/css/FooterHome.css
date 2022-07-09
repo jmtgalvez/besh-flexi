@@ -1,7 +1,7 @@
 .footer__nav__home {
     height: max-content;
     width: 100vw;
-    background: var(--bgcolor1);
+    background: var(--color2);
     padding: 2rem;
     display: flex;
     font-family: 'Open Sans', 'Oxygen', sans-serif;
@@ -18,10 +18,13 @@
     display: grid;
     place-content: center;
 }
+.footer__nav__home__logo h3 {
+    overflow: hidden;
+}
 .footer__nav__home__logo h3 a {
-    color: var(--textcolor1);
+    color: var(--bgcolor1);
     text-decoration: none;
 }
 .footer__nav__home__text p {
-    color: var(--textcolor1);
+    color: var(--bgcolor1);
 }

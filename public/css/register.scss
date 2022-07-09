@@ -1,0 +1,123 @@
+.register__section {
+  height: 100vh;
+  width: 100vw;
+  font-family: "Open Sans", "Oxygen", sans-serif;
+  font-size: 1.2rem;
+
+  .register__section__container__form {
+
+    .register__form {
+      display: grid;
+      place-content: center;
+      height: max-content;
+      padding: 2rem;
+
+      div {
+        position: relative;
+        width: 20rem;
+        height: 3rem;
+        margin: 20px auto;
+
+        input {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          font-family: inherit;
+          font-size: 0.87rem;
+          border-radius: 0.5rem;
+          outline: none;
+          border: 2px solid rgba(11, 19, 19, .5);    
+          padding: 1rem;
+          transition: all  250ms ease-in;
+          
+          &:hover {
+            border: 2px solid rgba(17, 214, 178, 0.4);
+          }
+          &:focus {
+            border: 2px solid var(--color1);
+          }
+        }
+
+        label {
+          position: absolute;
+          top: 0.5rem;
+          left: 1rem;
+          padding: 0 0.5rem;
+          color: var(--bgcolor1);
+          cursor: text;
+          transition: 
+          top 200ms ease-in, 
+          left 200ms ease-in, 
+          font-size 200ms ease-in;
+        }
+    }
+}
+}
+}
+
+.register__form__input:focus ~ .register__form__label,
+.register__form__input:not(:placeholder-shown).register__form__input:not(:focus) ~ .register__form__label {
+    font-size: 0.55rem;
+    top: 0.24rem;
+    left: 0.72rem;
+    color: var(--color1);
+}
+
+// FOR ERRORS
+.error__form {
+    display: grid;
+    place-content: center;
+    height: max-content;
+    padding: 2rem;
+
+    div {
+      position: relative;
+      width: 20rem;
+      height: 3rem;
+      margin: 20px auto;
+
+      input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        font-family: inherit;
+        font-size: 0.87rem;
+        border-radius: 0.5rem;
+        outline: none;
+        border: 2px solid rgba(11, 19, 19, .5);    
+        padding: 1rem;
+        
+        &:hover {
+          border: 2px solid rgba(17, 214, 178, 0.4);
+        }
+        &:focus {
+          border: 2px solid var(--color1);
+        }
+      }
+
+      label {
+        position: absolute;
+        top: 0.5rem;
+        left: 1rem;
+        padding: 0 0.5rem;
+        color: var(--bgcolor1);
+        cursor: text;
+        transition: 
+        top 200ms ease-in, 
+        left 200ms ease-in, 
+        font-size 200ms ease-in;
+      }
+  }
+}
+
+.error__form__input:focus ~ .error__form__label,
+.error__form__input:not(:placeholder-shown).error__form__input:not(:focus) ~ .error__form__label {
+    font-size: 0.55rem;
+    top: 0.24rem;
+    left: 0.72rem;
+    color: var(--color1);
+}

@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import Human from '../../images/human-standing.svg';
 
 export default function LandingPageBanner() {
@@ -12,7 +13,7 @@ export default function LandingPageBanner() {
               <br/>
               anytime, anywhere
               </h1>
-            <button id='landing__page__section1__btn'>Join Now</button>
+            <Link to='/Register' id='landing__page__section1__btn'>Join Now</Link>
             </div>
         </section>
           {/* SECTION 2 */}
