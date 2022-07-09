@@ -1,6 +1,6 @@
 .landing__page__banner {
-    background: var(--bgcolor1);
-    color: var(--textcolor1);
+    background: var(--textcolor1);
+    color: var(--bgcolor1);
     height: 100vh;
     width: 100vw;
     position: relative;
