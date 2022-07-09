@@ -54,7 +54,7 @@
     transition: all 250ms ease-in-out;
 }
 #landing__page__section1__btn:hover {
-    outline: 2px solid var(--bgcolor1);
+    background: rgb(2, 255, 209);
 }
 
 .landing__page__section2 {

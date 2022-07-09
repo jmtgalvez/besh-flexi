@@ -5,6 +5,7 @@
     --color1: #11D6B2;
     --color2: #eff6f6;
     --textcolor1: #FFFFFF;
+    --hovercolor1: rgb(2, 255, 209);
 }
 
 * {
@@ -55,5 +56,5 @@ body::-webkit-scrollbar {
     font-size: clamp(10px, 10vw, 15px);
   }
   .general__btns:hover {
-    border: 1.5px solid var(--bgcolor1);
+    background: var(--hovercolor1);
   }

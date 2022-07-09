@@ -5,7 +5,7 @@ export default function Register() {
     <div className='register__section'>
       <section className='register__section__container__form'>
         <form action="" method='post' className='register__form'>
-            <h1>Register</h1>
+            <h1>Create account</h1>
    
           <div>
             <input type="text" name='first_name' id='first_name' className='register__form__input' placeholder=' ' autoComplete='off'/>

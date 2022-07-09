@@ -26,7 +26,7 @@
   font-size: 0.87rem;
   border-radius: 0.5rem;
   outline: none;
-  border: 2px solid rgba(11, 19, 19, 0.5);
+  border: 2px solid rgba(11, 19, 19, 0.45);
   padding: 1rem;
   transition: all 250ms ease-in;
 }
@@ -41,7 +41,7 @@
   top: 0.5rem;
   left: 1rem;
   padding: 0 0.5rem;
-  color: var(--bgcolor1);
+  color: rgba(0, 0, 0, 0.526);
   cursor: text;
   transition: top 200ms ease-in, left 200ms ease-in, font-size 200ms ease-in;
 }

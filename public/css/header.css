@@ -54,6 +54,5 @@
     transition: all 250ms ease-in-out;
 }
 #frontpage__header__btn:hover {
-    background: var(--bgcolor1);
-    color: var(--textcolor1);
+    background: var(--hovercolor1);
 }
