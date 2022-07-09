@@ -55,7 +55,15 @@
 
 .landing__page__section2 {
     width: clamp(50%, 50vw, 50vw);
-    background: red;
+    padding: 2rem;
+}
+.landing__page__section2__div1 {
+    display: grid;
+    place-content: center;
+    height: 100%;
+}
+.landing__page__img__human__standing {
+    width: clamp(250px, 45vw, 500px);
 }
 
 

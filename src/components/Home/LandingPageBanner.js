@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import Human from '../../images/human-standing.svg';
 
 export default function LandingPageBanner() {
   return (
@@ -16,8 +17,8 @@ export default function LandingPageBanner() {
         </section>
           {/* SECTION 2 */}
         <section className='landing__page__section2'>
-            <div className='landing__page__section1__div2'>
-              
+            <div className='landing__page__section2__div1'>
+              <img src={Human} alt="A person standing" className='landing__page__img__human__standing' />
             </div>
         </section>
     </div>
