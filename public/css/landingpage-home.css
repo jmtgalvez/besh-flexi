@@ -23,7 +23,7 @@
     width: clamp(max-content, 30vw, 50vw);
     transform: scale(1.1);
     margin-left: 1rem;
-    overflow: none;
+    overflow: hidden;
 }
 .landing__page__section1 h1 {
     font-size: clamp(20px, 12vw, 50px);
@@ -76,9 +76,11 @@
 @media screen and (max-width: 650px) {
     .landing__page__banner {
         flex-direction: column;
-        height: max-content;
+        height: 100vh;
         gap: 30px;
         padding-top: 30px;
+        justify-content: space-evenly;
+        align-items: center;
     }
     .landing__page__section1,
     .landing__page__section2 {
