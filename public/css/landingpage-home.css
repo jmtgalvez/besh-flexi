@@ -1,7 +1,82 @@
 .landing__page__banner {
     background: var(--textcolor1);
     color: var(--bgcolor1);
-    height: 100vh;
+    height: 92vh;
     width: 100vw;
     position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+/* SECTION 1 */
+.landing__page__section1 {
+    width: clamp(50%, 50vw, 50vw);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.landing__page__section1__div1 {
+    display: grid;
+    gap: clamp(25px, 15vw, 35px);
+    padding: 1rem;
+    width: clamp(max-content, 30vw, 50vw);
+    overflow: visible;
+}
+.landing__page__section1 h1 {
+    font-size: clamp(20px, 12vw, 50px);
+    font-family: 'oxygen', 
+        Helvetica, sans-serif;
+    background: linear-gradient(
+        to right, var(--bgcolor1), var(--color1), var(--bgcolor1)
+        );
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+}
+/* SECTION 2 */
+#landing__page__section1__btn {
+    background: var(--color1);
+    color: #0b1313;
+    width: clamp(100px, 12vw, 300px);
+    font-weight: 700;
+    border-radius: 20px;
+    padding: .75rem;
+    display: grid;
+    font-size: clamp(10px, 15vw, 15px);
+    place-content: center;
+    border: none;
+    outline: 2px solid transparent;
+    font-family: 'Oxygen', sans-serif;
+    transition: all 250ms ease-in-out;
+}
+#landing__page__section1__btn:hover {
+    outline: 2px solid var(--bgcolor1);
+}
+
+.landing__page__section2 {
+    width: clamp(50%, 50vw, 50vw);
+    background: red;
+}
+
+
+
+/* Media Query */
+@media screen and (max-width: 650px) {
+    .landing__page__banner {
+        flex-direction: column;
+        height: max-content;
+        gap: 30px;
+        padding-top: 30px;
+    }
+    .landing__page__section1,
+    .landing__page__section2 {
+        width: 100vw;
+    }
+    .landing__page__section1 {
+        place-content: center;
+        text-align: center;
+    }
+    .landing__page__section1__div1 {
+        place-items: center;
+    }
 }

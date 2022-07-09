@@ -1,6 +1,6 @@
 import React from "react";
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
-import FrontPage from "./components/Body/FrontPage";
+import FrontPage from "./components/Home/FrontPage";
 import Header from "./components/Body/Header";
 
 function App() {

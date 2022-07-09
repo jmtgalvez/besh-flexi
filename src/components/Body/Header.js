@@ -14,7 +14,7 @@ export default function Header() {
           <li><Link className='opensans' to="#">About</Link></li>
           <li>
             <Link id='frontpage__header__btn' to="#">
-             Join Now
+             Log In
             </Link>
           </li>
         </ul>

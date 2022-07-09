@@ -45,9 +45,9 @@
     background: var(--color1);
     color: #0b1313;
     width: clamp(max-content, 8vw, 143px);
-    font-weight: 600;
+    font-weight: 500;
     border-radius: 20px;
-    padding: .77rem;
+    padding: .75rem;
     display: grid;
     place-content: center;
     font-family: 'Oxygen', sans-serif;
