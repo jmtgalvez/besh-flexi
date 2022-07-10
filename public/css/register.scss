@@ -10,33 +10,40 @@
   .register__section__container__form {
     width: 50vw;
     overflow: hidden;
+    height: 100vh;
+    display: grid;
+    place-content: center;
 
     .register__form {
       display: grid;
       place-items: center;
       height: max-content;
-      padding: 2rem;
+      padding: 2rem auto;
 
       div {
         position: relative;
-        width: clamp(14rem, 20rem, 300px);
+        width: clamp(14rem, 46vw, 600px);
         height: 3rem;
         margin: 20px auto;
+        border-radius: 0.5rem;
+        transform: scale(0.8);
+        box-shadow: 0px 2px 10px 2px rgba(21, 113, 108, 0.237);
+        overflow: hidden;
 
         input {
           position: absolute;
-          top: 0;
+          top: 0rem;
           left: 0;
           width: 100%;
           height: 100%;
           font-family: inherit;
-          font-size: 0.87rem;
+          font-size: 0.84rem;
           border-radius: 0.5rem;
           outline: none;
-          border: 2px solid rgba(11, 19, 19, .5);    
-          padding: 1rem;
-          transition: all  250ms ease-in;
-          
+          border: 2px solid transparent;
+          padding: 1.55rem 1rem 1rem;
+          transition: all 250ms ease-in;
+
           &:hover {
             border: 2px solid rgba(17, 214, 178, 0.4);
           }
@@ -52,22 +59,20 @@
           padding: 0 0.5rem;
           color: var(--bgcolor1);
           cursor: text;
-          transition: 
-          top 200ms ease-in, 
-          left 200ms ease-in, 
-          font-size 200ms ease-in;
+          transition: top 200ms ease-in, left 200ms ease-in, font-size 200ms ease-in;
         }
+      }
     }
-}
-}
+  }
 }
 
 .register__form__input:focus ~ .register__form__label,
-.register__form__input:not(:placeholder-shown).register__form__input:not(:focus) ~ .register__form__label {
-    font-size: 0.55rem;
-    top: 0.24rem;
-    left: 0.72rem;
-    color: var(--color1);
+.register__form__input:not(:placeholder-shown).register__form__input:not(:focus)
+  ~ .register__form__label {
+  font-size: 0.53rem;
+  top: 0.24rem;
+  left: 0.72rem;
+  color: var(--color1);
 }
 
 .register__section__container__image {
@@ -83,59 +88,60 @@
 
 // FOR ERRORS
 .error__form {
-    display: grid;
-    place-content: center;
-    height: max-content;
-    padding: 2rem;
+  display: grid;
+  place-content: center;
+  height: max-content;
+  padding: 2rem;
 
-    div {
-      position: relative;
-      width: 20rem;
-      height: 3rem;
-      margin: 20px auto;
+  div {
+    position: relative;
+    width: clamp(20rem, 60rem, 450px);
+    height: 3rem;
+    margin: 20px auto;
 
-      input {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        font-family: inherit;
-        font-size: 0.87rem;
-        border-radius: 0.5rem;
-        outline: none;
-        border: 2px solid rgba(11, 19, 19, .5);    
-        padding: 1rem;
-        
-        &:hover {
-          border: 2px solid rgba(17, 214, 178, 0.4);
-        }
-        &:focus {
-          border: 2px solid var(--color1);
-        }
+    input {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      font-family: inherit;
+      font-size: 0.87rem;
+      border-radius: 0.5rem;
+      outline: none;
+      border: 2px solid rgba(11, 19, 19, 0.5);
+      padding: 1rem;
+
+      &:hover {
+        border: 2px solid rgba(17, 214, 178, 0.4);
       }
-
-      label {
-        position: absolute;
-        top: 0.5rem;
-        left: 1rem;
-        padding: 0 0.5rem;
-        color: var(--bgcolor1);
-        cursor: text;
-        transition: 
-        top 200ms ease-in, 
-        left 200ms ease-in, 
-        font-size 200ms ease-in;
+      &:focus {
+        border: 2px solid var(--color1);
       }
+    }
+
+    label {
+      position: absolute;
+      top: 0.5rem;
+      left: 1rem;
+      padding: 0 0.5rem;
+      color: var(--bgcolor1);
+      cursor: text;
+      transition: top 200ms ease-in, left 200ms ease-in, font-size 200ms ease-in;
+    }
   }
+}
+
+.register__btn {
+  transform: translate(-50% -50%);
 }
 
 .error__form__input:focus ~ .error__form__label,
 .error__form__input:not(:placeholder-shown).error__form__input:not(:focus) ~ .error__form__label {
-    font-size: 0.55rem;
-    top: 0.24rem;
-    left: 0.72rem;
-    color: var(--color1);
+  font-size: 0.55rem;
+  top: 0.24rem;
+  left: 0.72rem;
+  color: var(--color1);
 }
 
 @media screen and (max-width: 685px) {
@@ -145,10 +151,20 @@
     justify-content: center;
 
     .register__section__container__form {
-      width: 100vw;
+      width: 92vw;
+      border-radius: 20px;
       height: max-content;
       position: relative;
       z-index: 1;
+      background: var(--textcolor1);
+
+     .register__form {
+      padding: 2rem 0;
+        div {
+          width: 80vw;
+          transform: translate(-50% -50%);
+        }
+     }
     }
     .register__section__container__image {
       width: 100vw;

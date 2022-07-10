@@ -29,7 +29,7 @@ export default function Register() {
             <label htmlFor="rep_pass" className='register__form__label'>Repeat Password</label>
           </div>
 
-          <input type="submit" value="Register" className='general__btns'/>
+          <input type="submit" value="Register" className='general__btns register__btn'/>
         </form>
       </section>
       <section className="register__section__container__image">
