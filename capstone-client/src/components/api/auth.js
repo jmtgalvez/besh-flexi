@@ -7,3 +7,7 @@ const port = 3001;
 export const register = async user => {
   return axios.post(`${http}${hostname}:${port}/user/add`, user);
 }
+
+export const login = async credentials => {
+  return axios.post(`${http}${hostname}:${port}/login`, credentials);
+}
