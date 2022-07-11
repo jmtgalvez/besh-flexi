@@ -15,18 +15,20 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    overflow: hidden;
 }
 .landing__page__section1__div1 {
     display: grid;
     gap: clamp(25px, 15vw, 35px);
-    padding: 1rem;
+    padding: clamp(20px, 10vw, 30px);
     width: clamp(max-content, 30vw, 50vw);
     transform: scale(1.1);
-    margin-left: 1rem;
-    overflow: hidden;
+    margin-left: clamp(20px, 2rem, 30px);
+    overflow-y: hidden;
 }
 .landing__page__section1 h1 {
-    font-size: clamp(20px, 12vw, 50px);
+    font-size: clamp(15px, 12vw, 50px);
+    overflow: hidden;
     font-family: 'oxygen', 
         Helvetica, sans-serif;
     font-weight: 700;
@@ -77,7 +79,8 @@
 @media screen and (max-width: 650px) {
     .landing__page__banner {
         flex-direction: column;
-        height: 85vh;
+        height: max-content;
+        padding: 0 auto;
         gap: 30px;
         padding-top: 30px;
         align-items: center;
