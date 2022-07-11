@@ -29,6 +29,7 @@
     font-size: clamp(20px, 12vw, 50px);
     font-family: 'oxygen', 
         Helvetica, sans-serif;
+    font-weight: 700;
     background: linear-gradient(
         to right, var(--bgcolor1), var(--color1), var(--bgcolor1)
         );
