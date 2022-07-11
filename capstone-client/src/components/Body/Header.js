@@ -13,7 +13,7 @@ export default function Header() {
         <ul>
           <li><Link className='opensans' to="#">About</Link></li>
           <li>
-            <Link id='frontpage__header__btn' to="#">
+            <Link id='frontpage__header__btn' to="/Login">
              Log In
             </Link>
           </li>
