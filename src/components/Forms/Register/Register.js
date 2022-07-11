@@ -24,7 +24,7 @@ export default function Register() {
       password: passwordRef.current.value
     }
     
-    Api.register(user);
+    console.log(Api.register(user));
   }
 
   return (

@@ -3,36 +3,19 @@ const router = express.Router();
 
 const authCtrl = require('./controller');
 
-router.post('/login', authCtrl.login);
+router.post('/user/add', async (req, res) => {
+  try {
+    const user = {
+      email: req.body.email,
+      username: req.body.first_name + req.body.last_name,
+      password: req.body.password
+    };
 
-router.post('/register', (req, res) => {
-  console.log(req.body);
-  // const { email, username, password, cPassword } = req.body;
-
-  // if ( password === cPassword ) {
-
-    // let sql = `INSERT INTO users 
-    //    ( email, username, password )
-    //    VALUES
-    //    ( ?, ?, ? )`;
-    // let values = [
-    //   email, username, password
-    // ];
-
-    // db.query( sql, values, (err, rows) => {
-    //   if (err) {
-    //     console.log(`POST /register Error: ${err.message}`);
-    //     res.render('registration', { error: 'Cannot add user.' });
-    //   } else {
-    //     console.log('DB: Added new admin.');
-    //     res.redirect('/');
-    //   }
-    // });
-
-  // } else {
-  //   res.render('registration', { error: 'Passwords do not match.' });
-  // }
-
+    const new_user_id = await authCtrl.addUser(user);
+    console.log(new_user_id)
+  } catch(status) {
+    res.status(status).json({ status });
+  }
 });
 
 module.exports = router;

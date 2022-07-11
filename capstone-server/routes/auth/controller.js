@@ -1,24 +1,24 @@
 const db = require('../database/index');
 
-exports.login = (req, res) => {
-  const { email, password } = req.body;
-  console.log(req.body);
-  console.log(email);
+exports.addUser = user => {
+  return new Promise( (resolve, reject) => {
+    const sql = `INSERT INTO users
+      ( email, username, password)
+      VALUES
+      ( ?, ?, ?)`;
 
-  let sql = `SELECT * FROM users WHERE email = ? OR username = ?`;
-  let values = [ email, email];
+    const values = [
+      user.email,
+      user.username,
+      user.password
+    ]
 
-  db.query( sql, values, (err, rows) => {
-    if (err) console.log(`POST /login Error: ${err.message}`)
-    if ( rows.length > 0) {
-
-      if ( password === rows[0].password ) {
-        res.render('home');
-      } else {
-        res.render('index', { error: 'Please check username or password'});
+    db.query(sql, values, (err, rows) => {
+      if (err) {
+        console.log(`/routes/auth/controller/register DB Error: ${err.message}`);
+        return reject(500);
       }
-    } else {
-      res.render('index', { error: 'Please check username or password'});
-    }
+      return resolve(rows.insertId);
+    });
   });
 }

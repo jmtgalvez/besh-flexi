@@ -19,14 +19,6 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(require('./routes/index.js'));
 
-// app.get('/', (req, res) => {
-//   res.render('index');
-// });
-
-// app.get('/register', (req, res) => {
-//   res.render('registration');
-// });
-
 // app.post('/register', (req, res) => {
 //   const { email, username, password, cPassword } = req.body;
 
@@ -54,10 +46,6 @@ app.use(require('./routes/index.js'));
 //     res.render('registration', { error: 'Passwords do not match.' });
 //   }
 
-// });
-
-// app.get('/home', (req, res) => {
-//   res.render('home');
 // });
 
 app.listen(port, () => {
