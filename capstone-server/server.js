@@ -13,7 +13,7 @@ app.use(cors({
   origin: `http://${hostname}:3000`
 }));
 
-app.use(require('./routes/index.js'));
+app.use('/api', require('./routes/index.js'));
 
 app.listen(port, () => {
   console.log(`Server started at http://${hostname}:${port} ...`);
