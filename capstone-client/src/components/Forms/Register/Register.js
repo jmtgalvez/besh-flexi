@@ -11,7 +11,6 @@ export default function Register() {
 
   function handleSubmit(ev) {
     ev.preventDefault();
-    console.log('submit');
 
     if ( passwordRef.current.value !== cPasswordRef.current.value ) {
       return
