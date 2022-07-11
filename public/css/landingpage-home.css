@@ -32,6 +32,7 @@
     font-family: 'oxygen', 
         Helvetica, sans-serif;
     font-weight: 700;
+    padding: 0, 0.86rem;
     background: linear-gradient(
         to right, var(--bgcolor1), var(--color1), var(--bgcolor1)
         );
