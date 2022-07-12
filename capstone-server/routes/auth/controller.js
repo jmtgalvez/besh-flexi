@@ -1,7 +1,7 @@
 const db = require('../database/index');
 const bcrypt = require('bcrypt');
 
-exports.checkUser = email => {
+exports.checkUserExists = email => {
   return new Promise( (resolve, reject) => {
     const sql = `SELECT * FROM users WHERE email = ? OR username = ?`;
 
@@ -12,7 +12,7 @@ exports.checkUser = email => {
         console.log(`/routes/auth/controller/checkUser DB Error: ${err.message}`);
         return reject(500);
       }
-      if ( !rows )
+      if ( !(rows.length > 0) )
         return reject(404);
 
       return resolve();
@@ -20,33 +20,53 @@ exports.checkUser = email => {
   });
 }
 
-exports.login = user => {
-  return new Promise( async (resolve, reject) => {
+exports.checkUserAvailable = email => {
+  return new Promise( (resolve, reject) => {
     const sql = `SELECT * FROM users WHERE email = ? OR username = ?`;
 
     const values = [ email, email ];
+
+    db.query(sql, values, (err, rows) => {
+      if (err) {
+        console.log(`/routes/auth/controller/checkUser DB Error: ${err.message}`);
+        return reject(500);
+      }
+      if ( !(rows.length > 0) )
+        return resolve();
+
+      return reject(409);
+    });
+  });
+}
+
+exports.login = credentials => {
+  return new Promise( async (resolve, reject) => {
+    const sql = `SELECT * FROM users WHERE email = ? OR username = ?`;
+
+    const values = [ credentials.email, credentials.email ];
 
     db.query(sql, values, async (err, rows) =>{
       if (err) {
         console.log(`/routes/auth/controller/login DB Error: ${err.message}`);
         return reject(500);
       }
+      if ( rows && await bcrypt.compare(credentials.password, rows[0].password) ) {
 
-      if ( !rows || await bcrypt.compare(user.password, rows[0].password )) {
+        const { user_id, email, username, first_name, last_name } = rows[0];
+  
+        const user = {
+          user_id,
+          email,
+          username,
+          first_name,
+          last_name,
+        }
+  
+        return resolve(user);
+
+      } else {
         return reject(401);
       }
-
-      const { user_id, email, username, first_name, last_name } = rows[0];
-
-      const user = {
-        user_id,
-        email,
-        username,
-        first_name,
-        last_name,
-      }
-
-      return resolve(user);
     });
   });
 }

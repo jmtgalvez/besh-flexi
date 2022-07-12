@@ -5,15 +5,16 @@ const CTRL = require('./controller')
 
 router.post('/login', async (req, res) => {
   try {
-    await CTRL.checkUser(req.body.email);
+    await CTRL.checkUserExists(req.body.email);
 
-    const user = await CTRL.login(req.body);
-
-    res.status(200).json({
-      status: 200,
-      message: 'Login Success',
-      data: user,
-    });
+    await CTRL.login(req.body)
+      .then( user => {
+        res.status(200).json({
+          status: 200,
+          message: 'Login Success',
+          data: user,
+        });
+      });
   } catch(status) {
     res.status(status).json({
       status,
@@ -24,15 +25,16 @@ router.post('/login', async (req, res) => {
 
 router.post('/register', async (req, res) => {
   try {
-    await CTRL.checkUser(req.body.email);
+    await CTRL.checkUserAvailable(req.body.email);
 
-    const new_user_id = await CTRL.addUser(req.body);
-
-    res.status(200).json({
-      status: 200,
-      message: 'Registration Success',
-      data: new_user_id
-    });
+    await CTRL.addUser(req.body)
+      .then( user_id => {
+        res.status(200).json({
+          status: 200,
+          message: 'Registration Success',
+          data: user_id
+        });
+      });
   } catch(status) {
     res.status(status).json({ 
       status: status,
