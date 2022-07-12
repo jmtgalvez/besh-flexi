@@ -26,7 +26,7 @@ exports.login = user => {
 
     const values = [ email, email ];
 
-    db.query(sql, values, (err, rows) =>{
+    db.query(sql, values, async (err, rows) =>{
       if (err) {
         console.log(`/routes/auth/controller/login DB Error: ${err.message}`);
         return reject(500);
