@@ -1,36 +1,23 @@
 const express = require('express');
 const router = express.Router();
-const bcrypt = require('bcrypt');
 
 const CTRL = require('./controller')
 
-router.post('/login', async (req, res) => {
+router.get('/status', async (req, res) => {
   try {
-    await CTRL.checkUser(req.body.email);
+    const posts = await CTRL.getAllStatus();
 
-    const userData = await CTRL.login(req.body.email);
-
-    if ( await bcrypt.compare( req.body.password, userData.password )) {
-      const { user_id, email, username, first_name, last_name } = userData;
-      const user = {
-        user_id,
-        email,
-        username,
-        first_name,
-        last_name,
-      };
-      res.status(200).json({
-        status: 200,
-        message: 'Login Success',
-        data: user,
-      });
-    }
-  } catch(status) {
+    res.status(200).json({
+      status: 200,
+      message: 'Retrieved all posts',
+      data: posts,
+    });
+  } catch (status) {
     res.status(status).json({ status });
   }
 });
 
-router.post('/register', async (req, res) => {
+router.post('/status/add', async (req, res) => {
   try {
     await CTRL.checkUser(req.body.email);
 

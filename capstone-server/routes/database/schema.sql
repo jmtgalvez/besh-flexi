@@ -40,14 +40,21 @@ CREATE TABLE admins (
 CREATE TABLE posts (
   status_id INT AUTO_INCREMENT PRIMARY KEY,
   content varchar(140) NOT NULL,
+  user_id INT NOT NULL,
   reply_id INT,
   datecreated DATETIME
     DEFAULT current_timestamp,
   dateupdate TIMESTAMP
     DEFAULT current_timestamp
     ON UPDATE current_timestamp,
-  FOREIGN KEY posts(reply_id)
+  CONSTRAINT FK_replyId    
+    FOREIGN KEY posts(reply_id)
     REFERENCES posts(status_id)
+    ON DELETE restrict
+    ON UPDATE cascade,
+  CONSTRAINT FK_userId
+    FOREIGN KEY posts(user_id)
+    REFERENCES users(user_id)
     ON DELETE restrict
     ON UPDATE cascade
 );
