@@ -26,7 +26,8 @@ export default function Login() {
                         type="text" 
                         name='email' 
                         id='email' 
-                        className='login__input' 
+                        className='login__input'
+                        placeholder=' '
                         ref={emailRef}
                     />
                     <label htmlFor="email" className='login__input__label'>Email</label>
@@ -36,7 +37,8 @@ export default function Login() {
                         type="password" 
                         name='password' 
                         id='password' 
-                        className='login__input' 
+                        className='login__input'
+                        placeholder=' ' 
                         ref={passwordRef}
                     />
                     <label htmlFor="password" className='login__input__label'>Password</label>
