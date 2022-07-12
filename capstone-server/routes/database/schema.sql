@@ -38,7 +38,7 @@ CREATE TABLE admins (
 );
 
 CREATE TABLE posts (
-  status_id INT AUTO_INCREMENT PRIMARY KEY,
+  post_id INT AUTO_INCREMENT PRIMARY KEY,
   content varchar(140) NOT NULL,
   user_id INT NOT NULL,
   reply_id INT,
@@ -49,7 +49,7 @@ CREATE TABLE posts (
     ON UPDATE current_timestamp,
   CONSTRAINT FK_replyId    
     FOREIGN KEY posts(reply_id)
-    REFERENCES posts(status_id)
+    REFERENCES posts(post_id)
     ON DELETE restrict
     ON UPDATE cascade,
   CONSTRAINT FK_userId

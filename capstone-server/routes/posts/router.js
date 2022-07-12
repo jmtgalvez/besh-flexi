@@ -19,32 +19,71 @@ router.get('/status', async (req, res) => {
 
 router.post('/status/add', async (req, res) => {
   try {
-    await CTRL.checkUser(req.body.email);
-
-    const hashPwd = await bcrypt.hash(req.body.password, 8);
-
-    let username = req.body.first_name + "." + req.body.last_name;
-    username = username.toLowerCase();
-
-    const userData = {
-      first_name: req.body.first_name,
-      last_name: req.body.last_name,
-      email: req.body.email,
-      username,
-      password: hashPwd
+    const postData = {
+      user_id: req.body.user_id,
+      content: req.body.content,
+      reply_id: req.body.reply_id ? req.body.reply_id : null,
     };
 
-    const new_user_id = await CTRL.addUser(userData);
+    const new_post_id = await CTRL.addStatus(postData);
 
     res.status(200).json({
       status: 200,
-      message: 'Registration Success',
-      data: new_user_id
+      message: 'Successfully added post',
+      data: new_post_id
     });
   } catch(status) {
-    if (status === 500) return res.status(status).json({ status });
-    res.status(409).json({ message: 'Email / username is not available.'});
+    res.status(status).json({ status });
   }
 });
+
+router.put('/status/edit/:status_id', async (req, res) => {
+  try {
+    await CTRL.checkStatusExists(req.params.status_id);
+
+    const postData = {
+      status_id: req.params.status_id,
+      content: req.body.content,
+    }
+
+    await CTRL.editStatus(postData)
+      .then( result => {
+        res.status(200).json({
+          status: 200,
+          message: 'Successfully edited post',
+        })
+      })
+      .catch( status => {
+        res.status(status).json({
+          status,
+          message: 'Failed to edit post',
+        })
+      });
+  } catch (status) {
+    res.status(status).json({ status });
+  }
+});
+
+router.delete('/status/delete/:status_id', async (req, res) => {
+  try {
+    await CTRL.checkStatusExists(req.params.status_id);
+
+    await CTRL.deleteStatus(req.params.status_id)
+      .then( result => {
+        res.status(200).json({
+          status: 200,
+          message: "Succesfully deleted post",
+        })
+      })
+      .catch( status => {
+        res.status(status).json({
+          status,
+          message: "Failed to delete post",
+        })
+      })
+  } catch (status) {
+    res.status(status).json({ status });
+  }
+})
 
 module.exports = router;
