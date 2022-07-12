@@ -1,5 +1,5 @@
 const db = require('../database/index');
-const bcrypt = require('bcypt');
+const bcrypt = require('bcrypt');
 
 exports.checkUser = email => {
   return new Promise( (resolve, reject) => {
