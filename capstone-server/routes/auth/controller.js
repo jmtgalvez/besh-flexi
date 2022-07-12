@@ -1,5 +1,4 @@
 const db = require('../database/index');
-const bcrypt = require('bcrypt');
 
 exports.checkUser = email => {
   return new Promise( (resolve, reject) => {
@@ -20,11 +19,11 @@ exports.checkUser = email => {
   });
 }
 
-exports.login = user => {
+exports.login = email => {
   return new Promise( (resolve, reject) => {
     const sql = `SELECT * FROM users WHERE email = ? OR username = ?`;
 
-    const values = [ user.email, user.email ];
+    const values = [ email, email ];
 
     db.query(sql, values, (err, rows) =>{
       if (err) {
@@ -38,11 +37,9 @@ exports.login = user => {
 
 exports.addUser = user => {
   return new Promise( async (resolve, reject) => {
-    
-    const hashPwd = await bcrypt.hash(user.password, 8);
 
     const sql = `INSERT INTO users
-      ( first_name, last_name, email, username, password)
+      ( first_name, last_name, email, username, password )
       VALUES
       ( ?, ?, ?, ?, ?)`;
 
@@ -51,7 +48,7 @@ exports.addUser = user => {
       user.last_name,
       user.email,
       user.username,
-      hashPwd
+      user.password
     ];
 
     db.query(sql, values, (err, rows) => {
