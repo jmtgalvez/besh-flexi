@@ -1,2 +1,3 @@
 [build]
   base = "capstone-client"
+  command = "npm run build"
