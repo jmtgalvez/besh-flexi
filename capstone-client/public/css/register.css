@@ -115,8 +115,9 @@
   }
   .register__section .register__section__container__image {
     width: 100vw;
-    height: 100vw;
     position: absolute;
+    top: 0;
+    bottom: 0;
   }
 }
 
