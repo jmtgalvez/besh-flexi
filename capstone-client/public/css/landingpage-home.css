@@ -80,7 +80,7 @@
 @media screen and (max-width: 650px) {
     .landing__page__banner {
         flex-direction: column;
-        height: max-content;
+        height: 100vh;
         padding: 0 auto;
         gap: 30px;
         padding-top: 30px;
