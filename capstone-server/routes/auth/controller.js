@@ -2,102 +2,102 @@ const db = require('../database/index');
 const bcrypt = require('bcrypt');
 
 exports.checkUserExists = email => {
-  return new Promise( (resolve, reject) => {
-    const sql = `SELECT * FROM users WHERE email = ? OR username = ?`;
+    return new Promise((resolve, reject) => {
+        const sql = `SELECT * FROM users WHERE email = ? OR username = ?`;
 
-    const values = [ email, email ];
+        const values = [email, email];
 
-    db.query(sql, values, (err, rows) => {
-      if (err) {
-        console.log(`/routes/auth/controller/checkUser DB Error: ${err.message}`);
-        return reject(500);
-      }
-      if ( !(rows.length > 0) )
-        return reject(404);
+        db.query(sql, values, (err, rows) => {
+            if (err) {
+                console.log(`/routes/auth/controller/checkUser DB Error: ${err.message}`);
+                return reject(500);
+            }
+            if (!(rows.length > 0))
+                return reject(404);
 
-      return resolve();
+            return resolve();
+        });
     });
-  });
 }
 
 exports.checkUserAvailable = email => {
-  return new Promise( (resolve, reject) => {
-    const sql = `SELECT * FROM users WHERE email = ? OR username = ?`;
+    return new Promise((resolve, reject) => {
+        const sql = `SELECT * FROM users WHERE email = ? OR username = ?`;
 
-    const values = [ email, email ];
+        const values = [email, email];
 
-    db.query(sql, values, (err, rows) => {
-      if (err) {
-        console.log(`/routes/auth/controller/checkUser DB Error: ${err.message}`);
-        return reject(500);
-      }
-      if ( !(rows.length > 0) )
-        return resolve();
+        db.query(sql, values, (err, rows) => {
+            if (err) {
+                console.log(`/routes/auth/controller/checkUser DB Error: ${err.message}`);
+                return reject(500);
+            }
+            if (!(rows.length > 0))
+                return resolve();
 
-      return reject(409);
+            return reject(409);
+        });
     });
-  });
 }
 
 exports.login = credentials => {
-  return new Promise( async (resolve, reject) => {
-    const sql = `SELECT * FROM users WHERE email = ? OR username = ?`;
+    return new Promise(async(resolve, reject) => {
+        const sql = `SELECT * FROM users WHERE email = ? OR username = ?`;
 
-    const values = [ credentials.email, credentials.email ];
+        const values = [credentials.email, credentials.email];
 
-    db.query(sql, values, async (err, rows) =>{
-      if (err) {
-        console.log(`/routes/auth/controller/login DB Error: ${err.message}`);
-        return reject(500);
-      }
-      if ( rows && await bcrypt.compare(credentials.password, rows[0].password) ) {
+        db.query(sql, values, async(err, rows) => {
+            if (err) {
+                console.log(`/routes/auth/controller/login DB Error: ${err.message}`);
+                return reject(500);
+            }
+            if (rows && await bcrypt.compare(credentials.password, rows[0].password)) {
 
-        const { user_id, email, username, first_name, last_name } = rows[0];
-  
-        const user = {
-          user_id,
-          email,
-          username,
-          first_name,
-          last_name,
-        }
-  
-        return resolve(user);
+                const { user_id, email, username, first_name, last_name } = rows[0];
 
-      } else {
-        return reject(401);
-      }
+                const user = {
+                    user_id,
+                    email,
+                    username,
+                    first_name,
+                    last_name,
+                }
+
+                return resolve(user);
+
+            } else {
+                return reject(401);
+            }
+        });
     });
-  });
 }
 
 exports.addUser = user => {
-  return new Promise( async (resolve, reject) => {
+    return new Promise(async(resolve, reject) => {
 
-    const hashPwd = await bcrypt.hash(user.password, 8);
+        const hashPwd = await bcrypt.hash(user.password, 8);
 
-    let username = user.username ? user.username : user.first_name + "." + user.last_name;
-    username = username.toLowerCase();
+        let username = user.username ? user.username : user.first_name + "." + user.last_name;
+        username = username.toLowerCase();
 
-    const sql = `INSERT INTO users
+        const sql = `INSERT INTO users
       ( first_name, last_name, email, username, password )
       VALUES
       ( ?, ?, ?, ?, ?)`;
 
-    const values = [
-      user.first_name,
-      user.last_name,
-      user.email,
-      username,
-      hashPwd,
-    ];
+        const values = [
+            user.first_name,
+            user.last_name,
+            user.email,
+            username,
+            hashPwd,
+        ];
 
-    db.query(sql, values, (err, rows) => {
-      if (err) {
-        console.log(`/routes/auth/controller/register DB Error: ${err.message}`);
-        return reject(500);
-      }
-      return resolve(rows.insertId);
+        db.query(sql, values, (err, rows) => {
+            if (err) {
+                console.log(`/routes/auth/controller/register DB Error: ${err.message}`);
+                return reject(500);
+            }
+            return resolve(rows.insertId);
+        });
     });
-  });
 }

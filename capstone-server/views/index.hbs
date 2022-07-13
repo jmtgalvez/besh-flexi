@@ -10,10 +10,10 @@
 </head>
 <body>
   
-  <div class="container">
-
-    <form action="/admin/login" method="post">
-
+  <div class="container d-flex flex-column align-items-center">
+    
+    <form class="w-75 d-flex flex-column gap-1" action="/admin/login" method="post">
+      <h2>Admin Login</h2>
       <div class="form-group">
         <label for="email">Email address</label>
         <input type="text" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Enter email">
@@ -24,14 +24,21 @@
         <input type="password" class="form-control" name="password" id="password" placeholder="Password">
       </div>
 
-      <button type="submit" class="btn btn-primary">Login</button>
-      <a href="/register" class="btn btn-primary">New Admin</a> 
+      {{#if error}}
+        <p class="alert alert-danger p-2 w-100">{{error}}</p>
+      {{/if}}
 
+      <a class="text-decoration-none text-light btn btn-success w-25" href="./register">
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+          <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+        </svg>
+      New Admin</a>
+      
+      <button type="submit" class="btn btn-primary form-control">Login</button>
+      
     </form>
 
-    {{#if error}}
-      <p class="mt-3 alert alert-danger p-2">{{error}}</p>
-    {{/if}}
+    
 
   </div>
 

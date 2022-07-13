@@ -1,0 +1,226 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.frontPage {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background: #eae5e5;
+}
+
+.frontPage .header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  height: 100vh;
+  width: 20vw;
+}
+
+.frontPage .header .header-content {
+  position: fixed;
+  height: 100%;
+  width: 20vw;
+  background-color: white;
+}
+
+.frontPage .content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-color: #eae5e5;
+  width: 80vw;
+  margin-left: 0.5em;
+}
+
+.frontPage .content .navbar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  width: 100%;
+  z-index: 10;
+}
+
+.frontPage .content .navbar .navbar-content {
+  position: fixed;
+  background-color: white;
+  width: 80vw;
+  height: 10vh;
+  top: 0;
+  -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+.frontPage .content .navbar .navbar-content .search {
+  position: relative;
+  width: 70%;
+  background-color: transparent;
+  padding: 0.2em;
+  padding: 0.2em 0.8em;
+  height: 50px;
+}
+
+.frontPage .content .navbar .navbar-content .search .search-input {
+  width: 100%;
+  padding: 0 1em;
+  background-color: #eae5e5;
+  border: none;
+  outline: none;
+  border-radius: 25px;
+}
+
+.frontPage .content .navbar .navbar-content .search .search-button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: absolute;
+  right: 0;
+  height: 50px;
+  width: 50px;
+  text-decoration: none;
+  background-color: #00cc99;
+  border-radius: 50%;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  cursor: pointer;
+  border: none;
+}
+
+.frontPage .content .navbar .navbar-content .search .search-button svg {
+  color: black;
+}
+
+.frontPage .content .navbar .navbar-content .search .search-button:hover {
+  background-color: #006666;
+}
+
+.frontPage .content .navbar .navbar-content .search .search-button:hover svg {
+  color: white;
+}
+
+.frontPage .content .navbar .navbar-content .profile-dropdown {
+  height: 100%;
+}
+
+.frontPage .content .navbar .navbar-content .profile-dropdown .dropdown-image {
+  background-color: #009999;
+}
+
+.frontPage .content .navbar .navbar-content .profile-dropdown .dropdown-image svg {
+  color: white;
+}
+
+.frontPage .content .navbar .navbar-content .profile-dropdown .dropdown-image:hover {
+  background-color: #006666;
+}
+
+.frontPage .content .content-body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+.frontPage .content .content-body .newsfeeds {
+  position: relative;
+  width: 80%;
+  background-color: #eae5e5;
+  padding: 0 .6em;
+  margin-top: 10vh;
+}
+
+.frontPage .content .content-body .newsfeeds .newsfeeds-container-1 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: white;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+.frontPage .content .content-body .newsfeeds .newsfeeds-container-1 .post-container .newsfeeds-photo {
+  max-height: 100px;
+  max-width: 100px;
+}
+
+.frontPage .content .content-body .newsfeeds .newsfeeds-container-1 .post-container .newsfeeds-photo svg {
+  color: #00cc99;
+}
+
+.frontPage .content .content-body .newsfeeds .newsfeeds-container-1 .post-container .newsfeeds-input {
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #eae5e5;
+  width: 90%;
+}
+
+.frontPage .content .content-body .newsfeeds .newsfeeds-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: white;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+.frontPage .content .content-body .newsfeeds .newsfeeds-content .user-info {
+  width: 100%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.frontPage .content .content-body .newsfeeds .newsfeeds-content .user-info .newsfeeds-content-photo {
+  max-height: 50px;
+  max-width: 50px;
+}
+
+.frontPage .content .content-body .newsfeeds .newsfeeds-content .user-info .newsfeeds-content-photo svg {
+  color: #00cc99;
+}
+
+.frontPage .content .content-body .side {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  width: 25%;
+  height: 100%;
+  right: 0;
+  z-index: 1;
+}
+
+.frontPage .content .content-body .side .side-content {
+  position: fixed;
+  background-color: white;
+  margin-top: 7vh;
+  width: 20%;
+  height: 100%;
+  z-index: 9;
+}
+
+.frontPage .content .footer {
+  width: 100%;
+  height: 10vh;
+  background-color: gray;
+}

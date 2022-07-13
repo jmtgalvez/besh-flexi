@@ -3,7 +3,9 @@
   height: 100vh;
   color: var(--bgcolor1);
 }
+
 .login__section .login__form__container {
+  display: -ms-grid;
   display: grid;
   place-content: center;
   width: 100%;
@@ -11,25 +13,35 @@
   padding: clamp(20px, 2rem, 26px);
   background: var(--color1);
 }
+
 .login__section .login__form__container .login__form {
   background: var(--textcolor1);
-  box-shadow: 0px 0px 10px 2.5px rgba(21, 113, 108, 0.25);
+  -webkit-box-shadow: 0px 0px 10px 2.5px rgba(21, 113, 108, 0.25);
+          box-shadow: 0px 0px 10px 2.5px rgba(21, 113, 108, 0.25);
   padding: clamp(1rem, 5vw, 5rem);
   border-radius: 20px;
+  width: -webkit-max-content;
+  width: -moz-max-content;
   width: max-content;
+  height: -webkit-max-content;
+  height: -moz-max-content;
   height: max-content;
+  display: -ms-grid;
   display: grid;
   gap: 25px;
 }
+
 .login__section .login__form__container .login__form div {
   position: relative;
   width: clamp(270px, 30vw, 600px);
   height: 3rem;
   padding: 1rem;
   border-radius: 0.5rem;
-  box-shadow: 0px 2px 10px 2px rgba(21, 113, 108, 0.237);
+  -webkit-box-shadow: 0px 2px 10px 2px rgba(21, 113, 108, 0.237);
+          box-shadow: 0px 2px 10px 2px rgba(21, 113, 108, 0.237);
   overflow: hidden;
 }
+
 .login__section .login__form__container .login__form div input {
   position: absolute;
   top: 0;
@@ -42,15 +54,20 @@
   outline: none;
   border: 2px solid transparent;
   padding: 1.55rem 1rem 1rem;
+  -webkit-transition: all 250ms ease-in;
   transition: all 250ms ease-in;
 }
+
 .login__section .login__form__container .login__form div input:hover {
   border: 2px solid rgba(17, 214, 178, 0.4);
 }
+
 .login__section .login__form__container .login__form div input:focus {
   border: 2px solid var(--color1);
-  box-shadow: 0px 2px 12px 4px rgba(21, 113, 108, 0.255);
+  -webkit-box-shadow: 0px 2px 12px 4px rgba(21, 113, 108, 0.255);
+          box-shadow: 0px 2px 12px 4px rgba(21, 113, 108, 0.255);
 }
+
 .login__section .login__form__container .login__form div label {
   position: absolute;
   top: 0.7rem;
@@ -58,6 +75,7 @@
   padding: 0 0.5rem;
   color: var(--bgcolor1);
   cursor: text;
+  -webkit-transition: top 200ms ease-in, left 200ms ease-in, font-size 200ms ease-in;
   transition: top 200ms ease-in, left 200ms ease-in, font-size 200ms ease-in;
 }
 
@@ -68,5 +86,3 @@
   left: 0.7rem;
   color: var(--color1);
 }
-
-/*# sourceMappingURL=login.css.map */
