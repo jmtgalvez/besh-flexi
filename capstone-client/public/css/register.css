@@ -115,7 +115,7 @@
   }
   .register__section .register__section__container__image {
     width: 100vw;
-    height: 100%;
+    height: 100vh;
     position: absolute;
     top: 0;
     bottom: 0;
