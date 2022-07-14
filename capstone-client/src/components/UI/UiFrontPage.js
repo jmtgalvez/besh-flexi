@@ -7,6 +7,8 @@ import UiSide from './UiSide'
 
 
 export default function UiFrontPage(){
+
+ 
     return (
       <div className='frontPage'>
         <div className="header">
@@ -14,12 +16,14 @@ export default function UiFrontPage(){
         </div>
           <div className="content">
             <div className="navbar">
-                <UiNavbar />
+                <UiNavbar  />
             </div>
+            
             <div className="content-body">
               <div className="newsfeeds">
                   <UiNewsFeedsForm />
               </div>
+              
               <div className="side">
                   <UiSide />
               </div>
