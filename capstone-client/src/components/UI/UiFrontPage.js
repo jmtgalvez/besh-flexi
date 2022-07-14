@@ -1,8 +1,8 @@
 import React from 'react'
 import { UIHeader } from '../Body/UIHeader'
-import UiNewsFeeds from './UiNewsFeeds'
+import UiNewsFeedsForm from './UiNewsFeedsForm'
 import UiNavbar from './UiNavbar'
-import UiFooter from './UiFooter'
+// import UiFooter from './UiFooter'
 import UiSide from './UiSide'
 
 
@@ -18,7 +18,7 @@ export default function UiFrontPage(){
             </div>
             <div className="content-body">
               <div className="newsfeeds">
-                  <UiNewsFeeds />
+                  <UiNewsFeedsForm />
               </div>
               <div className="side">
                   <UiSide />
