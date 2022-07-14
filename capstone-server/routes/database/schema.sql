@@ -94,9 +94,3 @@ CREATE TABLE chatMessages (
     ON DELETE restrict
     ON UPDATE cascade
 );
-
-INSERT INTO users (first_name, last_name, email, username, password) VALUES ('Henson', 'Lao', 'henson.lao@gmail.com', 'henson.lao', 'password');
-INSERT INTO users (first_name, last_name, email, username, password) VALUES ('Adonis', 'Suico', 'adonis.suico@gmail.com', 'adonis.suico', 'password');
-INSERT INTO users (first_name, last_name, email, username, password) VALUES ('Miguel', 'Galvez', 'miguel.galvez@gmail.com', 'miguel.galvez', 'password');
-
-INSERT INTO admins (user_id) VALUES (1), (2), (3);
