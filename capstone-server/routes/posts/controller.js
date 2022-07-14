@@ -17,13 +17,15 @@ exports.getAllStatus = () => {
 exports.addStatus = post => {
   return new Promise( (resolve, reject) => {
     const sql = `INSERT INTO posts
-      (user_id, content, reply_id)
-      VALUES (?, ?, ?)`;
+      (user_id, content, reply_id, datecreated, dateupdated)
+      VALUES (?, ?, ?, ?, ?)`;
 
     const values = [ 
       post.user_id, 
       post.content, 
-      post.reply_id
+      post.reply_id,
+      post.date,
+      post.date,
     ]
 
     db.query( sql, values, (err, rows) => {

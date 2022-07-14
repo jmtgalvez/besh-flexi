@@ -18,7 +18,7 @@ CREATE TABLE users (
   password VARCHAR(100) NOT NULL,
   datecreated DATETIME
     DEFAULT current_timestamp,
-  dateupdate TIMESTAMP
+  dateupdated TIMESTAMP
     DEFAULT current_timestamp
     ON UPDATE current_timestamp
 );
@@ -28,7 +28,7 @@ CREATE TABLE admins (
   user_id INT NOT NULL UNIQUE,
   datecreated DATETIME
     DEFAULT current_timestamp,
-  dateupdate TIMESTAMP
+  dateupdated TIMESTAMP
     DEFAULT current_timestamp
     ON UPDATE current_timestamp,
   FOREIGN KEY admin(user_id)
@@ -44,7 +44,7 @@ CREATE TABLE posts (
   reply_id INT,
   datecreated DATETIME
     DEFAULT current_timestamp,
-  dateupdate TIMESTAMP
+  dateupdated TIMESTAMP
     DEFAULT current_timestamp
     ON UPDATE current_timestamp,
   CONSTRAINT FK_replyId    
@@ -65,7 +65,7 @@ CREATE TABLE chats  (
   user2 INT NOT NULL,
   datecreated DATETIME
     DEFAULT current_timestamp,
-  dateupdate TIMESTAMP
+  dateupdated TIMESTAMP
     DEFAULT current_timestamp
     ON UPDATE current_timestamp,
   CONSTRAINT FK_userid1
@@ -86,7 +86,7 @@ CREATE TABLE chatMessages (
   chat_id INT NOT NULL,
   datecreated DATETIME
     DEFAULT current_timestamp,
-  dateupdate TIMESTAMP
+  dateupdated TIMESTAMP
     DEFAULT current_timestamp
     ON UPDATE current_timestamp,
   FOREIGN KEY chatMessages(chat_id)

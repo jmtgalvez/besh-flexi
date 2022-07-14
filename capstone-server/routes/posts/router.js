@@ -20,9 +20,10 @@ router.get('/status', async (req, res) => {
 router.post('/status/add', async (req, res) => {
   try {
     const postData = {
-      user_id: req.body.user_id,
-      content: req.body.content,
+      user_id: req.body.userId,
+      content: req.body.userPostText,
       reply_id: req.body.reply_id ? req.body.reply_id : null,
+      date: new Date(req.body.date_posted),
     };
 
     const new_post_id = await CTRL.addStatus(postData);
