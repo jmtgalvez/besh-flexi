@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from 'react';
 import {v4 as uuidv4} from 'uuid';
+import UiContentCards from './UiContentCards';
 
 export default function UiNewsFeedsForm(){
   // Setting the value of what user will post.
@@ -21,6 +22,12 @@ export default function UiNewsFeedsForm(){
       minute: '2-digit'
     })
 
+    let userPost = {
+      userId: uuidv4(),
+      userPostText: postText,
+      date_posted: currentDate,
+    }
+
     /* if (!postPhoto) {
       setPostStorage([...postStorage, {
         userId: uuidv4(),
@@ -37,14 +44,9 @@ export default function UiNewsFeedsForm(){
       }])
     } */
 
-    setPostStorage([...postStorage, {
-      userId: uuidv4(),
-      userPostText: postText,
-      date_posted: currentDate,
-    }])
+    setPostStorage([...postStorage, userPost])
 
     setPostText('');
-    console.log(postStorage.map(post => post));
   }
 
   return (
@@ -82,6 +84,12 @@ export default function UiNewsFeedsForm(){
                 </button>
             </div>
         </form>
+
+        {postStorage && postStorage.map(item => {
+          return(<div key={item.userId}>
+          <UiContentCards userName={item.userId} userPostText={item.userPostText}/>
+          </div>)
+        })}
     </div>
     
   )

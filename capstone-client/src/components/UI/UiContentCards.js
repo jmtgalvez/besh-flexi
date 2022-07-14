@@ -28,7 +28,7 @@ export default function UiContentCards({userName, userPostText, userPostPhoto}) 
           <p>
             {userPostText}
           </p>
-          <img src={userPostPhoto} alt="Posts" />
+          {userPostPhoto && <img src={userPostPhoto} alt="Posts" />}
         </div>
       </div>
     </div>
