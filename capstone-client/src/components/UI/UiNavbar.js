@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import DropdownButtons from './DropdownButtons';
 
 export default function UiNavbar () {
@@ -9,10 +9,10 @@ export default function UiNavbar () {
     setToggle(!toggle);
     console.log(toggle);
   }
-
+/* 
   const dropdown = () =>{
 
-  };
+  }; */
 
   return (
     <div className='navbar-content px-5 rounded-2 d-flex 

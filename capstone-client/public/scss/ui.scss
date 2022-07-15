@@ -1,7 +1,7 @@
 $primaryColor: #339966;
-$secondaryColor: #ccdedc;
-$blue: #005271;
-$background: hsl(173, 21%, 54%);
+$secondaryColor: #eff6f6;
+$blue: #215d5d;
+$background: #11D6B2;
 * {
     box-sizing: border-box;
     padding: 0;
@@ -42,12 +42,22 @@ $background: hsl(173, 21%, 54%);
                 a {
                     text-decoration: none;
                     width: 100%;
-                    padding: 20px;
+                    height: max-content;
+                    padding: 20px .5rem;
                     color: white;
                     font-weight: bold;
                     border-radius: 25px;
+                    overflow: hidden;
+                    display: flex;
+                    font-size: clamp(8px, 5vw, 18px);
+                   /*  display: grid;
+                    gap: 5px;
+                    place-items: center; */
+                    transition: all 200ms ease-in-out;
                     span {
                         margin-left: 10px;
+                        height: max-content;
+                        width: max-content;
                     }
                     svg {
                         color: $blue;
@@ -191,7 +201,7 @@ $background: hsl(173, 21%, 54%);
                                 background-color: rgb(216, 210, 210);
                                 svg {
                                     transform: rotate(360deg);
-                                    transition: 4s;
+                                    transition: .35s;
                                 }
                             }
                         }
@@ -208,7 +218,7 @@ $background: hsl(173, 21%, 54%);
             //START NEWSFEEDS
             .newsfeeds {
                 position: relative;
-                width: 80%;
+                width: 100%;
                 background-color: $secondaryColor;
                 padding: 0 .6em;
                 margin-top: 10vh;
@@ -279,4 +289,10 @@ $background: hsl(173, 21%, 54%);
         }
     }
     //end content
+}
+
+@media screen and (max-width: 800px) {
+    .header-content {
+        display: none;
+    }
 }
