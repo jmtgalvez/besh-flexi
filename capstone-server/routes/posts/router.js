@@ -23,7 +23,7 @@ router.post('/status', async (req, res) => {
       user_id: req.body.userId,
       content: req.body.userPostText,
       reply_id: req.body.reply_id ? req.body.reply_id : null,
-      date: new Date(req.body.date_posted),
+      date: req.body.date_posted ? new Date(req.body.date_posted) : new Date(),
     };
 
     const new_post_id = await CTRL.addStatus(postData);
@@ -85,6 +85,17 @@ router.delete('/status/:status_id', async (req, res) => {
   } catch (status) {
     res.status(status).json({ status });
   }
-})
+});
+
+router.get('/status/:search_text', async (req, res) => {
+  try {
+    res.status(200).json({
+      status: 200,
+      data: await CTRL.searchStatus({ search_text: req.params.search_text })
+    })
+  } catch (status) {
+    res.status(status).json({ status });
+  }
+});
 
 module.exports = router;
