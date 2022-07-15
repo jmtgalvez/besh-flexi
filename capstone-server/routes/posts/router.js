@@ -17,7 +17,7 @@ router.get('/status', async (req, res) => {
   }
 });
 
-router.post('/status/add', async (req, res) => {
+router.post('/status', async (req, res) => {
   try {
     const postData = {
       user_id: req.body.userId,
@@ -38,7 +38,7 @@ router.post('/status/add', async (req, res) => {
   }
 });
 
-router.put('/status/edit/:status_id', async (req, res) => {
+router.put('/status/:status_id', async (req, res) => {
   try {
     await CTRL.checkStatusExists(req.params.status_id);
 
@@ -65,7 +65,7 @@ router.put('/status/edit/:status_id', async (req, res) => {
   }
 });
 
-router.delete('/status/delete/:status_id', async (req, res) => {
+router.delete('/status/:status_id', async (req, res) => {
   try {
     await CTRL.checkStatusExists(req.params.status_id);
 
