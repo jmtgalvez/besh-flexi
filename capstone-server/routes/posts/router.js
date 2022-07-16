@@ -38,7 +38,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.put('//:status_id', async (req, res) => {
+router.put('/:status_id', async (req, res) => {
   try {
     await CTRL.checkStatusExists(req.params.status_id);
 
@@ -65,7 +65,7 @@ router.put('//:status_id', async (req, res) => {
   }
 });
 
-router.delete('//:status_id', async (req, res) => {
+router.delete('/:status_id', async (req, res) => {
   try {
     await CTRL.checkStatusExists(req.params.status_id);
 
@@ -87,7 +87,7 @@ router.delete('//:status_id', async (req, res) => {
   }
 });
 
-router.get('//:search_query', async (req, res) => {
+router.get('/:search_query', async (req, res) => {
   try {
     res.status(200).json({
       status: 200,
