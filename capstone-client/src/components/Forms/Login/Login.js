@@ -13,7 +13,11 @@ export default function Login() {
         password: passwordRef.current.value
       }
       
-      console.log( (await Api.login(user)).data.data );
+      const response =  (await Api.login(user));
+      if (response.status === 200){
+        window.location.href ='/userinterface';
+      }
+     
     }
 
   return (
