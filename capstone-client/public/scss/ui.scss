@@ -11,11 +11,13 @@ $background: #11D6B2;
 .frontPage {
     display: flex;
     background: $secondaryColor;
+    width: 100vw;
+    justify-content: center;
     // HEADER CODE
     .header {
         display: flex;
         position: relative;
-        height: 100vh;
+        height: 100%;
         width: 20vw;
         .header-content {
             position: fixed;
@@ -89,24 +91,24 @@ $background: #11D6B2;
         position: relative;
         flex-direction: column;
         background-color: $secondaryColor;
-        width: 80vw;
+        width: 100vw;
         margin-left: 0.5em;
         //START NAVBAR
         .navbar {
             display: flex;
             position: relative;
-            width: 100%;
             z-index: 10;
             .navbar-content {
                 position: fixed;
                 background-color: white;
-                width: 80vw;
                 height: 10vh;
+                right: 0;
+                left: 18vw;
                 top: 0;
                 box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .2);
                 .search {
                     position: relative;
-                    width: 70%;
+                    width: 100%;
                     background-color: transparent;
                     padding: 0.2em;
                     padding: 0.2em 0.8em;
@@ -163,7 +165,7 @@ $background: #11D6B2;
                     position: fixed;
                     width: 250px;
                     height: auto;
-                    right: 20px;
+                    right: clamp(20px, 5vw, 30px);
                     top: 10.5vh;
                     transition: 1s;
                     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .2);
@@ -224,14 +226,17 @@ $background: #11D6B2;
                 margin-top: 10vh;
                 .newsfeeds-container-1 {
                     display: flex;
+                    width: clamp(100%, 100%, 600px);
                     background-color: white;
                     border-radius: 10px;
+                    justify-content: space-evenly;
                     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .2);
                     .post-container {
+                        width: max-content;
+                        padding: .2rem;
                         .newsfeeds-photo {
-                            max-height: 100px;
-                            max-width: 100px;
                             svg {
+                                width: clamp(40px, 5vw, 100px);
                                 color: $primaryColor;
                             }
                         }
@@ -239,7 +244,7 @@ $background: #11D6B2;
                             border: none;
                             outline: none;
                             border-bottom: 1px solid $secondaryColor;
-                            width: 90%;
+                            width: 90%
                         }
                     }
                 }
@@ -292,7 +297,17 @@ $background: #11D6B2;
 }
 
 @media screen and (max-width: 800px) {
+    .content {
+        .navbar {
+            .navbar-content {
+                width: 100vw;
+                transform: translateX(-18vw);
+            }
+        }
+    }
+
     .header-content {
         display: none;
     }
+
 }

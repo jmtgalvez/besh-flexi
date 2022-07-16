@@ -11,9 +11,11 @@ export default function UiFrontPage(){
  
     return (
       <div className='frontPage'>
-        <div className="header">
+        {window.innerWidth > 800 && 
+          <div className="header">
             <UIHeader />
-        </div>
+          </div> 
+          }
           <div className="content">
             <div className="navbar">
                 <UiNavbar  />
@@ -24,10 +26,12 @@ export default function UiFrontPage(){
                   <UiNewsFeedsForm />
               </div>
               
+              {window.innerWidth > 675 && 
               <div className="side">
                   <UiSide />
               </div>
-              
+              }
+             
             </div>
           
             

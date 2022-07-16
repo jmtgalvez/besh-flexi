@@ -17,7 +17,7 @@ export default function UiNavbar () {
   return (
     <div className='navbar-content px-5 rounded-2 d-flex 
     
-    align-items-center justify-content-between'>
+    align-items-center flex-1 justify-content-between'>
 
         <div className="search d-flex align-items-center gap-1">
             <input className='search-input py-2 px-4' type="search" placeholder='Search' />

@@ -7,11 +7,13 @@
 .frontPage {
   display: flex;
   background: #eff6f6;
+  width: 100vw;
+  justify-content: center;
 }
 .frontPage .header {
   display: flex;
   position: relative;
-  height: 100vh;
+  height: 100%;
   width: 20vw;
 }
 .frontPage .header .header-content {
@@ -83,26 +85,26 @@
   position: relative;
   flex-direction: column;
   background-color: #eff6f6;
-  width: 80vw;
+  width: 100vw;
   margin-left: 0.5em;
 }
 .frontPage .content .navbar {
   display: flex;
   position: relative;
-  width: 100%;
   z-index: 10;
 }
 .frontPage .content .navbar .navbar-content {
   position: fixed;
   background-color: white;
-  width: 80vw;
   height: 10vh;
+  right: 0;
+  left: 18vw;
   top: 0;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
 }
 .frontPage .content .navbar .navbar-content .search {
   position: relative;
-  width: 70%;
+  width: 100%;
   background-color: transparent;
   padding: 0.2em;
   padding: 0.2em 0.8em;
@@ -158,7 +160,7 @@
   position: fixed;
   width: 250px;
   height: auto;
-  right: 20px;
+  right: clamp(20px, 5vw, 30px);
   top: 10.5vh;
   transition: 1s;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
@@ -215,15 +217,18 @@
 }
 .frontPage .content .content-body .newsfeeds .newsfeeds-container-1 {
   display: flex;
+  width: clamp(100%, 100%, 600px);
   background-color: white;
   border-radius: 10px;
+  justify-content: space-evenly;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
 }
-.frontPage .content .content-body .newsfeeds .newsfeeds-container-1 .post-container .newsfeeds-photo {
-  max-height: 100px;
-  max-width: 100px;
+.frontPage .content .content-body .newsfeeds .newsfeeds-container-1 .post-container {
+  width: max-content;
+  padding: 0.2rem;
 }
 .frontPage .content .content-body .newsfeeds .newsfeeds-container-1 .post-container .newsfeeds-photo svg {
+  width: clamp(40px, 5vw, 100px);
   color: #339966;
 }
 .frontPage .content .content-body .newsfeeds .newsfeeds-container-1 .post-container .newsfeeds-input {
@@ -272,6 +277,10 @@
 }
 
 @media screen and (max-width: 800px) {
+  .content .navbar .navbar-content {
+    width: 100vw;
+    transform: translateX(-18vw);
+  }
   .header-content {
     display: none;
   }
