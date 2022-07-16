@@ -246,14 +246,17 @@
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  justify-content: space-evenly;
 }
 .frontPage .content .content-body .newsfeeds .newsfeeds-content .user-info {
   width: 100%;
+  display: flex;
+  gap: 30px;
   align-items: center;
 }
 .frontPage .content .content-body .newsfeeds .newsfeeds-content .user-info .newsfeeds-content-photo {
-  max-height: 50px;
-  max-width: 50px;
+  width: max-content;
+  height: max-content;
 }
 .frontPage .content .content-body .newsfeeds .newsfeeds-content .user-info .newsfeeds-content-photo svg {
   color: #339966;
