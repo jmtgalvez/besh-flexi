@@ -20,6 +20,6 @@ export const deletePost = async status_id => {
   return await axios.delete(`${http}${hostname}:${port}/api/status/${status_id}`);
 }
 
-export const searchPosts = async search_text => {
-  return await axios.get(`${http}${hostname}:${port}/status/${search_text}`);
+export const searchPosts = async search_query => {
+  return await axios.get(`${http}${hostname}:${port}/status/${search_query}`);
 }

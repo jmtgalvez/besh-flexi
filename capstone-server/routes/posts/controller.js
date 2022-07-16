@@ -88,16 +88,16 @@ exports.deleteStatus = status_id => {
     })
 }
 
-exports.searchStatus = ({ search_text, filters }) => {
+exports.searchStatus = ({ search_query, filters }) => {
     return new Promise( (resolve, reject) => {
-        search_text = `%${search_text}%`;
+        search_query = `%${search_query}%`;
         const sql = `SELECT a.*, b.first_name, b.last_name, b.username FROM
             posts a JOIN users b
             ON a.user_id = b.user_id
             WHERE a.content LIKE ? OR b.username LIKE ?`
         const values = [
-            search_text,
-            search_text
+            search_query,
+            search_query
         ]
         
         db.query(sql, values, (err, rows) => {

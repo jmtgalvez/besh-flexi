@@ -87,11 +87,11 @@ router.delete('/status/:status_id', async (req, res) => {
   }
 });
 
-router.get('/status/:search_text', async (req, res) => {
+router.get('/status/:search_query', async (req, res) => {
   try {
     res.status(200).json({
       status: 200,
-      data: await CTRL.searchStatus({ search_text: req.params.search_text })
+      data: await CTRL.searchStatus({ search_query: req.params.search_query })
     })
   } catch (status) {
     res.status(status).json({ status });
