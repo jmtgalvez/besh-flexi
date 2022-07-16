@@ -1,9 +1,11 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import * as Api from '../../api/auth';
+
 
 export default function Login() {
     const emailRef = useRef();
     const passwordRef = useRef();
+    const [datas, setDatas] = useState([]);
   
     async function handleSubmit(ev) {
       ev.preventDefault();
@@ -13,7 +15,9 @@ export default function Login() {
         password: passwordRef.current.value
       }
       
-      console.log( (await Api.login(user)).data.data );
+      const apiData = (await Api.login(user)).data;
+      setDatas(apiData);
+      return datas;
     }
 
   return (

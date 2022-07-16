@@ -4,7 +4,7 @@ import React from "react";
 export default function UiContentCards({userName, userPostText, userPostPhoto}) {
   return (
     <div>
-      <div className="newsfeeds-content p-5 d-flex flex-column gap-4 card">
+      <div className="newsfeeds-content p-3 d-flex flex-column gap-4 card">
         <div className="card-header user-info d-flex">
           <a href="#" className="newsfeeds-content-photo bg-light p-1 rounded-circle">
             <svg
@@ -22,12 +22,12 @@ export default function UiContentCards({userName, userPostText, userPostPhoto}) 
               />
             </svg>
           </a>
-          <h6 className="p-2">P{userName}</h6>
+          <div>
+            <h6 className="p-2">{userName}</h6>
+          </div>
         </div>
         <div className="card-body">
-          <p>
-            {userPostText}
-          </p>
+          <p>{userPostText}</p>
           {userPostPhoto && <img src={userPostPhoto} alt="Posts" />}
         </div>
       </div>
