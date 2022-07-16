@@ -211,9 +211,12 @@
 }
 .frontPage .content .content-body .newsfeeds {
   position: relative;
-  width: 100%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  padding-right: 0.35rem;
+  width: 100vw;
   background-color: #eff6f6;
-  padding: 0 0.6em;
   margin-top: 10vh;
 }
 .frontPage .content .content-body .newsfeeds .newsfeeds-container-1 {
