@@ -17,8 +17,10 @@ CREATE TABLE users (
   username VARCHAR(25) NOT NULL UNIQUE,
   password VARCHAR(100) NOT NULL,
   datecreated DATETIME
+    NOT NULL
     DEFAULT current_timestamp,
   dateupdated TIMESTAMP
+    NOT NULL
     DEFAULT current_timestamp
     ON UPDATE current_timestamp
 );
@@ -27,8 +29,10 @@ CREATE TABLE admins (
   admin_id INT AUTO_INCREMENT PRIMARY KEY,
   user_id INT NOT NULL UNIQUE,
   datecreated DATETIME
+    NOT NULL
     DEFAULT current_timestamp,
   dateupdated TIMESTAMP
+    NOT NULL
     DEFAULT current_timestamp
     ON UPDATE current_timestamp,
   FOREIGN KEY admin(user_id)
@@ -43,8 +47,10 @@ CREATE TABLE posts (
   user_id INT NOT NULL,
   reply_id INT,
   datecreated DATETIME
+    NOT NULL
     DEFAULT current_timestamp,
   dateupdated TIMESTAMP
+    NOT NULL
     DEFAULT current_timestamp
     ON UPDATE current_timestamp,
   CONSTRAINT FK_replyId    
@@ -64,8 +70,10 @@ CREATE TABLE chats  (
   user1 INT NOT NULL,
   user2 INT NOT NULL,
   datecreated DATETIME
+    NOT NULL
     DEFAULT current_timestamp,
   dateupdated TIMESTAMP
+    NOT NULL
     DEFAULT current_timestamp
     ON UPDATE current_timestamp,
   CONSTRAINT FK_userid1
@@ -85,8 +93,10 @@ CREATE TABLE chatMessages (
   content varchar(140) NOT NULL,
   chat_id INT NOT NULL,
   datecreated DATETIME
+    NOT NULL
     DEFAULT current_timestamp,
   dateupdated TIMESTAMP
+    NOT NULL
     DEFAULT current_timestamp
     ON UPDATE current_timestamp,
   FOREIGN KEY chatMessages(chat_id)
