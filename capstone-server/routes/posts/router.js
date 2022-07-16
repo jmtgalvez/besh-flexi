@@ -3,7 +3,7 @@ const router = express.Router();
 
 const CTRL = require('./controller')
 
-router.get('/status', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const posts = await CTRL.getAllStatus();
 
@@ -17,7 +17,7 @@ router.get('/status', async (req, res) => {
   }
 });
 
-router.post('/status', async (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const postData = {
       user_id: req.body.userId,
@@ -38,7 +38,7 @@ router.post('/status', async (req, res) => {
   }
 });
 
-router.put('/status/:status_id', async (req, res) => {
+router.put('//:status_id', async (req, res) => {
   try {
     await CTRL.checkStatusExists(req.params.status_id);
 
@@ -65,7 +65,7 @@ router.put('/status/:status_id', async (req, res) => {
   }
 });
 
-router.delete('/status/:status_id', async (req, res) => {
+router.delete('//:status_id', async (req, res) => {
   try {
     await CTRL.checkStatusExists(req.params.status_id);
 
@@ -87,7 +87,7 @@ router.delete('/status/:status_id', async (req, res) => {
   }
 });
 
-router.get('/status/:search_query', async (req, res) => {
+router.get('//:search_query', async (req, res) => {
   try {
     res.status(200).json({
       status: 200,
