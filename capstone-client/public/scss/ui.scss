@@ -224,7 +224,7 @@ $background: #11d6b2;
         left: 0;
         right: 0;
         margin: 0 auto;
-        padding-right: .35rem;
+        padding: 0 .6rem 0 .6rem;
         width: 100vw;
         background-color: $secondaryColor;
         margin-top: 10vh;
@@ -383,6 +383,7 @@ $background: #11d6b2;
       .content-body {
         .newsfeeds {
           margin-top: 20vh;
+          padding: 0 .36rem 0 0;
         }
       }
     }

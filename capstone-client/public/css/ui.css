@@ -214,7 +214,7 @@
   left: 0;
   right: 0;
   margin: 0 auto;
-  padding-right: 0.35rem;
+  padding: 0 0.6rem 0 0.6rem;
   width: 100vw;
   background-color: #eff6f6;
   margin-top: 10vh;
@@ -352,6 +352,7 @@
   }
   .frontPage .content .content-body .newsfeeds {
     margin-top: 20vh;
+    padding: 0 0.36rem 0 0;
   }
 }
 
