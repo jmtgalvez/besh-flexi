@@ -7,6 +7,9 @@
     --textcolor1: #FFFFFF;
     --hovercolor1: rgb(2, 255, 209);
 }
+#root {
+  position: relative;
+}
 
 * {
     box-sizing: border-box;
@@ -15,6 +18,7 @@
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: transparent;
 }
 h1 {
   overflow-y: hidden;

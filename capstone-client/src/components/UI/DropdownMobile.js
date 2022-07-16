@@ -1,8 +1,8 @@
-import React from 'react'
+import React from "react";
 
-export default function DropdownButtons() {
+function DropdownMobile({handleShow}) {
   return (
-    <>
+    <div onClick={handleShow} className="dropdown__mobile__container">
         <div className="dropdown-header card-header text-center">
             <div className="photo-dropdown">
                 <a href="">
@@ -41,6 +41,8 @@ export default function DropdownButtons() {
                 <span>Log Out</span>
             </a>
         </div>
-    </>
-  )
+    </div>
+  );
 }
+
+export default DropdownMobile;
