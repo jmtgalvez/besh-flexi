@@ -8,11 +8,15 @@ router.post('/login', async(req, res) => {
         await CTRL.checkUserExists(req.body.email);
 
         await CTRL.login(req.body)
-            .then(user => {
+            .then( data => {
+                const cookie_option = {
+                    httpOnly: true,
+                }
+                res.cookie('access_token', data.access_token, cookie_option);
                 res.status(200).json({
                     status: 200,
                     message: 'Login Success',
-                    data: user,
+                    user: data.user,
                 });
             });
     } catch (status) {

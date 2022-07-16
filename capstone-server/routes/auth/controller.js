@@ -1,5 +1,6 @@
 const db = require('../database/index');
 const bcrypt = require('bcrypt');
+const jwt = require('./jwt');
 
 exports.checkUserExists = email => {
     return new Promise((resolve, reject) => {
@@ -62,7 +63,8 @@ exports.login = credentials => {
                     last_name,
                 }
 
-                return resolve(user);
+                const access_token = jwt.generateAccessToken({ user_id });
+                return resolve({ access_token, user });
 
             } else {
                 return reject(401);
