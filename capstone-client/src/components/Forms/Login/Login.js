@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import * as Api from '../../api/auth';
 import UiFrontPage from '../../UI/UiFrontPage';
 
@@ -7,7 +7,7 @@ export default function Login() {
     const emailRef = useRef();
     const passwordRef = useRef();
     const [currentLogin, setCurrentLogin] = useState();
-  
+    
 
     function handleCurrentLogin(data){
       setCurrentLogin(data);
