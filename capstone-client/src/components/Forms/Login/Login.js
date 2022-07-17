@@ -1,11 +1,10 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import * as Api from '../../api/auth';
 
 
 export default function Login() {
     const emailRef = useRef();
     const passwordRef = useRef();
-    const [datas, setDatas] = useState([]);
   
     async function handleSubmit(ev) {
       ev.preventDefault();
