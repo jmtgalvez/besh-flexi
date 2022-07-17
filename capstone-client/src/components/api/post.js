@@ -38,9 +38,16 @@ export const deletePost = async status_id => {
   return await axios.delete(`${http}${hostname}:${port}/api/status/${status_id}`);
 }
 
+// get a single status by status_id
+// expected status_id
+// status_id (INT required)
+export const getPost = async status_id => {
+  return await axios.get(`${http}${hostname}:${port}/api/status/${status_id}`);
+}
+
 // search status in database
 // expected search_query
 // search_query (STRING required)
 export const searchPosts = async search_query => {
-  return await axios.get(`${http}${hostname}:${port}/status/${search_query}`);
+  return await axios.get(`${http}${hostname}:${port}/search/status/${search_query}`);
 }

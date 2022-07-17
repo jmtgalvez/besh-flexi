@@ -1,9 +1,11 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import * as Api from '../../api/auth';
+
 
 export default function Login() {
     const emailRef = useRef();
     const passwordRef = useRef();
+    const [datas, setDatas] = useState([]);
   
     async function handleSubmit(ev) {
       ev.preventDefault();
@@ -13,10 +15,16 @@ export default function Login() {
         password: passwordRef.current.value
       }
       
+<<<<<<< HEAD
       const response =  (await Api.login(user));
       if (response.status === 200){
         window.location.href ='/userinterface';
       }
+=======
+      const apiData = (await Api.login(user)).data;
+      setDatas(apiData);
+      return datas;
+>>>>>>> b97f25d3629a6f01ea1b976f2d0e45e5a7d8b20c
     }
 
   return (
