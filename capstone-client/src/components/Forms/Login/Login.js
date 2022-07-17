@@ -12,7 +12,6 @@ export default function Login() {
     function handleCurrentLogin(data){
       setCurrentLogin(data);
     }
-    console.log(currentLogin)
     
     async function handleSubmit(ev) {
       ev.preventDefault();
@@ -21,7 +20,6 @@ export default function Login() {
         email: emailRef.current.value,
         password: passwordRef.current.value
       }
-
       const response =  (await Api.login(user));
       if (response.status === 200){
         // set datas;
@@ -29,7 +27,7 @@ export default function Login() {
         handleCurrentLogin(data)
       }
    }
-
+    
   return (
     <>
       {currentLogin ? 
