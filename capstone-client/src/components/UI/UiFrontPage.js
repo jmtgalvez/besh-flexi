@@ -21,7 +21,7 @@ export default function UiFrontPage({currentLogin, handleCurrentLogin}) {
     <div className="frontPage">
       {toggleMobile && (
         <>
-          <DropdownMobile />
+          <DropdownMobile currentLogin={currentLogin} handleCurrentLogin={handleCurrentLogin}/>
           <div style={{position: "fixed", zIndex: 300, right: "30px", top: "30px"}}>
             <Exit handleExit={toggleMobileDropdown} />
           </div>

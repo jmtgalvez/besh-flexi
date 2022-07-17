@@ -1,8 +1,8 @@
 import React from "react";
 
-function DropdownMobile({handleShow}) {
+function DropdownMobile({currentLogin, handleCurrentLogin}) {
   return (
-    <div onClick={handleShow} className="dropdown__mobile__container">
+    <div className="dropdown__mobile__container">
         <div className="dropdown-header card-header text-center">
             <div className="photo-dropdown">
                 <a href="">
@@ -10,7 +10,7 @@ function DropdownMobile({handleShow}) {
                 </a>
             </div>
 
-            <h4>Adonis Jr Suico</h4>
+            <h4>{`${currentLogin.first_name}, ${currentLogin.last_name}`}</h4>
 
         </div>
         <div className="dropdown-body my-2">
