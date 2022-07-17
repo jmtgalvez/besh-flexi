@@ -10,7 +10,7 @@ import Exit from "./Exit";
 import UiHeaderMobile from "../Body/UiHeaderMobile";
 // import DropdownMobile from "./DropdownMobile";
 
-export default function UiFrontPage() {
+export default function UiFrontPage({currentLogin, handleCurrentLogin}) {
   const [toggleMobile, setToggleMobile] = useState(false);
 
   const toggleMobileDropdown = () => {
@@ -35,7 +35,7 @@ export default function UiFrontPage() {
       <div className="content">
         <div className="navbar">
           {window.innerWidth < 800 && <Hamburger handleShow={toggleMobileDropdown} />}
-          <UiNavbar />
+          <UiNavbar currentLogin={currentLogin} handleCurrentLogin={handleCurrentLogin} />
         </div>
 
         <div className="content-body">

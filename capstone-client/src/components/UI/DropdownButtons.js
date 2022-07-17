@@ -1,8 +1,12 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 
-export default function DropdownButtons() {
+
+export default function DropdownButtons({currentLogin, handleCurrentLogin}) {
+
+
   return (
     <>
+    {/* Start Dropdown Header */}
       <div className="dropdown-header card-header text-center">
         <div className="photo-dropdown">
           <a href="">
@@ -10,9 +14,15 @@ export default function DropdownButtons() {
           </a>
         </div>
 
-        <h4>Adonis Jr Suico</h4>
+        <h4>{`${currentLogin.last_name}, ${currentLogin.first_name} `}</h4>
       </div>
+      {/* End Dropdown Header */}
+
+      {/* Start Dropdown Body */}
       <div className="dropdown-body my-2">
+
+        {/* Settings button */}
+
         <a href="">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -27,6 +37,10 @@ export default function DropdownButtons() {
           <span>Settings</span>
         </a>
 
+
+        {/* Help and support button */}
+
+
         <a href="">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -40,6 +54,11 @@ export default function DropdownButtons() {
           </svg>
           <span>Help & Support</span>
         </a>
+
+
+        {/* Give feedback button */}
+
+
         <a href="">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -53,7 +72,12 @@ export default function DropdownButtons() {
           </svg>
           <span>Give Feedback</span>
         </a>
-        <a href="">
+
+
+      {/* Logout Button */}
+
+      
+        <a href=""onClick={() => handleCurrentLogin('') }>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="30"
@@ -67,6 +91,7 @@ export default function DropdownButtons() {
           <span>Log Out</span>
         </a>
       </div>
+      {/* end Dropdown Body */}
     </>
   );
 }
