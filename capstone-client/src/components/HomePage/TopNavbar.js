@@ -7,10 +7,6 @@ export default function UiNavbar() {
   const toggleDropdown = () => {
     setToggle(!toggle);
   };
-  /* 
-  const dropdown = () =>{
-
-  }; */
 
   return (
     <div

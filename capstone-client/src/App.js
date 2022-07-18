@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
-import LandingPage from "./components/Home/LandingPage";
+import LandingPage from "./components/LandingPage/LandingPage";
 import Register from "./components/Forms/Register/Register";
 import Login from "./components/Forms/Login/Login";
 
 import { UserContext } from "./components/UserContext";
-import HomePage from "./components/UI/HomePage";
+import HomePage from "./components/HomePage/HomePage";
 
 function App() {
     const [user, setUser] = useState(null);

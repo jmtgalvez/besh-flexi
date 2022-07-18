@@ -1,21 +1,24 @@
 import React, { useState, useContext } from "react";
 import {UIHeader} from "../Body/UIHeader";
-import UiNewsFeedsForm from "./UiNewsFeedsForm";
-import UiNavbar from "./UiNavbar";
+import NewsFeedsForm from "./NewsFeedsForm";
+import TopNavbar from "./TopNavbar";
 // import UiFooter from './UiFooter'
 import Hamburger from "./Hamburger";
-import UiSide from "./UiSide";
+import Side from "./Side";
 import DropdownMobile from "./DropdownMobile";
 import Exit from "./Exit";
 import UiHeaderMobile from "../Body/UiHeaderMobile";
 // import DropdownMobile from "./DropdownMobile";
+import { UserContext } from "../UserContext";
 
 import * as Api from '../api/post';
-import UiContentCards from "./UiContentCards";
+import UiContentCards from "./ContentCards";
+import { Navigate } from "react-router";
 
-export default function UiFrontPage() {
+export default function HomePage() {
   const [toggleMobile, setToggleMobile] = useState(false);
   const [posts, setPosts] = useState([]);
+
 
   const toggleMobileDropdown = () => {
     setToggleMobile((prev) => !prev);
@@ -50,19 +53,19 @@ export default function UiFrontPage() {
       <div className="content">
         <div className="navbar">
           {window.innerWidth < 800 && <Hamburger handleShow={toggleMobileDropdown} />}
-          <UiNavbar />
+          <TopNavbar />
         </div>
 
         <div className="content-body">
           <div className="newsfeeds">
             {window.innerWidth < 800 && <UiHeaderMobile />}
-            <UiNewsFeedsForm />
+            <NewsFeedsForm />
             {populatePosts()}
           </div>
 
           {window.innerWidth > 800 && (
             <div className="side">
-              <UiSide />
+              <Side />
             </div>
           )}
         </div>

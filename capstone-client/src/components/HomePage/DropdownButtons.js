@@ -83,7 +83,7 @@ export default function DropdownButtons() {
       {/* Logout Button */}
 
       
-        <Link to='' onClick={handleLogout}>
+        <Link to='/login' onClick={()=>setUser('')}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="30"

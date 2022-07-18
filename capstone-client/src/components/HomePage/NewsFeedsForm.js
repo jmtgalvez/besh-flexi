@@ -1,11 +1,12 @@
 import React, { useState, useContext } from 'react';
 import {v4 as uuidv4} from 'uuid';
 import { UserContext } from '../UserContext';
-import UiContentCards from './UiContentCards';
+import ContentCards from './ContentCards';
+import { Navigate } from 'react-router';
 
 import * as Api from '../api/post';
 
-export default function UiNewsFeedsForm(){
+export default function NewsFeedsForm(){
   // Setting the value of what user will post.
   const [postText, setPostText] = useState('');
   // const [postPhoto, setPostPhoto] = useState('');
@@ -13,9 +14,14 @@ export default function UiNewsFeedsForm(){
 
   const { user } = useContext(UserContext);
 
+  user == null ? 
+    window.location.href = '/Login'
+    : ''
+
+
   const handleSubmit = async ev => {
     ev.preventDefault();
-    console.log(user);
+    // console.log(user);
 
     const postData = {
       user_id: user.user_id,
@@ -110,7 +116,7 @@ export default function UiNewsFeedsForm(){
 
         {postStorage && postStorage.map(item => {
           return(<div key={item.userId}>
-          <UiContentCards userName={item.userId} userPostText={item.userPostText}/>
+          <ContentCards userName={item.userId} userPostText={item.userPostText}/>
           </div>)
         })}
     </div>
