@@ -7,11 +7,12 @@ router.get('/', async (req, res) => {
   try {
     const posts = await CTRL.getAllStatus();
 
-    res.status(200).json({
-      status: 200,
-      message: 'Retrieved all posts',
-      posts: posts,
-    });
+    res.status(200)
+       .json({
+        status: 200,
+        message: 'Retrieved all posts',
+        posts,
+       });
   } catch (status) {
     res.status(status).json({ status });
   }
