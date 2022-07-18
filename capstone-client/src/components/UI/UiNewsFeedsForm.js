@@ -25,8 +25,6 @@ export default function UiNewsFeedsForm(){
 
     await Api.addPost(postData)
       .then( response => {
-        console.log(response)
-
         handleUserPostSubmit(ev)
       })
   }

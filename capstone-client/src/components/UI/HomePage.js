@@ -10,16 +10,27 @@ import Exit from "./Exit";
 import UiHeaderMobile from "../Body/UiHeaderMobile";
 // import DropdownMobile from "./DropdownMobile";
 
-import { UserContext } from "../UserContext";
+import * as Api from '../api/post';
+import UiContentCards from "./UiContentCards";
 
 export default function UiFrontPage() {
   const [toggleMobile, setToggleMobile] = useState(false);
-
-  const {user, setUser} = useContext(UserContext);
+  const [posts, setPosts] = useState([]);
 
   const toggleMobileDropdown = () => {
     setToggleMobile((prev) => !prev);
   };
+
+  const populatePosts = () => {
+    Api.getAllPosts()
+      .then( response => {
+        return (
+            <>
+              {[...(response.data.posts)].map( post => <UiContentCards userName={post.username} userPostText={post.content} /> )}
+            </>
+        )
+      })
+  }
 
   return (
     <div className="frontPage">
@@ -46,6 +57,7 @@ export default function UiFrontPage() {
           <div className="newsfeeds">
             {window.innerWidth < 800 && <UiHeaderMobile />}
             <UiNewsFeedsForm />
+            {populatePosts()}
           </div>
 
           {window.innerWidth > 800 && (

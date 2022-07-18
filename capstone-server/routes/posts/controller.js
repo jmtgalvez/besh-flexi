@@ -2,7 +2,7 @@ const db = require('../database/index');
 
 exports.getAllStatus = () => {
     return new Promise((resolve, reject) => {
-        const sql = `SELECT * FROM posts`;
+        const sql = `SELECT * FROM posts a JOIN users b ON a.user_id = b.user_id`;
 
         db.query(sql, (err, rows) => {
             if (err) {

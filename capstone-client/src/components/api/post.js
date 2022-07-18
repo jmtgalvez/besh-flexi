@@ -9,7 +9,7 @@ export const getAllPosts = async () => {
 }
 
 // adds a new status in database
-// expected postData content
+// expected postData contentb
 // {
 //   user_id, (required)
 //   content, (required)

@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
     res.status(200).json({
       status: 200,
       message: 'Retrieved all posts',
-      data: posts,
+      posts: posts,
     });
   } catch (status) {
     res.status(status).json({ status });
@@ -31,7 +31,7 @@ router.post('/', async (req, res) => {
     res.status(200).json({
       status: 200,
       message: 'Successfully added post',
-      data: new_post_id
+      post_id: new_post_id
     });
   } catch(status) {
     res.status(status).json({ status });
