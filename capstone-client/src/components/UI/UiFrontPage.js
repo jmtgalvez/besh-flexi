@@ -23,11 +23,9 @@ export default function UiFrontPage() {
 
   return (
     <div className="frontPage">
-      {console.log(user)}
-      <div>{JSON.stringify(user)}</div>
       {toggleMobile && (
         <>
-          {/* <DropdownMobile currentLogin={user} handleCurrentLogin={handleCurrentLogin}/> */}
+          <DropdownMobile />
           <div style={{position: "fixed", zIndex: 300, right: "30px", top: "30px"}}>
             <Exit handleExit={toggleMobileDropdown} />
           </div>
@@ -41,7 +39,7 @@ export default function UiFrontPage() {
       <div className="content">
         <div className="navbar">
           {window.innerWidth < 800 && <Hamburger handleShow={toggleMobileDropdown} />}
-          {/* <UiNavbar currentLogin={user} handleCurrentLogin={handleCurrentLogin} /> */}
+          <UiNavbar />
         </div>
 
         <div className="content-body">

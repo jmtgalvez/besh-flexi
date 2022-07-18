@@ -40,7 +40,6 @@ function Login() {
           <Navigate to='/Home' replace={true} />
         ) : (
         <div className='login__section'>
-          <div>{JSON.stringify(user)}</div>
           <section className="login__form__container">
               <form action="" method='' className='login__form' onSubmit={handleSubmit}>
                   <h1>Log In</h1>

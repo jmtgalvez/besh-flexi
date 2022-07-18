@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import { UserContext } from "../UserContext";
 
-function DropdownMobile({currentLogin, handleCurrentLogin}) {
+function DropdownMobile() {
+    const { user, setUser } = useContext(UserContext);
+
   return (
     <div className="dropdown__mobile__container">
         <div className="dropdown-header card-header text-center">
@@ -10,7 +13,7 @@ function DropdownMobile({currentLogin, handleCurrentLogin}) {
                 </a>
             </div>
 
-            <h4>{`${currentLogin.first_name}, ${currentLogin.last_name}`}</h4>
+            <h4>{`${user.first_name}, ${user.last_name}`}</h4>
 
         </div>
         <div className="dropdown-body my-2">

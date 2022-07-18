@@ -1,8 +1,13 @@
-import React, {useState, useEffect} from "react";
+import React, { useContext } from "react";
+import { UserContext } from "../UserContext";
 
 
-export default function DropdownButtons({currentLogin, handleCurrentLogin}) {
+export default function DropdownButtons() {
+  const {user, setUser} = useContext(UserContext);
 
+  const handleLogout = ev => {
+    
+  }
 
   return (
     <>
@@ -14,7 +19,7 @@ export default function DropdownButtons({currentLogin, handleCurrentLogin}) {
           </a>
         </div>
 
-        <h4>{`${currentLogin.last_name}, ${currentLogin.first_name} `}</h4>
+        <h4>{`${user.last_name}, ${user.first_name} `}</h4>
       </div>
       {/* End Dropdown Header */}
 
@@ -77,7 +82,7 @@ export default function DropdownButtons({currentLogin, handleCurrentLogin}) {
       {/* Logout Button */}
 
       
-        <a href=""onClick={() => handleCurrentLogin('') }>
+        <a href="" onClick={handleLogout}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="30"
