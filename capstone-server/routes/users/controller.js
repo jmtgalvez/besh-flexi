@@ -11,6 +11,31 @@ exports.getAllUsers = () => {
         console.log(`/routes/users/controllers/getAllUsers DB Error: ${err.message}`);
         return reject(500);
       }
+      if (rows.length === 0) return reject(404)
+      return resolve({ users: rows, num_of_users: rows.length});
+    });
+  });
+}
+
+exports.searchUsersByName = name => {
+  return new Promise((resolve, reject) => {
+    name = `%${name}%`;
+    const sql = `SELECT 
+      user_id, first_name, last_name, email, username
+      FROM users
+      WHERE 
+      first_name LIKE ? OR
+      last_name LIKE ? OR
+      username LIKE ?`;
+
+    const values = [ name, name, name ];
+
+    db.query(sql, values, (err, rows) => {
+      if (err) {
+        console.log(`/routes/users/controllers/searchUsersByName DB Error: ${err.message}`);
+        return reject(500);
+      }
+      if (rows.length === 0) return reject(404)
       return resolve({ users: rows, num_of_users: rows.length});
     });
   });

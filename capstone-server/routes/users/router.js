@@ -3,6 +3,7 @@ const router = express.Router();
 
 const CTRL = require('./controller');
 
+// get all users
 router.get('/', async (req, res) => {
   try {
     const data = await CTRL.getAllUsers();
@@ -18,21 +19,7 @@ router.get('/', async (req, res) => {
   }
 })
 
-router.get('/:user_id', async (req, res) => {
-  try {
-    const user = await CTRL.getUserByUserId(req.params.user_id);
-
-    res.status(200)
-       .json({
-        status: 200,
-        message: 'Successfully retrieved user',
-        user
-       })
-  } catch (status) {
-    res.status(status).json({ status });
-  }
-})
-
+// edit a user
 router.put('/:user_id', async (req, res) => {
   try {
     const oldUserData = await CTRL.getUserByUserId(req.params.user_id);
@@ -52,7 +39,7 @@ router.put('/:user_id', async (req, res) => {
 
       res.status(200)
          .json({
-          status: 200,
+           status: 200,
           message: 'Successfully edited user',
           user
          })
@@ -63,16 +50,48 @@ router.put('/:user_id', async (req, res) => {
   }
 })
 
+// delete a user
 router.delete('/:user_id', async (req, res) => {
   try {
     await CTRL.getUserByUserId(req.params.user_id);
-
+    
     await CTRL.deleteUser(req.params.user_id);
     res.status(200)
-       .json({
+    .json({
         status: 200,
         message: 'Succesfully deleted user',
        })
+  } catch (status) {
+    res.status(status).json({ status });
+  }
+})
+
+// get a user using his user_id
+router.get('/:user_id', async (req, res) => {
+  try {
+    const user = await CTRL.getUserByUserId(req.params.user_id);
+
+    res.status(200)
+       .json({
+        status: 200,
+        message: 'Successfully retrieved user',
+        user
+       })
+  } catch (status) {
+    res.status(status).json({ status });
+  }
+})
+
+// get users that has the name ':name'
+router.get('/name/:name', async (req, res) => {
+  try {
+    const users = await CTRL.searchUsersByName(req.params.name);
+
+    res.status(200).json({
+      status: 200,
+      message: `Succuessfully retrieved users`,
+      users
+    })
   } catch (status) {
     res.status(status).json({ status });
   }
