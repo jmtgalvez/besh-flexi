@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState, useContext } from "react";
 import {UIHeader} from "../Body/UIHeader";
 import UiNewsFeedsForm from "./UiNewsFeedsForm";
 import UiNavbar from "./UiNavbar";
@@ -10,8 +10,12 @@ import Exit from "./Exit";
 import UiHeaderMobile from "../Body/UiHeaderMobile";
 // import DropdownMobile from "./DropdownMobile";
 
-export default function UiFrontPage({currentLogin, handleCurrentLogin}) {
+import { UserContext } from "../UserContext";
+
+export default function UiFrontPage() {
   const [toggleMobile, setToggleMobile] = useState(false);
+
+  const {user, setUser} = useContext(UserContext);
 
   const toggleMobileDropdown = () => {
     setToggleMobile((prev) => !prev);
@@ -19,9 +23,11 @@ export default function UiFrontPage({currentLogin, handleCurrentLogin}) {
 
   return (
     <div className="frontPage">
+      {console.log(user)}
+      <div>{JSON.stringify(user)}</div>
       {toggleMobile && (
         <>
-          <DropdownMobile currentLogin={currentLogin} handleCurrentLogin={handleCurrentLogin}/>
+          {/* <DropdownMobile currentLogin={user} handleCurrentLogin={handleCurrentLogin}/> */}
           <div style={{position: "fixed", zIndex: 300, right: "30px", top: "30px"}}>
             <Exit handleExit={toggleMobileDropdown} />
           </div>
@@ -35,7 +41,7 @@ export default function UiFrontPage({currentLogin, handleCurrentLogin}) {
       <div className="content">
         <div className="navbar">
           {window.innerWidth < 800 && <Hamburger handleShow={toggleMobileDropdown} />}
-          <UiNavbar currentLogin={currentLogin} handleCurrentLogin={handleCurrentLogin} />
+          {/* <UiNavbar currentLogin={user} handleCurrentLogin={handleCurrentLogin} /> */}
         </div>
 
         <div className="content-body">
