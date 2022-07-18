@@ -82,10 +82,10 @@ router.get('/:user_id', async (req, res) => {
   }
 })
 
-// get users that has the name ':name'
-router.get('/name/:name', async (req, res) => {
+// get users that has the name ':search_query'
+router.get('/search/:search_query', async (req, res) => {
   try {
-    const users = await CTRL.searchUsersByName(req.params.name);
+    const users = await CTRL.searchUsersByName(req.params.search_query);
 
     res.status(200).json({
       status: 200,
