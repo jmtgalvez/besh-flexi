@@ -53,19 +53,42 @@ CREATE TABLE posts (
     NOT NULL
     DEFAULT current_timestamp
     ON UPDATE current_timestamp,
-  CONSTRAINT FK_replyId    
+  CONSTRAINT FK_reply_id
     FOREIGN KEY posts(reply_id)
     REFERENCES posts(post_id)
     ON DELETE restrict
     ON UPDATE cascade,
-  CONSTRAINT FK_userId
+  CONSTRAINT FK_post_user_id
     FOREIGN KEY posts(user_id)
     REFERENCES users(user_id)
     ON DELETE restrict
     ON UPDATE cascade
 );
 
-CREATE TABLE chats  (
+CREATE TABLE USER_FOLLOWS_USER (
+  follow_id INT AUTO_INCREMENT PRIMARY KEY,
+  user1 INT NOT NULL,
+  user2 INT NOT NULL,
+  datecreated DATETIME
+    NOT NULL
+    DEFAULT current_timestamp,
+  dateupdated TIMESTAMP
+    NOT NULL
+    DEFAULT current_timestamp
+    ON UPDATE current_timestamp,
+  CONSTRAINT FK_follow_user_id1
+    FOREIGN KEY chats(user1)
+    REFERENCES users(user_id)
+    ON DELETE restrict
+    ON UPDATE cascade,
+  CONSTRAINT FK_follow_user_id2
+    FOREIGN KEY chats(user2)
+    REFERENCES users(user_id)
+    ON DELETE restrict
+    ON UPDATE cascade
+);
+
+CREATE TABLE USER_CHATS_USER (
   chat_id INT AUTO_INCREMENT PRIMARY KEY,
   user1 INT NOT NULL,
   user2 INT NOT NULL,
@@ -76,12 +99,12 @@ CREATE TABLE chats  (
     NOT NULL
     DEFAULT current_timestamp
     ON UPDATE current_timestamp,
-  CONSTRAINT FK_userid1
+  CONSTRAINT FK_chat_user_id1
     FOREIGN KEY chats(user1)
     REFERENCES users(user_id)
     ON DELETE restrict
     ON UPDATE cascade,
-  CONSTRAINT FK_userid2
+  CONSTRAINT FK_chat_user_id2
     FOREIGN KEY chats(user2)
     REFERENCES users(user_id)
     ON DELETE restrict
