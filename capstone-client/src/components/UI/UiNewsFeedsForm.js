@@ -1,12 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {v4 as uuidv4} from 'uuid';
+import { UserContext } from '../UserContext';
 import UiContentCards from './UiContentCards';
+
+import * as Api from '../api/post';
 
 export default function UiNewsFeedsForm(){
   // Setting the value of what user will post.
   const [postText, setPostText] = useState('');
   // const [postPhoto, setPostPhoto] = useState('');
   const [postStorage, setPostStorage] = useState([]);
+
+  const { user } = useContext(UserContext);
+
+  const handleSubmit = async ev => {
+    ev.preventDefault();
+    console.log(user);
+
+    const postData = {
+      user_id: user.user_id,
+      content: postText,
+      date: new Date(Date.now()),
+    }
+
+    await Api.addPost(postData)
+      .then( response => {
+        console.log(response)
+
+        handleUserPostSubmit(ev)
+      })
+  }
 
   // Function for submission of user post.
   const handleUserPostSubmit = (e) => {
@@ -50,7 +73,7 @@ export default function UiNewsFeedsForm(){
 
   return (
     <div className="newsfeeds-container d-flex flex-column gap-3">
-          <form className='newsfeeds-container-1 p-5 d-flex flex-column gap-4'>
+          <form className='newsfeeds-container-1 p-5 d-flex flex-column gap-4' onSubmit={handleSubmit}>
             <div className="post-container d-flex">
                 <a href="#" className='newsfeeds-photo bg-light p-1 rounded-circle'>
                   <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" className="bi bi-person-circle" viewBox="0 0 16 16">
@@ -60,11 +83,14 @@ export default function UiNewsFeedsForm(){
                 </a>
 
                 <input 
-                className='newsfeeds-input p-2' 
-                type="text" 
-                placeholder="Share something?"
-                onChange={(e) => {setPostText(e.target.value)}}
-                value={postText}
+                  className='newsfeeds-input p-2' 
+                  type="text"
+                  name="content"
+                  id="content"
+                  placeholder="Share something?"
+                  onChange={(e) => {setPostText(e.target.value)}}
+                  value={postText}
+                  required
                 />
             </div>
             <div className='post-button d-flex justify-content-end gap-3'>
@@ -77,7 +103,7 @@ export default function UiNewsFeedsForm(){
                 <button 
                 type='submit' 
                 className='btn btn-success'
-                onClick={handleUserPostSubmit}
+                // onClick={handleUserPostSubmit}
                 >
                   <b>Post</b>
                 </button>

@@ -33,7 +33,15 @@ export default function Register() {
             <h1>Create account</h1>
    
           <div>
-            <input type="text" name='first_name' id='first_name' className='register__form__input' placeholder=' ' autoComplete='off' ref={firstNameRef}/>
+            <input 
+              className='register__form__input' 
+              type="text" 
+              name='first_name' 
+              id='first_name' 
+              placeholder=' ' 
+              autoComplete='off' 
+              ref={firstNameRef}
+            />
             <label htmlFor="first_name" className='register__form__label'>First Name</label>
           </div>
           <div>

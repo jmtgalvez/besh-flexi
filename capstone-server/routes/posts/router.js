@@ -20,8 +20,8 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
   try {
     const postData = {
-      user_id: req.body.userId,
-      content: req.body.userPostText,
+      user_id: req.body.user_id,
+      content: req.body.content,
       reply_id: req.body.reply_id ? req.body.reply_id : null,
       date: req.body.date_posted ? new Date(req.body.date_posted) : new Date(),
     };
