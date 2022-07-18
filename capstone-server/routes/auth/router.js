@@ -9,14 +9,14 @@ router.post('/login', async(req, res) => {
 
         await CTRL.login(req.body)
             .then( data => {
-                const cookie_option = {
-                    httpOnly: true,
-                }
-                res.cookie('access_token', data.access_token, cookie_option);
+                // const cookie_option = {
+                //     httpOnly: true,
+                // }
+                // res.cookie('access_token', data.access_token, cookie_option);
                 res.status(200).json({
                     status: 200,
                     message: 'Login Success',
-                    user: data.user,
+                    user: data,
                 });
             });
     } catch (status) {
