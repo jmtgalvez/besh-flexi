@@ -3,7 +3,6 @@ import {v4 as uuidv4} from 'uuid';
 import { UserContext } from '../UserContext';
 import ContentCards from './ContentCards';
 import { Navigate } from 'react-router';
-
 import * as Api from '../api/post';
 
 export default function NewsFeedsForm(){
@@ -71,6 +70,7 @@ export default function NewsFeedsForm(){
     } */
 
     setPostStorage([...postStorage, userPost])
+    console.log(postStorage)
 
     setPostText('');
   }

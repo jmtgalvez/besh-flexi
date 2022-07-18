@@ -52,6 +52,7 @@ $background: #11d6b2;
                     overflow: hidden;
                     display: flex;
                     font-size: clamp(8px, 5vw, 18px);
+                    cursor: pointer;
                     /*  display: grid;
                     gap: 5px;
                     place-items: center; */
@@ -70,6 +71,13 @@ $background: #11d6b2;
                         svg {
                             color: $primaryColor;
                         }
+                    }
+                }
+                .active {
+                    background-color: $secondaryColor;
+                    color: $primaryColor;
+                    svg {
+                        color: $primaryColor;
                     }
                 }
             }

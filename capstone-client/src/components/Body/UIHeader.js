@@ -1,13 +1,13 @@
 import React from "react";
 
-export function UIHeader() {
+export function UIHeader({togglePage, activePage}) {
   return (
     <div className="header-content">
       <div className="logo">
         <h2 className="p-1">logo</h2>
       </div>
       <div className="menu">
-        <a href="">
+        <a onClick={() =>  togglePage(1)} className={activePage == 1 ? 'active' : ''} >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="30"
@@ -27,7 +27,7 @@ export function UIHeader() {
           </svg>
           <span>Home</span>
         </a>
-        <a href="">
+        <a onClick={() =>  togglePage(2)} className={activePage == 2 ? 'active' : ''}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="30"
@@ -43,7 +43,7 @@ export function UIHeader() {
           </svg>
           <span>Trending</span>
         </a>
-        <a href="">
+        <a onClick={() =>  togglePage(3)} className={activePage == 3 ? 'active' : ''}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="30"
@@ -56,7 +56,7 @@ export function UIHeader() {
           </svg>
           <span>Chat</span>
         </a>
-        <a href="">
+        <a onClick={() =>  togglePage(4)} className={activePage == 4 ? 'active' : ''}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="30"

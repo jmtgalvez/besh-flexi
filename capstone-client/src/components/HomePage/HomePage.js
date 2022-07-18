@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import {UIHeader} from "../Body/UIHeader";
 import NewsFeedsForm from "./NewsFeedsForm";
+import Chat from "../Chat/Chat";
 import TopNavbar from "./TopNavbar";
 // import UiFooter from './UiFooter'
 import Hamburger from "./Hamburger";
@@ -18,11 +19,15 @@ import { Navigate } from "react-router";
 export default function HomePage() {
   const [toggleMobile, setToggleMobile] = useState(false);
   const [posts, setPosts] = useState([]);
-
+  const [activePage, setActivePage] = useState(1);
 
   const toggleMobileDropdown = () => {
     setToggleMobile((prev) => !prev);
   };
+
+  const togglePage = (page)=>{
+      setActivePage(page);
+  }
 
   const populatePosts = () => {
     Api.getAllPosts()
@@ -47,7 +52,7 @@ export default function HomePage() {
       )}
       {window.innerWidth > 800 && (
         <div className="header">
-          <UIHeader />
+          <UIHeader togglePage={togglePage} activePage={activePage} />
         </div>
       )}
       <div className="content">
@@ -59,8 +64,12 @@ export default function HomePage() {
         <div className="content-body">
           <div className="newsfeeds">
             {window.innerWidth < 800 && <UiHeaderMobile />}
-            <NewsFeedsForm />
+            {activePage == 1 
+            ? <NewsFeedsForm /> :
+            activePage == 3 ? <Chat /> : '' }
+            
             {populatePosts()}
+
           </div>
 
           {window.innerWidth > 800 && (
