@@ -141,6 +141,7 @@ $background: #11d6b2;
                         height: 40px;
                         width: 60px;
                         text-decoration: none;
+                        border-radius: 6px;
                         background-color: $primaryColor;
                         // border-radius: 50%;
                         transition: 0.3s;
@@ -256,7 +257,7 @@ $background: #11d6b2;
                             border: none;
                             outline: none;
                             border-bottom: 1px solid $secondaryColor;
-                            width: 90%;
+                            width: 50vw;
                         }
                     }
                 }
