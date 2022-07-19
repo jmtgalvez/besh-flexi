@@ -1,10 +1,23 @@
-import { useRef } from 'react';
+import { useRef, useContext } from 'react';
+import * as Api from '../api/post';
+import { UserContext } from '../UserContext';
 
-function NewPostForm() {
+function NewPostForm({ loadPosts }) {
   const contentRef = useRef();
+
+  const { user, setUser } = useContext(UserContext);
 
   const handleSubmit = ev => {
     ev.preventDefault();
+    const postData = {
+      user_id: user.user_id,
+      content: contentRef.current.value,
+    }
+
+    Api.addPost(postData)
+      .then( result => {
+        loadPosts();
+      })
   }
 
   return (
@@ -25,7 +38,7 @@ function NewPostForm() {
           />
         </svg>
       </div>
-      
+
       <div className='col-10'>
         <form onSubmit={handleSubmit}>
           <input className='form-control' type='text' name='content' id='content' placeholder='Share something?' ref={contentRef} />

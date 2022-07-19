@@ -18,8 +18,8 @@ function App() {
                     <Route path='/' element={<LandingPage />}/>
                     <Route path='/Register' element={<Register />}/>
                     <Route path='/Login' element={<Login />}/>
-                    <Route path='/Home' element={<HomePage />}/>
-                    <Route path='/Home2' element={<HomePage2 />}/>
+                    <Route path='/Home2' element={<HomePage />}/>
+                    <Route path='/Home' element={<HomePage2 />}/>
                 </Routes>
             </Router>
         </UserContext.Provider>
