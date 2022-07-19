@@ -4,7 +4,7 @@ export function UIHeader({togglePage, activePage}) {
   return (
     <div className="header-content">
       <div className="logo">
-        <h2 className="p-1">logo</h2>
+        <h2 className="p-1">besh</h2>
       </div>
       <div className="menu">
         <a onClick={() =>  togglePage(1)} className={activePage == 1 ? 'active' : ''} >

@@ -31,15 +31,18 @@
 }
 .header__navbar nav ul a {
     text-decoration: none;
-    font-size: clamp(16px, 2vmin, 24px);
+    font-size: clamp(14px, 2vmin, 24px);
     color: var(--bgcolor1);
 }
 #frontpage__logo a {
     text-decoration: none;
     color: var(--bgcolor1);
-    font-weight: 700;
-    font-size: clamp(35px, 10vw, 40px);
     padding-left: 1rem;
+}
+#frontpage__logo a img {
+    width: clamp(150px, 20vw, 210px);
+    -webkit-filter: contrast(1.25);
+    filter: contrast(1.25);
 }
 #frontpage__header__btn {
     background: var(--color1);
