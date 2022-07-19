@@ -20,7 +20,7 @@
     -moz-osx-font-smoothing: grayscale;
     -webkit-tap-highlight-color: transparent;
 }
-h1 {
+h1,h2,h3,h4,h5,h6 {
   overflow-y: hidden;
   height: max-content;
   padding: .25rem 0;

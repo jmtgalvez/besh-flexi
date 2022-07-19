@@ -53,22 +53,6 @@ export default function NewsFeedsForm(){
       date_posted: currentDate,
     }
 
-    /* if (!postPhoto) {
-      setPostStorage([...postStorage, {
-        userId: uuidv4(),
-        userPostText: postText,
-        date_posted: currentDate,
-      }])
-    } 
-    else {
-      setPostStorage([...postStorage, {
-        userId: uuidv4(),
-        userPostText: postText,
-        userPostPhoto: postPhoto,
-        date_posted: currentDate,
-      }])
-    } */
-
     setPostStorage([...postStorage, userPost])
     console.log(postStorage)
 
