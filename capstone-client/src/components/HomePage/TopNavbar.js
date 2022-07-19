@@ -16,7 +16,7 @@ export default function UiNavbar({togglePage, activePage}) {
 
       <div className="search d-flex align-items-center gap-1">
         <input className="search-input py-2 px-4" type="search" placeholder="Search" />
-        <button className="search-button btn-success">
+        <button className="search-button btn-success" onClick={()=> togglePage(0)}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="25"
