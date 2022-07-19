@@ -2,7 +2,7 @@ const db = require('../database/index');
 
 exports.getAllStatus = () => {
     return new Promise((resolve, reject) => {
-        const sql = `SELECT a.*, b.first_name, b.last_name, b.username FROM posts a JOIN users b ON a.user_id = b.user_id`;
+        const sql = `SELECT a.*, b.first_name, b.last_name, b.username FROM posts a JOIN users b ON a.user_id = b.user_id ORDER BY dateupdated DESC`;
 
         db.query(sql, (err, rows) => {
             if (err) {
