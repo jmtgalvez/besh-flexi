@@ -9,6 +9,7 @@ import About from "./About";
 import Settings from "./Settings";
 import Help from "./Help";
 import FeedBack from "./FeedBack";
+import SearchResult from "./SearchResult";
 // import UiFooter from './UiFooter'
 
 import Hamburger from "./Hamburger";
@@ -79,7 +80,8 @@ export default function HomePage() {
             activePage == 4 ? <About /> :
             activePage == 5 ? <Settings /> :
             activePage == 6 ? <Help />  : 
-                              <FeedBack />
+            activePage == 7 ? <FeedBack /> :
+                              <SearchResult />
             }
             
             {populatePosts()}
