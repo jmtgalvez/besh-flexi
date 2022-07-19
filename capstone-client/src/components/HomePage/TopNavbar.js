@@ -1,22 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import DropdownButtons from "./DropdownButtons";
 
-export default function UiNavbar({togglePage, activePage}) {
+
+export default function UiNavbar({togglePage, activePage,
+handleSearchUser, handleSearchValue }) {
+
   const [toggle, setToggle] = useState(false);
 
   const toggleDropdown = () => {
     setToggle(!toggle);
+
   };
 
   return (
+
+    // Search input
     <div
       className="navbar-content px-5 rounded-2 d-flex 
     
     align-items-center flex-1 justify-content-between">
-
-      <div className="search d-flex align-items-center gap-1">
-        <input className="search-input py-2 px-4" type="search" placeholder="Search" />
+      
+      <form  className="search d-flex align-items-center gap-1" onSubmit={handleSearchUser}>
+        
+        <input onChange={handleSearchValue} className="search-input py-2 px-4" type="search" placeholder="First Name or Last Name or Email" />
         <button className="search-button btn-success" onClick={()=> togglePage(0)}>
+          
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="25"
@@ -28,7 +36,7 @@ export default function UiNavbar({togglePage, activePage}) {
             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
           </svg>
         </button>
-      </div>
+      </form>
 
       <NavDropdown toggleDropdown={toggleDropdown} toggle={toggle} />
       
@@ -39,9 +47,13 @@ export default function UiNavbar({togglePage, activePage}) {
       </div>
 
     </div>
-  );
-}
 
+
+
+  );
+
+}
+// end search input component
 
 function NavDropdown({toggleDropdown}) {
   return(

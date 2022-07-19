@@ -20,14 +20,57 @@ import UiHeaderMobile from "../Body/UiHeaderMobile";
 // import DropdownMobile from "./DropdownMobile";
 import { UserContext } from "../UserContext";
 
-import * as Api from '../api/post';
+
 import UiContentCards from "./ContentCards";
 import { Navigate } from "react-router";
+
+// IMPORT API'S
+import * as Api from '../api/post';
+import * as ApiUser from '../api/users';
 
 export default function HomePage() {
   const [toggleMobile, setToggleMobile] = useState(false);
   const [posts, setPosts] = useState([]);
   const [activePage, setActivePage] = useState(1);
+
+  // for search input (retrieve users)
+  const [searchResultUser, setSearchResultUser] = useState();
+  const [search, setSearch] = useState();
+  const [message, setMessage] = useState([]); 
+
+  const handleSearchValue = (e) =>{
+    setSearch(e.target.value);
+  }
+
+  const handleSearchUser = async ev =>{
+    ev.preventDefault();
+
+    const search_query = search;
+
+    try{
+     await ApiUser.searchUsers(search_query).then(result =>{
+      let data = [];
+        for (let i = 0; i< result.data.users.users.length; i++){
+             data.push(
+              {
+                user_id: result.data.users.users[i].user_id,
+                first_name: result.data.users.users[i].first_name,
+                last_name: result.data.users.users[i].last_name,
+                email: result.data.users.users[i].email,
+                username: result.data.users.users[i].username 
+              })
+        }
+        setSearchResultUser(data);
+        setMessage({status: 'success', message: `${result.data.users.users.length} result/s found`});
+      })
+    }catch(err){
+        setMessage({status: 'error', message: 'No record found'});
+    }
+  
+  }
+
+  // END SEARCH
+
 
   const toggleMobileDropdown = () => {
     setToggleMobile((prev) => !prev);
@@ -36,7 +79,6 @@ export default function HomePage() {
   const togglePage = (page)=>{
       setActivePage(page);
   }
-  console.log(activePage)
 
   const populatePosts = () => {
     Api.getAllPosts()
@@ -67,7 +109,8 @@ export default function HomePage() {
       <div className="content">
         <div className="navbar">
           {window.innerWidth < 800 && <Hamburger handleShow={toggleMobileDropdown} />}
-          <TopNavbar togglePage={togglePage} activePage={activePage} />
+          <TopNavbar togglePage={togglePage} activePage={activePage}
+          handleSearchUser={handleSearchUser} handleSearchValue={handleSearchValue} />
         </div>
 
         <div className="content-body">
@@ -81,7 +124,7 @@ export default function HomePage() {
             activePage == 5 ? <Settings /> :
             activePage == 6 ? <Help />  : 
             activePage == 7 ? <FeedBack /> :
-                              <SearchResult />
+                              <SearchResult message={message} searchResultUser={searchResultUser} />
             }
             
             {populatePosts()}
