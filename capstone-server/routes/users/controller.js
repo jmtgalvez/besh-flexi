@@ -12,7 +12,7 @@ exports.getAllUsers = () => {
         return reject(500);
       }
       if (rows.length === 0) return reject(404)
-      return resolve({ users: rows, num_of_users: rows.length});
+      return resolve(rows);
     });
   });
 }
@@ -36,7 +36,7 @@ exports.searchUsersByName = name => {
         return reject(500);
       }
       if (rows.length === 0) return reject(404)
-      return resolve({ users: rows, num_of_users: rows.length});
+      return resolve(rows);
     });
   });
 }

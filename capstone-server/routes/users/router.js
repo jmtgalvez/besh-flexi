@@ -6,13 +6,13 @@ const CTRL = require('./controller');
 // get all users
 router.get('/', async (req, res) => {
   try {
-    const data = await CTRL.getAllUsers();
+    const users = await CTRL.getAllUsers();
 
     res.status(200)
        .json({
         status: 200,
         message: 'Retrieved all users',
-        data
+        users
        });
   } catch (status) {
     res.status(status).json({ status });
@@ -39,7 +39,7 @@ router.put('/:user_id', async (req, res) => {
 
       res.status(200)
          .json({
-           status: 200,
+          status: 200,
           message: 'Successfully edited user',
           user
          })
