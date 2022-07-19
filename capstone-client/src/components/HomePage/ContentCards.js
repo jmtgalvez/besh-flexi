@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 
 export default function ContentCards({userName, userPostText, userPostPhoto, isLiked, like, unlike}) {
   return (
@@ -36,7 +36,7 @@ export default function ContentCards({userName, userPostText, userPostPhoto, isL
             width="30"
             height="30"
             fill="currentColor"
-            class="bi bi-hand-thumbs-up-fill"
+            className="bi bi-hand-thumbs-up-fill"
             viewBox="0 0 16 16"
             onClick={unlike}
             style={{cursor:'pointer'}}
@@ -49,7 +49,7 @@ export default function ContentCards({userName, userPostText, userPostPhoto, isL
             width="30"
             height="30"
             fill="currentColor"
-            class="bi bi-hand-thumbs-up"
+            className="bi bi-hand-thumbs-up"
             viewBox="0 0 16 16"
             onClick={like}
             style={{cursor:'pointer'}}
@@ -70,6 +70,7 @@ export default function ContentCards({userName, userPostText, userPostPhoto, isL
         <div className='container'>
         <button className="general__btns float-end">Send</button>
         </div>
+        {/* Comment Section here */}
       </div>
     </div>
   );
