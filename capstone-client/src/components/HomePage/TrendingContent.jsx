@@ -2,7 +2,7 @@ import React from "react";
 
 export default function TrendingContent() {
   return (
-    <div className="trending__container card m-2">
+    <div className="trending__container card m-4">
       <div className="trending__container__title card-title mx-3 mt-3">
         <h4>Title</h4>
       </div>
