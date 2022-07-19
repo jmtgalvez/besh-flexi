@@ -11,12 +11,20 @@ export default function NewsFeedsForm(){
   // const [postPhoto, setPostPhoto] = useState('');
   const [postStorage, setPostStorage] = useState([]);
 
+  const [isliked, setIsLiked] = useState(false);
+
   const { user } = useContext(UserContext);
 
   user == null ? 
     window.location.href = '/Login'
     : ''
 
+  const likeThis = () => {
+    setIsLiked(true);
+  }
+  const unlikeThis = () => {
+    setIsLiked(false);
+  }
 
   const handleSubmit = async ev => {
     ev.preventDefault();
@@ -100,7 +108,7 @@ export default function NewsFeedsForm(){
 
         {postStorage && postStorage.map(item => {
           return(<div key={item.userId}>
-          <ContentCards userName={item.userId} userPostText={item.userPostText}/>
+          <ContentCards userName={item.userId} userPostText={item.userPostText} like={likeThis} unlike={unlikeThis} isLiked={isliked}/>
           </div>)
         })}
     </div>
