@@ -67,6 +67,9 @@ export default function ContentCards({userName, userPostText, userPostPhoto, isL
           ></textarea>
           <label htmlFor="floatingTextarea2">Comment</label>
         </div>
+        <div className='container'>
+        <button className="general__btns float-end">Send</button>
+        </div>
       </div>
     </div>
   );
