@@ -6,6 +6,7 @@ import Login from "./components/Forms/Login/Login";
 
 import { UserContext } from "./components/UserContext";
 import HomePage from "./components/HomePage/HomePage";
+import HomePage2 from "./components/Home/HomePage";
 
 function App() {
     const [user, setUser] = useState(null);
@@ -18,6 +19,7 @@ function App() {
                     <Route path='/Register' element={<Register />}/>
                     <Route path='/Login' element={<Login />}/>
                     <Route path='/Home' element={<HomePage />}/>
+                    <Route path='/Home2' element={<HomePage2 />}/>
                 </Routes>
             </Router>
         </UserContext.Provider>
