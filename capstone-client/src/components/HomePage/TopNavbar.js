@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import DropdownButtons from "./DropdownButtons";
 
-export default function UiNavbar() {
+export default function UiNavbar({togglePage, activePage}) {
   const [toggle, setToggle] = useState(false);
 
   const toggleDropdown = () => {
@@ -35,7 +35,7 @@ export default function UiNavbar() {
       <div
         style={{display: toggle ? "flex" : "none"}}
         className="dropdownContainer p-2 card bg-light">
-        <DropdownButtons />
+        <DropdownButtons togglePage={togglePage} activePage={activePage} toggleDropdown={toggleDropdown} />
       </div>
 
     </div>

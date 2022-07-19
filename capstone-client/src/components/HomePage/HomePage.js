@@ -1,9 +1,16 @@
 import React, { useState, useContext } from "react";
 import {UIHeader} from "../Body/UIHeader";
+// components
 import NewsFeedsForm from "./NewsFeedsForm";
 import Chat from "../Chat/Chat";
 import TopNavbar from "./TopNavbar";
+import Trending from "./Trending";
+import About from "./About";
+import Settings from "./Settings";
+import Help from "./Help";
+import FeedBack from "./FeedBack";
 // import UiFooter from './UiFooter'
+
 import Hamburger from "./Hamburger";
 import Side from "./Side";
 import DropdownMobile from "./DropdownMobile";
@@ -28,6 +35,7 @@ export default function HomePage() {
   const togglePage = (page)=>{
       setActivePage(page);
   }
+  console.log(activePage)
 
   const populatePosts = () => {
     Api.getAllPosts()
@@ -58,15 +66,21 @@ export default function HomePage() {
       <div className="content">
         <div className="navbar">
           {window.innerWidth < 800 && <Hamburger handleShow={toggleMobileDropdown} />}
-          <TopNavbar />
+          <TopNavbar togglePage={togglePage} activePage={activePage} />
         </div>
 
         <div className="content-body">
           <div className="newsfeeds">
             {window.innerWidth < 800 && <UiHeaderMobile />}
-            {activePage == 1 
-            ? <NewsFeedsForm /> :
-            activePage == 3 ? <Chat /> : '' }
+            {
+            activePage == 1 ? <NewsFeedsForm /> :
+            activePage == 2 ? <Trending /> : 
+            activePage == 3 ? <Chat /> :
+            activePage == 4 ? <About /> :
+            activePage == 5 ? <Settings /> :
+            activePage == 6 ? <Help />  : 
+                              <FeedBack />
+            }
             
             {populatePosts()}
 

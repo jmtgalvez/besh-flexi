@@ -3,7 +3,7 @@ import { UserContext } from "../UserContext";
 import { Link } from 'react-router-dom';
 
 
-export default function DropdownButtons() {
+export default function DropdownButtons({togglePage, activePage, toggleDropdown}) {
   const {user, setUser} = useContext(UserContext);
 
   const handleLogout = ev => {
@@ -29,7 +29,7 @@ export default function DropdownButtons() {
 
         {/* Settings button */}
 
-        <Link to=''>
+        <Link to='' onMouseDown={()=> togglePage(5)}  onClick={toggleDropdown}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="30"
@@ -47,7 +47,7 @@ export default function DropdownButtons() {
         {/* Help and support button */}
 
 
-        <Link to=''>
+        <Link to=''  onMouseDown={()=> togglePage(6)}  onClick={toggleDropdown}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="30"
@@ -65,7 +65,7 @@ export default function DropdownButtons() {
         {/* Give feedback button */}
 
 
-        <Link to=''>
+        <Link to='' onMouseDown={()=> togglePage(7)}  onClick={toggleDropdown}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="30"
