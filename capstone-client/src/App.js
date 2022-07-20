@@ -9,8 +9,9 @@ import HomePage from "./components/HomePage/HomePage";
 import HomePage2 from "./components/Home/HomePage";
 
 function App() {
-    const [user, setUser] = useState(null);
-
+    const userData = localStorage.getItem('user');
+    const [user, setUser] = useState(userData ? JSON.parse(userData) : null);
+    
     return(
         <UserContext.Provider value={{user, setUser}}>
             <Router>
