@@ -39,13 +39,13 @@ You may visit the deployed web app through the link below.
 This project was created as a course requirement for our Full Stack Web Development Bootcamp under KodeGo.
 
 **Members:**
-- Galvez, Juan Miguel
-    email: jmtgalvez@gmail.com
-    portfolio: https://jmtgalvez.github.io/
-- Lao, Henson
-    email: hensonlao@gmail.com
-    portfolio: https://steady-rugelach-a60b23.netlify.app/?fbclid=IwAR3jWa0HGcpuUDiZxLPrL9jBzNwgyVSRAy7_A2m2CpCRgb10SlMYwKDaJIA
-- Suico, Adonis
-    email: adonisjr.suico@gmail.com
-    portfolio: https://adonisjr.github.io/myportfolio.github.io/
+- Galvez, Juan Miguel <br/>
+    Email: jmtgalvez@gmail.com <br/>
+    Portfolio: https://jmtgalvez.github.io/
+- Lao, Henson <br/>
+    Email: hensonlao@gmail.com <br/>
+    Portfolio: https://laohenson.tech
+- Suico, Adonis <br/>
+    Email: adonisjr.suico@gmail.com <br/>
+    Portfolio: https://adonisjr.github.io/myportfolio.github.io/
 
