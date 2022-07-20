@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import {UIHeader} from "../Body/UIHeader";
 // components
 import NewsFeedForm from "./NewsFeedForm";
@@ -19,13 +19,13 @@ import Exit from "./Exit";
 import UiHeaderMobile from "../Body/UiHeaderMobile";
 // import DropdownMobile from "./DropdownMobile";
 import { UserContext } from "../UserContext";
+import NewsFeed from "./NewsFeed";
 
 
 import ContentCards from "./ContentCards";
 import { Navigate } from "react-router";
 
 // IMPORT API'S
-import * as Api from '../api/post';
 import * as ApiUser from '../api/users';
 
 export default function HomePage() {
@@ -36,7 +36,6 @@ export default function HomePage() {
     : '';
 
   const [toggleMobile, setToggleMobile] = useState(false);
-  const [posts, setPosts] = useState([]);
   const [activePage, setActivePage] = useState(1);
 
   // for search input (retrieve users)
@@ -80,13 +79,6 @@ export default function HomePage() {
       setActivePage(page);
   }
 
-  const populatePosts = async () => {
-    const response = await Api.getAllPosts()
-    setPosts([...(response.data.posts)]);
-  }
-
-  populatePosts();
-
   return (
     <div className="frontPage">
       {toggleMobile && (
@@ -123,11 +115,7 @@ export default function HomePage() {
                               <SearchResult message={message} searchResultUser={searchResultUser} />
             }
 
-            {posts && posts.map( post => {
-              return(<div key={post.post_id}>
-              <ContentCards userName={post.username} userPostText={post.content} post={post} />
-              </div>)
-            })}
+            <NewsFeed />
 
           </div>
 
