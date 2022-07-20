@@ -3,9 +3,11 @@ import axios from 'axios';
 const url = 'http://localhost';
 const port = 3001;
 
+axios.defaults.withCredentials = true;
+
 // gets all status in database
 export const getAllPosts = async () => {
-  return await axios.get(`${url}:${port}/api/status`);
+  return await axios.get(`${url}:${port}/api/status/`);
 }
 
 // adds a new status in database

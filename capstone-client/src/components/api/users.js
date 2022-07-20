@@ -3,6 +3,8 @@ import axios from 'axios';
 const url = 'http://localhost';
 const port = 3001;
 
+axios.defaults.withCredentials = true;
+
 export const getAllUsers = async () => {
   return await axios.get(`${url}:${port}/api/users`);
 }
