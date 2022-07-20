@@ -40,13 +40,13 @@ You may visit the deployed web app through the link below.
 This project was created as a course requirement for our Full Stack Web Development Bootcamp under KodeGo.
 
 **Members:**
-- Galvez, Juan Miguel <br/>
+- <strong>Galvez, Juan Miguel</strong> <br/>
     Email: jmtgalvez@gmail.com <br/>
     Portfolio: https://jmtgalvez.github.io/
-- Lao, Henson <br/>
+- <strong>Lao, Henson</strong> <br/>
     Email: hensonlao@gmail.com <br/>
     Portfolio: https://laohenson.tech
-- Suico, Adonis <br/>
+- <strong>Suico, Adonis</strong> <br/>
     Email: adonisjr.suico@gmail.com <br/>
     Portfolio: https://adonisjr.github.io/myportfolio.github.io/
 
