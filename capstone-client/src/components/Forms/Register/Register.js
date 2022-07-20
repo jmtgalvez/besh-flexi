@@ -23,7 +23,11 @@ export default function Register() {
       password: passwordRef.current.value
     }
     
-    console.log(Api.register(user));
+    Api.register(user)
+      .then( () => {
+        window.location.href = '/';
+      })
+      .catch( err => console.log(err) )
   }
 
   return (
