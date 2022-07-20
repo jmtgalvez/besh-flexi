@@ -13,7 +13,7 @@ export default function LandingPageBanner() {
               <br/>
               anytime, anywhere
               </h1>
-            <Link to='/Register' id='landing__page__section1__btn'>Join Now</Link>
+            <Link to='/Register' id='landing__page__section1__btn' title='Join Now'>Join Now</Link>
             </div>
         </section>
           {/* SECTION 2 */}
