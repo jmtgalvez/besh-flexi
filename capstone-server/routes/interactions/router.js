@@ -7,14 +7,12 @@ router.post('/follow/:following_id', async (req, res) => {
   try {
     await CTRL.checkUserExists(req.params.following_id);
 
-    CTRL.follow({ req.body.user_id, req.params.following_id })
-      .then( result => {
-        res.status(200)
-           .json({
-            status: 200,
-            message: 'Follow operation success',
-           })
-      })
+    let result = CTRL.follow({ req.body.user_id, req.params.following_id })
+    res.status(200)
+      .json({
+      status: 200,
+      message: 'Follow operation success',
+    })
   } catch (status) {
     res.status(status).json({ status });
   }
@@ -24,15 +22,12 @@ router.post('/like/:post_id', async (req, res) => {
   try {
     await CTRL.checkPostExists(req.params.post_id);
 
-    CTRL.like({ req.body.user_id, req.params.post_id })
-      .then( result => {
-        res.status(200)
-           .json({
-            status: 200,
-            message: 'Like operation success',
-           })
-      })
-
+    let result = await CTRL.like({ req.body.user_id, req.params.post_id })
+    res.status(200)
+      .json({
+      status: 200,
+      message: 'Like operation success',
+    })
   } catch (status) {
     res.status(status).json({ status });
   }

@@ -7,15 +7,9 @@ import { UserContext } from '../../UserContext';
 
 function Login() {
   const emailRef = useRef();
-  const passwordRef = useRef();
-  const [currentLogin, setCurrentLogin] = useState();
+  const passwordRef = useRef()
 
   const {user, setUser} = useContext(UserContext);
-  
-
-  function handleCurrentLogin(data){
-    setCurrentLogin(data);
-  }
   
   async function handleSubmit(ev) {
     ev.preventDefault();
@@ -29,7 +23,7 @@ function Login() {
       .then( response => {
         if ( response.status === 200 ) {
           setUser(response.data.user);
-          localStorage.setItem('user', JSON.stringify(response.data.user));
+          localStorage.setItem('refresh_token', JSON.stringify(response.data.refresh_token));
         }
       })
   }

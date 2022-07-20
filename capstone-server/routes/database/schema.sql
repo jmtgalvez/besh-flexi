@@ -124,7 +124,7 @@ CREATE TABLE CHAT_MESSAGES (
     DEFAULT current_timestamp
     ON UPDATE current_timestamp,
   FOREIGN KEY CHAT_MESSAGES(chat_id)
-    REFERENCES chats(chat_id)
+    REFERENCES USER_CHATS_USER(chat_id)
     ON DELETE restrict
     ON UPDATE cascade,
   CONSTRAINT FK_sender_id
@@ -134,7 +134,7 @@ CREATE TABLE CHAT_MESSAGES (
     ON UPDATE cascade
 );
 
-CREATE TABLE USER_LIKES_POST {
+CREATE TABLE USER_LIKES_POST (
   like_id INT AUTO_INCREMENT PRIMARY KEY,
   user_id INT NOT NULL,
   post_id INT NOT NULL,
@@ -142,11 +142,13 @@ CREATE TABLE USER_LIKES_POST {
     NOT NULL
     DEFAULT current_timestamp,
   CONSTRAINT FK_likes_user_id
+    FOREIGN KEY USER_LIKES_POST(user_id)
     REFERENCES users(user_id)
     ON DELETE restrict
     ON UPDATE cascade,
   CONSTRAINT FK_likes_post_id
+    FOREIGN KEY USER_LIKES_POST(post_id)
     REFERENCES posts(post_id)
     ON DELETE restrict
     ON UPDATE cascade
-};
+);
