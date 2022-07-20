@@ -9,7 +9,7 @@ Besh is a micro-blog website where users can post status, updates, and view othe
 
 # Goal
 
-Besh's goal is to provide a space for people to talk, chat, and share ideas by chatting and posting ideas on the internet.
+Besh's goal is to provide a space for people to talk, chat, and share ideas by chatting and posting on the internet using this web app.
 
 
 # Technologies Used
