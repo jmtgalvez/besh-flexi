@@ -9,22 +9,8 @@ export default function NewsFeedsForm(){
   // Setting the value of what user will post.
   const [postText, setPostText] = useState('');
   // const [postPhoto, setPostPhoto] = useState('');
-  const [postStorage, setPostStorage] = useState([]);
-
-  const [isliked, setIsLiked] = useState(false);
 
   const { user } = useContext(UserContext);
-
-  user == null ? 
-    window.location.href = '/Login'
-    : ''
-
-  const likeThis = () => {
-    setIsLiked(true);
-  }
-  const unlikeThis = () => {
-    setIsLiked(false);
-  }
 
   const handleSubmit = async ev => {
     ev.preventDefault();
@@ -38,36 +24,34 @@ export default function NewsFeedsForm(){
 
     console.log(postData);
 
-    await Api.addPost(postData)
-      .then( response => {
-        handleUserPostSubmit(ev)
-      })
+    await Api.addPost(postData);
+    setPostText('');
   }
 
   // Function for submission of user post.
-  const handleUserPostSubmit = (e) => {
-    e.preventDefault();
+  // const handleUserPostSubmit = (e) => {
+  //   e.preventDefault();
     
-    const d = new Date();
-    let currentDate = d.toLocaleDateString([], {
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
-      hour: '2-digit',
-      minute: '2-digit'
-    })
+  //   const d = new Date();
+  //   let currentDate = d.toLocaleDateString([], {
+  //     year: 'numeric',
+  //     month: '2-digit',
+  //     day: '2-digit',
+  //     hour: '2-digit',
+  //     minute: '2-digit'
+  //   })
 
-    let userPost = {
-      userId: uuidv4(),
-      userPostText: postText,
-      date_posted: currentDate,
-    }
+  //   let userPost = {
+  //     userId: uuidv4(),
+  //     userPostText: postText,
+  //     date_posted: currentDate,
+  //   }
 
-    setPostStorage([...postStorage, userPost])
-    console.log(postStorage)
+  //   setPostStorage([...postStorage, userPost])
+  //   console.log(postStorage)
 
-    setPostText('');
-  }
+  //   setPostText('');
+  // }
 
   return (
     <div className="newsfeeds-container d-flex flex-column gap-3">
@@ -99,22 +83,11 @@ export default function NewsFeedsForm(){
                       <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM3 2a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v8l-2.083-2.083a.5.5 0 0 0-.76.063L8 11 5.835 9.7a.5.5 0 0 0-.611.076L3 12V2z"/>
                     </svg>
                 </button>
-                <button 
-                type='submit' 
-                className='btn btn-success'
-                title='Post'
-                // onClick={handleUserPostSubmit}
-                >
+                <button type='submit' className='btn btn-success'title='Post'>
                   <b>Post</b>
                 </button>
             </div>
         </form>
-
-        {postStorage && postStorage.map(item => {
-          return(<div key={item.userId}>
-          <ContentCards userName={item.userId} userPostText={item.userPostText} like={likeThis} unlike={unlikeThis} isLiked={isliked}/>
-          </div>)
-        })}
     </div>
     
   )
