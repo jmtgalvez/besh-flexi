@@ -4,9 +4,9 @@ const router = express.Router();
 const JWT = require('../auth/jwt');
 const CTRL = require('./controller');
 
-router.get('/', async (req, res) => {
+router.get('/', JWT.verifyToken, async (req, res) => {
   try {
-    const posts = await CTRL.getAllStatus();
+    const posts = await CTRL.getAllFollowedPosts(req.user_id);
 
     res.status(200)
        .json({
