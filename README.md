@@ -21,6 +21,7 @@ Our team used the following technologies:
 - HTML
 - CSS
 - Node JS
+- Express
 - MySQL
 - Heroku
 
