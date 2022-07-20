@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 
 exports.generateAccessToken = payload => {
-    return jwt.sign(payload, 'capstone', { expiresIn: '1m' });
+    return jwt.sign(payload, 'capstone', { expiresIn: '1hr' });
 }
 
 exports.generateRefreshToken = payload => {
@@ -10,15 +10,17 @@ exports.generateRefreshToken = payload => {
 
 exports.verifyToken = (req, res, next) => {
     // get token
-    const authHeader = req.headers['authorization'];
-    const token = authHeader && authHeader.split(' ')[1];
-    if (token === null) return res.sendStatus(401);
+    // const authHeader = req.headers['authorization'];
+    // const token = authHeader && authHeader.split(' ')[1];
+    // if (token === null) return res.sendStatus(401);
+    console.log(req.body);
+    const access_token = req.body.access_token;
 
     // verify correct user
-    jwt.verify(token, 'capstone', (err, user) => {
+    jwt.verify(access_token, 'capstone', (err, user) => {
         if (err) return res.sendStatus(403);
         // return user
-        req.user = user;
+        req.user_id = user.user_id;
         next();
     });
 }

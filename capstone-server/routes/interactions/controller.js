@@ -33,7 +33,7 @@ exports.follow = ({ follower_id, following_id }) => {
     const sql = `INSERT INTO user_follows_user
       ( follower_id, following_id )
       VALUES ( ?, ?)`
-    const values = [ follower_id, following_id];
+    const values = [ follower_id, following_id ];
 
     db.query( sql, values, (err, rows) => {
       if (err) {
@@ -45,7 +45,7 @@ exports.follow = ({ follower_id, following_id }) => {
   })
 }
 
-exports.follow = ({ user_id, post_id }) => {
+exports.like = ({ user_id, post_id }) => {
   return new Promise((resolve, reject) => {
     const sql = `INSERT INTO user_likes_post
       ( user_id, post_id )

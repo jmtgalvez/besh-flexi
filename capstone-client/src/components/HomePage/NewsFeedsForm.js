@@ -31,10 +31,12 @@ export default function NewsFeedsForm(){
     // console.log(user);
 
     const postData = {
-      user_id: user.user_id,
+      access_token: user.access_token,
       content: postText,
       date: new Date(Date.now()),
     }
+
+    console.log(postData);
 
     await Api.addPost(postData)
       .then( response => {

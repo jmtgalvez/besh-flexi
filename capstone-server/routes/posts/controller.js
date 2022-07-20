@@ -48,7 +48,7 @@ exports.checkStatusExists = status_id => {
                 return reject(500);
             }
             if (!rows || !(rows.length > 0)) return reject(404);
-            return resolve();
+            return resolve(rows[0]);
         });
     });
 }

@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-const CTRL = require('./controller')
+const JWT = require('../auth/jwt');
+const CTRL = require('./controller');
 
 router.get('/', async (req, res) => {
   try {
@@ -9,19 +10,19 @@ router.get('/', async (req, res) => {
 
     res.status(200)
        .json({
-        status: 200,
-        message: 'Retrieved all posts',
-        posts,
+          status: 200,
+          message: 'Retrieved all posts',
+          posts,
        });
   } catch (status) {
     res.status(status).json({ status });
   }
 });
 
-router.post('/', async (req, res) => {
+router.post('/', JWT.verifyToken, async (req, res) => {
   try {
     const postData = {
-      user_id: req.body.user_id,
+      user_id: req.user_id,
       content: req.body.content,
       reply_id: req.body.reply_id ? req.body.reply_id : null,
       date: req.body.date_posted ? new Date(req.body.date_posted) : new Date(),
@@ -39,50 +40,38 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.put('/:status_id', async (req, res) => {
+router.put('/:status_id', JWT.verifyToken, async (req, res) => {
   try {
-    await CTRL.checkStatusExists(req.params.status_id);
+    const post = await CTRL.checkStatusExists(req.params.status_id);
 
-    const postData = {
-      status_id: req.params.status_id,
-      content: req.body.content,
-    }
-
-    await CTRL.editStatus(postData)
-      .then( result => {
-        res.status(200).json({
-          status: 200,
-          message: 'Successfully edited post',
-        })
+    if ( post.user_id === req.user_id ) {
+      const postData = {
+        status_id: req.params.status_id,
+        content: req.body.content,
+      }
+  
+      await CTRL.editStatus(postData)
+      res.status(200).json({
+        status: 200,
+        message: 'Successfully edited post',
       })
-      .catch( status => {
-        res.status(status).json({
-          status,
-          message: 'Failed to edit post',
-        })
-      });
+    }
   } catch (status) {
     res.status(status).json({ status });
   }
 });
 
-router.delete('/:status_id', async (req, res) => {
+router.delete('/:status_id', JWT.verifyToken, async (req, res) => {
   try {
-    await CTRL.checkStatusExists(req.params.status_id);
+    const post = await CTRL.checkStatusExists(req.params.status_id);
 
-    await CTRL.deleteStatus(req.params.status_id)
-      .then( result => {
-        res.status(200).json({
-          status: 200,
-          message: "Succesfully deleted post",
-        })
+    if ( post.users_id === req.user_id ) {
+      await CTRL.deleteStatus(req.params.status_id)
+      res.status(200).json({
+        status: 200,
+        message: "Succesfully deleted post",
       })
-      .catch( status => {
-        res.status(status).json({
-          status,
-          message: "Failed to delete post",
-        })
-      })
+    }
   } catch (status) {
     res.status(status).json({ status });
   }
