@@ -3,7 +3,8 @@ import { UserContext } from "../UserContext";
 import { Link } from 'react-router-dom';
 
 
-export default function DropdownButtons({togglePage, activePage, toggleDropdown}) {
+export default function DropdownButtons({togglePage, activePage,
+   toggleDropdown}) {
   const {user, setUser} = useContext(UserContext);
 
   const handleLogout = ev => {
