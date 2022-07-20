@@ -111,7 +111,7 @@ CREATE TABLE USER_CHATS_USER (
     ON UPDATE cascade
 );
 
-CREATE TABLE chatMessages (
+CREATE TABLE chat_messages (
   message_id INT AUTO_INCREMENT PRIMARY KEY,
   content varchar(140) NOT NULL,
   chat_id INT NOT NULL,
@@ -127,3 +127,20 @@ CREATE TABLE chatMessages (
     ON DELETE restrict
     ON UPDATE cascade
 );
+
+CREATE TABLE USER_LIKES_POST {
+  like_id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT NOT NULL,
+  post_id INT NOT NULL,
+  datecreated DATETIME
+    NOT NULL
+    DEFAULT current_timestamp,
+  CONSTRAINT FK_likes_user_id
+    REFERENCES users(user_id)
+    ON DELETE restrict
+    ON UPDATE cascade,
+  CONSTRAINT FK_likes_post_id
+    REFERENCES posts(post_id)
+    ON DELETE restrict
+    ON UPDATE cascade
+};

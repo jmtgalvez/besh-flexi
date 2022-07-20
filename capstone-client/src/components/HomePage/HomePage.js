@@ -34,7 +34,7 @@ export default function HomePage() {
   const [activePage, setActivePage] = useState(1);
 
   // for search input (retrieve users)
-  const [searchResultUser, setSearchResultUser] = useState();
+  const [searchResultUser, setSearchResultUser] = useState([]);
   const [search, setSearch] = useState();
   const [message, setMessage] = useState([]); 
 
@@ -46,26 +46,20 @@ export default function HomePage() {
     ev.preventDefault();
 
     const search_query = search;
-
+    console.log(search_query)
     try{
-     await ApiUser.searchUsers(search_query).then(result =>{
-      let data = [];
-        for (let i = 0; i< result.data.users.users.length; i++){
-             data.push(
-              {
-                user_id: result.data.users.users[i].user_id,
-                first_name: result.data.users.users[i].first_name,
-                last_name: result.data.users.users[i].last_name,
-                email: result.data.users.users[i].email,
-                username: result.data.users.users[i].username 
-              })
+        
+        await (search_query !== '' ? ApiUser.searchUsers : ApiUser.getAllUsers)(search_query ).then(result =>{
+          if(result.status == 200){
+            const data = [...result.data.users].map((data, index)=>data)
+            setSearchResultUser(data);
+            setMessage({status: 'success', message: `${result.data.users.length} result/s found`});
+          }})
+        
+        }catch(err){
+          setSearchResultUser('');
+          setMessage({status: 'error', message: 'No record found'});
         }
-        setSearchResultUser(data);
-        setMessage({status: 'success', message: `${result.data.users.users.length} result/s found`});
-      })
-    }catch(err){
-        setMessage({status: 'error', message: 'No record found'});
-    }
   
   }
 
