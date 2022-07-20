@@ -1,0 +1,28 @@
+.settings_container {
+    .settings_container_section3 {
+        &:hover {
+            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+            // cursor: pointer;
+        }
+        .passwordToggle {
+            cursor: pointer;
+            .edit_password {
+                text-decoration: none;
+            }
+            .password_label {
+                cursor: pointer;
+            }
+            &:hover {
+                .edit_password {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+    .show_password {
+        cursor: pointer;
+        #showpassword {
+            cursor: pointer;
+        }
+    }
+}

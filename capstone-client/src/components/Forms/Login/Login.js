@@ -8,14 +8,10 @@ import { UserContext } from '../../UserContext';
 function Login() {
   const emailRef = useRef();
   const passwordRef = useRef();
-  const [currentLogin, setCurrentLogin] = useState();
 
   const {user, setUser} = useContext(UserContext);
   
 
-  function handleCurrentLogin(data){
-    setCurrentLogin(data);
-  }
   
   async function handleSubmit(ev) {
     ev.preventDefault();

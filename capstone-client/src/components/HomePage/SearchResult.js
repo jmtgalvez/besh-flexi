@@ -12,15 +12,8 @@ const result = Object.keys(searchResultUser).map(key =>{
         <div className="card-header">
             <div className={message.status == 'error' ? 'alert alert-danger' : 'alert alert-success'}>{message.message}</div>
         </div>
-        
-        
-        
       </div>
-
     {result}
-
-      
-      
     </div>
   )
 }
@@ -35,7 +28,8 @@ function Content({key, username, first_name, last_name, email}){
               <img src="https://picsum.photos/seed/picsum/200/300" alt="Profile" />
           </div>
           <div className="searhInfo col-7">
-                      <p>{`${last_name}, ${first_name}`}</p>
+          <h5>{`${last_name}, ${first_name}`}</h5>
+          <p>{username}</p>
           </div>
           <a className="follow col-2 btn btn-success sm">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">

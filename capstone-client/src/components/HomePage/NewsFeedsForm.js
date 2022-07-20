@@ -1,7 +1,6 @@
 import React, { useState, useContext } from 'react';
 import {v4 as uuidv4} from 'uuid';
 import { UserContext } from '../UserContext';
-import ContentCards from './ContentCards';
 import { Navigate } from 'react-router';
 import * as Api from '../api/post';
 
@@ -15,9 +14,9 @@ export default function NewsFeedsForm(){
 
   const { user } = useContext(UserContext);
 
-  user == null ? 
-    window.location.href = '/Login'
-    : ''
+  // user == null ? 
+  //   window.location.href = '/Login'
+  //   : ''
 
   const likeThis = () => {
     setIsLiked(true);
@@ -65,8 +64,8 @@ export default function NewsFeedsForm(){
     console.log(postStorage)
 
     setPostText('');
+    
   }
-
   return (
     <div className="newsfeeds-container d-flex flex-column gap-3">
           <form className='newsfeeds-container-1 p-5 d-flex flex-column gap-4' onSubmit={handleSubmit}>
