@@ -23,11 +23,31 @@ router.post('/like/:post_id', JWT.verifyToken, async (req, res) => {
   try {
     await CTRL.checkPostExists(req.params.post_id);
 
-    let result = await CTRL.like({ user_id: req.user_id, post_id: req.params.post_id })
+    const likeData = {
+      user_id: req.user_id,
+      post_id: req.params.post_id,
+    }
+
+    let result = await CTRL.like(likeData);
     res.status(200)
       .json({
       status: 200,
       message: 'Like operation success',
+    })
+  } catch (status) {
+    res.status(status).json({ status });
+  }
+})
+
+router.post('/unlike/:post_id', JWT.verifyToken, async (req, res) => {
+  try {
+    await CTRL.checkPostExists(req.params.post_id);
+
+    let result = await CTRL.unlike({ user_id: req.user_id, post_id: req.params.post_id })
+    res.status(200)
+      .json({
+      status: 200,
+      message: 'Unike operation success',
     })
   } catch (status) {
     res.status(status).json({ status });

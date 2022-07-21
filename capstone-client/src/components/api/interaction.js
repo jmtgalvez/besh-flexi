@@ -9,6 +9,10 @@ export const likePost = async post_id => {
   return await axios.post(`${url}:${port}/api/interactions/like/${post_id}`);
 }
 
+export const unlikePost = async post_id => {
+  return await axios.post(`${url}:${port}/api/interactions/unlike/${post_id}`);
+}
+
 export const followUser = async following_id => {
   return await axios.post(`${url}:${port}/api/interactions/follow/${following_id}`);
 }

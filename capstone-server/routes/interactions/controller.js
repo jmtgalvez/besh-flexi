@@ -40,6 +40,8 @@ exports.checkPostExists = post_id => {
         console.log(`/routes/interactions/controllers/checkPostExists DB Error: ${err.message}`);
         return reject(500);
       }
+      if ( !rows || rows.length === 0)
+        return reject(404);
       return resolve();
     })
   })
@@ -49,7 +51,26 @@ exports.like = ({ user_id, post_id }) => {
   return new Promise((resolve, reject) => {
     const sql = `INSERT INTO user_likes_post
       ( user_id, post_id )
-      VALUES ( ?, ?)`
+      VALUES ( ?, ? )`
+
+    const values = [ user_id, post_id ];
+
+    db.query( sql, values, (err, rows) => {
+      if (err) {
+        console.log(`/routes/interactions/controller/like DB Error: ${err.message}`);
+        return reject(500);
+      }
+      return resolve(rows.insertId);
+    });
+  });
+}
+
+exports.unlike = ({ user_id, post_id }) => {
+  return new Promise((resolve, reject) => {
+    const sql = `DELETE FROM user_likes_post
+      WHERE user_id = ?
+      AND post_id = ?`
+
     const values = [ user_id, post_id ];
 
     db.query( sql, values, (err, rows) => {
