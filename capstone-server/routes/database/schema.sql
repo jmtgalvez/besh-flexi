@@ -67,8 +67,8 @@ CREATE TABLE posts (
 
 CREATE TABLE USER_FOLLOWS_USER (
   follow_id INT AUTO_INCREMENT PRIMARY KEY,
-  user1 INT NOT NULL,
-  user2 INT NOT NULL,
+  follower_id INT NOT NULL,
+  following_id INT NOT NULL,
   datecreated DATETIME
     NOT NULL
     DEFAULT current_timestamp,
@@ -76,13 +76,13 @@ CREATE TABLE USER_FOLLOWS_USER (
     NOT NULL
     DEFAULT current_timestamp
     ON UPDATE current_timestamp,
-  CONSTRAINT FK_follow_user_id1
-    FOREIGN KEY chats(user1)
+  CONSTRAINT FK_follower_id
+    FOREIGN KEY chats(follower_id)
     REFERENCES users(user_id)
     ON DELETE restrict
     ON UPDATE cascade,
-  CONSTRAINT FK_follow_user_id2
-    FOREIGN KEY chats(user2)
+  CONSTRAINT FK_following_id
+    FOREIGN KEY chats(following_id)
     REFERENCES users(user_id)
     ON DELETE restrict
     ON UPDATE cascade
@@ -111,9 +111,10 @@ CREATE TABLE USER_CHATS_USER (
     ON UPDATE cascade
 );
 
-CREATE TABLE chat_messages (
+CREATE TABLE CHAT_MESSAGES (
   message_id INT AUTO_INCREMENT PRIMARY KEY,
   content varchar(140) NOT NULL,
+  sender_id INT NOT NULL,
   chat_id INT NOT NULL,
   datecreated DATETIME
     NOT NULL
@@ -122,13 +123,18 @@ CREATE TABLE chat_messages (
     NOT NULL
     DEFAULT current_timestamp
     ON UPDATE current_timestamp,
-  FOREIGN KEY chatMessages(chat_id)
-    REFERENCES chats(chat_id)
+  FOREIGN KEY CHAT_MESSAGES(chat_id)
+    REFERENCES USER_CHATS_USER(chat_id)
+    ON DELETE restrict
+    ON UPDATE cascade,
+  CONSTRAINT FK_sender_id
+    FOREIGN KEY CHAT_MESSAGES(sender_id)
+    REFERENCES users(user_id)
     ON DELETE restrict
     ON UPDATE cascade
 );
 
-CREATE TABLE USER_LIKES_POST {
+CREATE TABLE USER_LIKES_POST (
   like_id INT AUTO_INCREMENT PRIMARY KEY,
   user_id INT NOT NULL,
   post_id INT NOT NULL,
@@ -136,11 +142,13 @@ CREATE TABLE USER_LIKES_POST {
     NOT NULL
     DEFAULT current_timestamp,
   CONSTRAINT FK_likes_user_id
+    FOREIGN KEY USER_LIKES_POST(user_id)
     REFERENCES users(user_id)
     ON DELETE restrict
     ON UPDATE cascade,
   CONSTRAINT FK_likes_post_id
+    FOREIGN KEY USER_LIKES_POST(post_id)
     REFERENCES posts(post_id)
     ON DELETE restrict
     ON UPDATE cascade
-};
+);

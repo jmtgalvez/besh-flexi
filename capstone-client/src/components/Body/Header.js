@@ -7,19 +7,14 @@ export default function Header() {
     <header className="header__navbar opensans">
       <div id="frontpage__logo">
         <Link to="/" className="opensans">
-          <img src={Logo} alt="" />
+          <img src={Logo} alt="Besh logo" title="Besh - Your one and only social app!" />
         </Link>
       </div>
       <nav>
         {window.innerWidth > 460 ? (
           <ul>
-            <li>
-              <Link className="opensans" to="#">
-                About
-              </Link>
-            </li>
-            <li>
-              <Link id="frontpage__header__btn" to="/Login">
+            <li title='Log in'>
+              <Link id="frontpage__header__btn" to="/Login" title='Log in'>
                 Log In
               </Link>
             </li>

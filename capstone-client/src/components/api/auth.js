@@ -14,3 +14,7 @@ export const register = async user => {
 export const login = async credentials => {
     return await axios.post(`${url}:${port}/api/login`, credentials);
 }
+
+export const getAccessToken = async refresh_token => {
+    return await axios.post(`${url}:${port}/api/getAccessToken`, {refresh_token});
+}

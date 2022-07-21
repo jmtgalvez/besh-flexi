@@ -1,6 +1,5 @@
 const db = require('../database/index');
 const bcrypt = require('bcrypt');
-// const jwt = require('./jwt');
 
 exports.checkUserExists = email => {
     return new Promise((resolve, reject) => {
@@ -10,15 +9,32 @@ exports.checkUserExists = email => {
 
         db.query(sql, values, (err, rows) => {
             if (err) {
-                console.log(`/routes/auth/controller/checkUser DB Error: ${err.message}`);
+                console.log(`/routes/auth/controller/checkUserExists DB Error: ${err.message}`);
                 return reject(500);
             }
             if (!(rows.length > 0))
                 return reject(404);
 
-            return resolve();
+            return resolve(rows[0]);
         });
     });
+}
+
+exports.checkUserExistsByUserId = user_id => {
+    return new Promise((resolve, reject) => {
+        const sql = `SELECT * FROM users WHERE user_id = ?`
+
+        db.query(sql, user_id, (err, rows) => {
+            if (err) {
+                console.log(`/routes/auth/controller/checkUserExistsByUserId DB Error: ${err.message}`);
+                return reject(500);
+            }
+            if (!(rows.length > 0))
+                return reject(404);
+
+            return resolve(rows[0]);
+        })
+    })
 }
 
 exports.checkUserAvailable = email => {
@@ -29,7 +45,7 @@ exports.checkUserAvailable = email => {
 
         db.query(sql, values, (err, rows) => {
             if (err) {
-                console.log(`/routes/auth/controller/checkUser DB Error: ${err.message}`);
+                console.log(`/routes/auth/controller/checkUserAvailable DB Error: ${err.message}`);
                 return reject(500);
             }
             if (!(rows.length > 0))
@@ -62,9 +78,7 @@ exports.login = credentials => {
                     first_name,
                     last_name,
                 }
-
-                // const access_token = jwt.generateAccessToken({ user_id });
-                // return resolve({ access_token, user });
+                
                 return resolve(user);
 
             } else {

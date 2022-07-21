@@ -8,7 +8,8 @@ export default function DropdownButtons({togglePage, activePage,
   const {user, setUser} = useContext(UserContext);
 
   const handleLogout = ev => {
-    
+    setUser(null);
+    localStorage.removeItem('refresh_token');
   }
 
   return (
@@ -84,7 +85,7 @@ export default function DropdownButtons({togglePage, activePage,
       {/* Logout Button */}
 
       
-        <Link to='/login' onClick={()=>setUser('')}>
+        <Link to='/login' onClick={handleLogout}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="30"

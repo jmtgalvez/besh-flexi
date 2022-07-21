@@ -23,7 +23,7 @@ handleSearchUser, handleSearchValue }) {
       <form  className="search d-flex align-items-center gap-1" onSubmit={handleSearchUser}>
         
         <input onChange={handleSearchValue} className="search-input py-2 px-4" type="search" placeholder="First Name or Last Name or Email" />
-        <button className="search-button btn-success" onClick={()=> togglePage(0)}>
+        <button className="search-button btn-success" onClick={()=> togglePage(0)} title='Search'>
           
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -58,7 +58,7 @@ handleSearchUser, handleSearchValue }) {
 function NavDropdown({toggleDropdown}) {
   return(
       <div onClick={toggleDropdown} className="profile-dropdown d-flex align-items-center">
-        <a className="dropdown-image p-1 rounded-circle">
+        <a className="dropdown-image p-1 rounded-circle" title="Profile">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="40"
