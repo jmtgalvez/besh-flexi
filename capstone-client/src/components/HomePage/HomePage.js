@@ -105,7 +105,7 @@ export default function HomePage() {
           <div className="newsfeeds">
             {window.innerWidth < 800 && <UiHeaderMobile />}
             {
-            activePage == 1 ? <NewsFeedForm /> :
+            activePage == 1 ? <NewsFeed /> :
             activePage == 2 ? <Trending /> : 
             activePage == 3 ? <Chat /> :
             activePage == 4 ? <About /> :
@@ -114,8 +114,6 @@ export default function HomePage() {
             activePage == 7 ? <FeedBack /> :
                               <SearchResult message={message} searchResultUser={searchResultUser} />
             }
-
-            <NewsFeed />
 
           </div>
 
