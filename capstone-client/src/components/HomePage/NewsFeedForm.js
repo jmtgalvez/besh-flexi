@@ -4,7 +4,7 @@ import { UserContext } from '../UserContext';
 import { Navigate } from 'react-router';
 import * as Api from '../api/post';
 
-export default function NewsFeedsForm(){
+export default function NewsFeedsForm({ loadPosts }){
   // Setting the value of what user will post.
   const [postText, setPostText] = useState('');
   // const [postPhoto, setPostPhoto] = useState('');
@@ -13,7 +13,6 @@ export default function NewsFeedsForm(){
 
   const handleSubmit = async ev => {
     ev.preventDefault();
-    // console.log(user);
 
     const postData = {
       access_token: user.access_token,
@@ -25,32 +24,8 @@ export default function NewsFeedsForm(){
 
     await Api.addPost(postData);
     setPostText('');
+    loadPosts();
   }
-
-  // Function for submission of user post.
-  // const handleUserPostSubmit = (e) => {
-  //   e.preventDefault();
-    
-  //   const d = new Date();
-  //   let currentDate = d.toLocaleDateString([], {
-  //     year: 'numeric',
-  //     month: '2-digit',
-  //     day: '2-digit',
-  //     hour: '2-digit',
-  //     minute: '2-digit'
-  //   })
-
-  //   let userPost = {
-  //     userId: uuidv4(),
-  //     userPostText: postText,
-  //     date_posted: currentDate,
-  //   }
-
-  //   setPostStorage([...postStorage, userPost])
-  //   console.log(postStorage)
-
-  //   setPostText('');
-  // }
 
   return (
     <div className="newsfeeds-container d-flex flex-column gap-3">

@@ -8,16 +8,20 @@ function NewsFeed() {
   const { user } = useContext(UserContext);
   const [posts, setPosts] = useState([]);
 
-  useEffect(() => {
+  const loadPosts = () => {
     Api.getAllPosts(user.access_token)
     .then( response => {
       setPosts([...(response.data.posts)]);
     })
+  }
+
+  useEffect(() => {
+    loadPosts();
   }, []);
 
   return (
     <>
-      <NewsFeedsForm />
+      <NewsFeedsForm loadPosts={loadPosts} />
       {posts && posts.map( post => {
         return(<div key={post.post_id}>
         <PostCard userName={post.username} userPostText={post.content} post={post} />
