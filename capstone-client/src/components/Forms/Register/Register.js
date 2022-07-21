@@ -41,7 +41,7 @@ export default function Register() {
     <>
     { user
       ? (
-        <Navigate to='/home' replace={true} />
+        <Navigate to='/' replace={true} />
       ) : (
         <div className='register__section'>
           <section className='register__section__container__form'>
