@@ -4,7 +4,8 @@
     "description": "",
     "main": "server.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "dev": "nodemon server.js",
+        "seed": "mysql -u root -p -e 'source ./routes/database/schema.sql'"
     },
     "author": "",
     "license": "ISC",

@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { UserContext } from "../UserContext";
 import { Link } from 'react-router-dom';
+import { logout } from '../api/auth';
 
 
 export default function DropdownButtons({togglePage, activePage,
@@ -10,6 +11,7 @@ export default function DropdownButtons({togglePage, activePage,
   const handleLogout = ev => {
     setUser(null);
     localStorage.removeItem('refresh_token');
+    logout();
   }
 
   return (

@@ -14,20 +14,6 @@ exports.checkUserExists = user_id => {
   })
 }
 
-exports.checkPostExists = post_id => {
-  return new Promise((resolve, reject) => {
-    const sql = `SELECT * FROM users WHERE post_id = ?`
-
-    db.query( sql, post_id, (err, rows) => {
-      if (err) {
-        console.log(`/routes/interactions/controllers/checkPostExists DB Error: ${err.message}`);
-        return reject(500);
-      }
-      return resolve();
-    })
-  })
-}
-
 exports.follow = ({ follower_id, following_id }) => {
   return new Promise((resolve, reject) => {
     const sql = `INSERT INTO user_follows_user
@@ -45,6 +31,20 @@ exports.follow = ({ follower_id, following_id }) => {
   })
 }
 
+exports.checkPostExists = post_id => {
+  return new Promise((resolve, reject) => {
+    const sql = `SELECT * FROM posts WHERE post_id = ?`
+
+    db.query( sql, post_id, (err, rows) => {
+      if (err) {
+        console.log(`/routes/interactions/controllers/checkPostExists DB Error: ${err.message}`);
+        return reject(500);
+      }
+      return resolve();
+    })
+  })
+}
+
 exports.like = ({ user_id, post_id }) => {
   return new Promise((resolve, reject) => {
     const sql = `INSERT INTO user_likes_post
@@ -58,6 +58,31 @@ exports.like = ({ user_id, post_id }) => {
         return reject(500);
       }
       return resolve(rows.insertId);
-    })
-  })
+    });
+  });
+}
+
+exports.checkChatExists = ({user1, user2}) => {
+  return new Promise((resolve, reject) => {
+    const sql = `SELECT chat_id FROM USER_CHATS_USER
+    WHERE
+    (user1 = ? && user2 = ?)
+    OR
+    (user2 = ? && user1 = ?)`;
+
+    const values = [
+      user1, user2,
+      user1, user2
+    ];
+
+    db.query( sql, values, (err, rows) => {
+      if (err) {
+        console.log(`/routes/interactions/controller/checkChatExists DB Error: ${err.message}`);
+        return reject(500);
+      }
+      if ( !rows || rows.length === 0 ) 
+        return reject(404);
+      return resolve(rows[0].chat_id);
+    });
+  });
 }

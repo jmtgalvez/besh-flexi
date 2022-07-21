@@ -8,5 +8,6 @@ router.get('/', (req, res) => {
 router.use(require('./auth/router'));
 router.use('/status', require('./posts/router'));
 router.use('/users', require('./users/router'));
+router.use('/interactions', require('./interactions/router'));
 
 module.exports = router;

@@ -10,11 +10,7 @@ exports.generateRefreshToken = payload => {
 
 exports.verifyToken = (req, res, next) => {
     // get token
-    // const authHeader = req.headers['authorization'];
-    // const token = authHeader && authHeader.split(' ')[1];
-    // if (token === null) return res.sendStatus(401);
-    console.log(req.body);
-    const access_token = req.body.access_token;
+    const access_token = req.headers.cookie.split('=')[1];
 
     // verify correct user
     jwt.verify(access_token, 'capstone', (err, user) => {

@@ -1,7 +1,7 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import {UIHeader} from "../Body/UIHeader";
 // components
-import NewsFeedsForm from "./NewsFeedsForm";
+import NewsFeedForm from "./NewsFeedForm";
 import Chat from "../Chat/Chat";
 import TopNavbar from "./TopNavbar";
 import Trending from "./Trending";
@@ -19,18 +19,23 @@ import Exit from "./Exit";
 import UiHeaderMobile from "../Body/UiHeaderMobile";
 // import DropdownMobile from "./DropdownMobile";
 import { UserContext } from "../UserContext";
+import NewsFeed from "./NewsFeed";
 
 
-import UiContentCards from "./ContentCards";
+import ContentCards from "./ContentCards";
 import { Navigate } from "react-router";
 
 // IMPORT API'S
-import * as Api from '../api/post';
 import * as ApiUser from '../api/users';
 
 export default function HomePage() {
+  const { user } = useContext(UserContext);
+
+  user == null ? 
+    window.location.href = '/Login'
+    : '';
+
   const [toggleMobile, setToggleMobile] = useState(false);
-  const [posts, setPosts] = useState([]);
   const [activePage, setActivePage] = useState(1);
 
   // for search input (retrieve users)
@@ -74,17 +79,6 @@ export default function HomePage() {
       setActivePage(page);
   }
 
-  const populatePosts = () => {
-    Api.getAllPosts()
-      .then( response => {
-        return (
-            <>
-              {[...(response.data.posts)].map( post => <UiContentCards userName={post.username} userPostText={post.content} /> )}
-            </>
-        )
-      })
-  }
-
   return (
     <div className="frontPage">
       {toggleMobile && (
@@ -111,7 +105,7 @@ export default function HomePage() {
           <div className="newsfeeds">
             {window.innerWidth < 800 && <UiHeaderMobile />}
             {
-            activePage == 1 ? <NewsFeedsForm /> :
+            activePage == 1 ? <NewsFeedForm /> :
             activePage == 2 ? <Trending /> : 
             activePage == 3 ? <Chat /> :
             activePage == 4 ? <About /> :
@@ -120,8 +114,8 @@ export default function HomePage() {
             activePage == 7 ? <FeedBack /> :
                               <SearchResult message={message} searchResultUser={searchResultUser} />
             }
-            
-            {populatePosts()}
+
+            <NewsFeed />
 
           </div>
 

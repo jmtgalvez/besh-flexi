@@ -34,9 +34,21 @@ router.post('/like/:post_id', JWT.verifyToken, async (req, res) => {
   }
 })
 
-router.post('/chat', async (req, res) => {
+router.post('/chat', JWT.verifyToken, async (req, res) => {
   try {
+    const chat_id = await CTRL.checkChatExists({ user1: req.user_id, user2: req.body.recipient_id });
 
+    const chatData = {
+      content: req.body.content,
+      sender_id: req.user_id,
+      chat_id
+    }
+
+    const result = await CTRL.addChatMessage(chatData);
+    res.status(200).json({
+      status: 200,
+      message: 'Message sent successfully'
+    })
   } catch (status) {
     res.status(status).json({ status });
   }
