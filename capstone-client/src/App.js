@@ -27,11 +27,9 @@ function App() {
         <UserContext.Provider value={{user, setUser}}>
             <Router>
                 <Routes>
-                    <Route path='/' element={<LandingPage />}/>
+                    <Route path='/' element={ user ? <HomePage /> : <LandingPage /> } />
                     <Route path='/Register' element={<Register />}/>
                     <Route path='/Login' element={<Login />}/>
-                    <Route path='/Home' element={<HomePage />}/>
-                    <Route path='/Home2' element={<HomePage2 />}/>
                 </Routes>
             </Router>
         </UserContext.Provider>

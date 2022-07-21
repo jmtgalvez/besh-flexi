@@ -1,6 +1,6 @@
-import React, { useRef, useState, useContext, useEffect } from 'react';
+import { useRef, useContext } from 'react';
 import { Navigate } from 'react-router-dom';
-import * as Api from '../../api/auth';
+import { login } from '../../api/auth';
 
 import { UserContext } from '../../UserContext';
 
@@ -20,7 +20,7 @@ function Login() {
       password: passwordRef.current.value
     }
 
-    await Api.login(credentials)
+    await login(credentials)
       .then( response => {
         if ( response.status === 200 ) {
           setUser(response.data.user);
@@ -33,7 +33,7 @@ function Login() {
     <>
       { user 
         ? (
-          <Navigate to='/Home' replace={true} />
+          <Navigate to='/' replace={true} />
         ) : (
         <div className='login__section'>
           <section className="login__form__container">

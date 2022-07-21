@@ -1,7 +1,7 @@
-import React, { useState, useContext, useEffect } from "react";
-import {UIHeader} from "../Body/UIHeader";
+import { useState, useContext } from "react";
 // components
-import NewsFeedForm from "./NewsFeedForm";
+import SideNav from "./SideNav";
+import NewsFeed from "./NewsFeed";
 import Chat from "../Chat/Chat";
 import TopNavbar from "./TopNavbar";
 import Trending from "./Trending";
@@ -18,15 +18,10 @@ import DropdownMobile from "./DropdownMobile";
 import Exit from "./Exit";
 import UiHeaderMobile from "../Body/UiHeaderMobile";
 // import DropdownMobile from "./DropdownMobile";
-import { UserContext } from "../UserContext";
-import NewsFeed from "./NewsFeed";
-
-
-import ContentCards from "./ContentCards";
-import { Navigate } from "react-router";
 
 // IMPORT API'S
 import * as ApiUser from '../api/users';
+import { UserContext } from "../UserContext";
 
 export default function HomePage() {
   const { user } = useContext(UserContext);
@@ -51,17 +46,16 @@ export default function HomePage() {
     ev.preventDefault();
 
     const search_query = search;
-    console.log(search_query)
     try{
         
-        await (search_query !== '' ? ApiUser.searchUsers : ApiUser.getAllUsers)(search_query ).then(result =>{
+        await (search_query !== '' ? ApiUser.searchUsers : ApiUser.getAllUsers)(search_query).then(result =>{
           if(result.status == 200){
             const data = [...result.data.users].map((data, index)=>data)
             setSearchResultUser(data);
             setMessage({status: 'success', message: `${result.data.users.length} result/s found`});
           }})
         
-        }catch(err){
+        } catch(err) {
           setSearchResultUser('');
           setMessage({status: 'error', message: 'No record found'});
         }
@@ -81,19 +75,17 @@ export default function HomePage() {
 
   return (
     <div className="frontPage">
-      {toggleMobile && (
+      {/* {toggleMobile && (
         <>
           <DropdownMobile />
           <div style={{position: "fixed", zIndex: 300, right: "30px", top: "30px"}}>
             <Exit handleExit={toggleMobileDropdown} />
           </div>
         </>
-      )}
-      {window.innerWidth > 800 && (
-        <div className="header">
-          <UIHeader togglePage={togglePage} activePage={activePage} />
-        </div>
-      )}
+      )} */}
+      
+      {window.innerWidth > 800 && <SideNav togglePage={togglePage} activePage={activePage} />}
+
       <div className="content">
         <div className="navbar">
           {window.innerWidth < 800 && <Hamburger handleShow={toggleMobileDropdown} />}
@@ -117,11 +109,11 @@ export default function HomePage() {
 
           </div>
 
-          {window.innerWidth > 800 && (
+          {/* {window.innerWidth > 800 && (
             <div className="side">
               <Side />
             </div>
-          )}
+          )} */}
         </div>
       </div>
     </div>

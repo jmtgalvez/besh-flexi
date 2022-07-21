@@ -9,7 +9,6 @@ handleSearchUser, handleSearchValue }) {
 
   const toggleDropdown = () => {
     setToggle(!toggle);
-
   };
 
   return (

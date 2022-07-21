@@ -1,6 +1,6 @@
 import React from "react";
 
-export function UIHeader({togglePage, activePage}) {
+export default function UIHeader({togglePage, activePage}) {
   return (
     <div className="header-content">
       <div className="logo">

@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function ContentCards({userName, userPostText, userPostPhoto, isLiked, like, unlike}) {
+export default function ContentCards({userName, userPostText, userPostPhoto, isLiked, like, unlike, post}) {
   return (
     <div>
       <div className="newsfeeds-content p-3 d-flex flex-column gap-4 card">

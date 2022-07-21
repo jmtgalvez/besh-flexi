@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import NewsFeedsForm from './NewsFeedForm';
-import ContentCards from './ContentCards';
+import PostCards from './PostCards';
 import * as Api from '../api/post';
 import { UserContext } from '../UserContext';
 
@@ -20,7 +20,7 @@ function NewsFeed() {
       <NewsFeedsForm />
       {posts && posts.map( post => {
         return(<div key={post.post_id}>
-        <ContentCards userName={post.username} userPostText={post.content} post={post} />
+        <PostCards userName={post.username} userPostText={post.content} post={post} />
         </div>)
       })}
     </>
