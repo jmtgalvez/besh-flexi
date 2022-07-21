@@ -118,3 +118,23 @@ exports.addUser = user => {
         });
     });
 }
+
+exports.authorizeUser = credentials => {
+  return new Promise((resolve, reject) => {
+    const sql = `SELECT * FROM users
+    WHERE
+    user_id = ?`;
+
+    db.query( sql, credentials.user_id, async (err, rows) => {
+      if (err) {
+        console.log(`/routes/users/controllers/validateUser DB Error: ${err.message}`);
+        return reject(500);
+      }
+      if ( !rows || rows.length === 0 )
+        return reject(404);
+      if ( await bcrypt.compare(credentials.password, rows[0].password))
+        return resolve(rows[0]);
+      return reject(403);
+    })
+  })
+}

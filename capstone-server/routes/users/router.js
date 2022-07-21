@@ -3,6 +3,7 @@ const router = express.Router();
 
 const JWT = require('../auth/jwt');
 const CTRL = require('./controller');
+const AuthCTRL = require('../auth/controller');
 
 // get all users
 router.get('/', JWT.verifyToken, async (req, res) => {
@@ -25,13 +26,20 @@ router.put('/:user_id', JWT.verifyToken, async (req, res) => {
   try {
     if ( req.params.user_id === req.user_id ) {
       const oldUserData = await CTRL.getUserByUserId(req.user_id);
+      
+      const credentials = {
+        user_id: req.user_id,
+        password: req.body.password,
+      }
+
+      await AuthCTRL.authorizeUser(credentials);
   
       const newUserData = {
         user_id: req.user_id,
-        first_name: req.body.first_name ? req.body.first_name : oldUserData.first_name,
-        last_name: req.body.last_name ? req.body.last_name : oldUserData.last_name,
-        username: req.body.username ? req.body.username : oldUserData.username,
-        email: req.body.email ? req.body.email : oldUserData.email,
+        first_name: req.body.first_name || oldUserData.first_name,
+        last_name: req.body.last_name || oldUserData.last_name,
+        username: req.body.username || oldUserData.username,
+        email: req.body.email || oldUserData.email,
       };
   
       const status = await CTRL.editUser(newUserData);
@@ -57,6 +65,13 @@ router.delete('/:user_id', JWT.verifyToken, async (req, res) => {
   try {
     if ( req.params.user_id === req.user_id ) {
       await CTRL.getUserByUserId(req.user_id);
+      
+      const credentials = {
+        user_id: req.user_id,
+        password: req.body.password,
+      }
+
+      await AuthCTRL.authorizeUser(credentials);
       
       await CTRL.deleteUser(req.user_id);
       res.status(200)
@@ -87,7 +102,7 @@ router.get('/:user_id', JWT.verifyToken, async (req, res) => {
 })
 
 // get users that has the name ':search_query'
-router.get('/search/:search_query', async (req, res) => {
+router.get('/search/:search_query', JWT.verifyToken, async (req, res) => {
   try {
     const users = await CTRL.searchUsersByName(req.params.search_query);
 

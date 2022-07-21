@@ -36,10 +36,26 @@ router.post('/register', async (req, res) => {
         await CTRL.checkUserAvailable(req.body.email);
 
         const user_id = await CTRL.addUser(req.body);
+
+        const credentials = {
+            email: req.body.email,
+            password: req.body.password,
+        }
+
+        let user = await CTRL.login(credentials);
+
+        const access_token = JWT.generateAccessToken({ user_id: user.user_id });
+        const refresh_token = JWT.generateRefreshToken(user);
+        user = { ...user, access_token };
+        const cookie_option = {
+            httpOnly: true,
+        }
+        res.cookie('access_token', access_token, cookie_option);
         res.status(200).json({
             status: 200,
-            message: 'Registration Success',
-            data: user_id
+            message: 'Login Success',
+            refresh_token,
+            user
         });
     } catch (status) {
         res.status(status).json({

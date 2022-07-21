@@ -1,4 +1,5 @@
 const db = require('../database/index');
+const bcrypt = require('bcrypt');
 
 exports.getAllUsers = () => {
   return new Promise((resolve, reject) => {
