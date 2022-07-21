@@ -12,6 +12,7 @@ export default function DropdownButtons({togglePage, activePage,
     setUser(null);
     localStorage.removeItem('refresh_token');
     logout();
+    window.location.href = '/';
   }
 
   return (
