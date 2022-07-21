@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { likePost, unlikePost } from '../api/interaction';
 
-export default function PostCard({userName, userPostText, userPostPhoto, post}) {
-  console.log(post);
+export default function PostCard({ userPostPhoto, post }) {
   
   const [isLiked, setIsLiked] = useState(post.liked === "true");
 
@@ -32,11 +31,11 @@ export default function PostCard({userName, userPostText, userPostPhoto, post}) 
             </svg>
           </a>
           <div>
-            <h6 className="p-2">{userName}</h6>
+            <h6 className="p-2">{post.username}</h6>
           </div>
         </div>
         <div className="card-body">
-          <p>{userPostText}</p>
+          <p>{post.content}</p>
           {userPostPhoto && <img src={userPostPhoto} alt="Posts" />}
         </div>
       <div className="like__reaction ms-3" onClick={toggleLike} style={{cursor: 'pointer'}}>
