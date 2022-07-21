@@ -1,0 +1,33 @@
+.own {
+    width: clamp(200px, 7vw, 300px);
+    height: max-content;
+    background: rgb(244, 242, 242);
+    padding: .5rem;
+    border-radius: .6rem;
+    align-self: flex-end;
+    margin-right: 10px;
+    margin-top: 10px;
+    color: black;
+}
+
+.mate {
+    width: clamp(200px, 7vw, 300px);
+    height: max-content;
+    background: rgba(104, 243, 139, 0.952);
+    padding: .6rem;
+    border-radius: .5rem;
+    align-self: flex-start;
+    margin-left: 10px;
+    margin-top: 10px;
+    color: black;
+}
+
+.own-time {
+    align-self: flex-end;
+    margin-right: 10px;
+}
+
+.mate-time {
+    align-self: flex-start;
+    margin-left: 10px
+}

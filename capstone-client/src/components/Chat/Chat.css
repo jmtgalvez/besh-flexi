@@ -1,0 +1,7 @@
+.hideoverflow {
+    overflow-y: hidden;
+}
+
+.overflow {
+    overflow-y: scroll;
+}

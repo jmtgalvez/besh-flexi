@@ -25,6 +25,9 @@ function Login() {
         if ( response.status === 200 ) {
           setUser(response.data.user);
           localStorage.setItem('refresh_token', JSON.stringify(response.data.refresh_token));
+        } else {
+          alert('Invalid credentials.');
+          return;
         }
       })
   }
