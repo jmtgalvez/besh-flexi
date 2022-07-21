@@ -1,27 +1,24 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import * as Api from '../api/post';
 import NewPostForm from './NewPostForm';
 import NewsFeed from './NewsFeed';
 import { UserContext } from '../UserContext';
 
 function HomePage() {
-  const [posts, setPosts] = useState([]);
-  const { user, setUser } = useContext(UserContext);
-
-  const loadPosts = () => {
-    Api.getAllPosts()
-      .then( result => {
-        setPosts([...result.data.posts]);
-      })
-  }
-
+  const { user } = useContext(UserContext);
   if (user == null) window.location.href = '/login';
+  
+  const [posts, setPosts] = useState([]);
 
-  if (posts.length === 0) loadPosts()
+  useEffect( async () => {
+    const result = await Api.getAllPosts();
+    setPosts([...result.data.posts]);
+  }, []);
+
+
 
   return (
     <>
-
       <main className='p-2'>
         <h1>Home</h1>
         <NewPostForm loadPosts={loadPosts}/>
