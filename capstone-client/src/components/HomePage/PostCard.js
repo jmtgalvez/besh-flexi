@@ -11,7 +11,7 @@ export default function PostCard({ userPostPhoto, post }) {
   }
 
   return (
-    <div>
+    <div className='mt-3'>
       <div className="newsfeeds-content p-3 d-flex flex-column gap-4 card">
         <div className="card-header user-info d-flex">
           <a href="#" className="newsfeeds-content-photo bg-light p-1 rounded-circle">

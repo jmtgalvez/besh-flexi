@@ -18,11 +18,11 @@ $background: #11d6b2;
         display: flex;
         position: relative;
         height: 100%;
-        width: 20vw;
+        width: 25vw;
         .header-content {
             position: fixed;
             height: 100%;
-            width: 20vw;
+            width: 25vw;
             background-color: $background;
             padding: 0 10px;
             .logo {
@@ -52,6 +52,7 @@ $background: #11d6b2;
                     overflow: hidden;
                     display: flex;
                     font-size: clamp(8px, 5vw, 18px);
+                    width: 80%;
                     cursor: pointer;
                     /*  display: grid;
                     gap: 5px;
@@ -100,6 +101,7 @@ $background: #11d6b2;
         flex-direction: column;
         background-color: $secondaryColor;
         width: 100vw;
+        padding: 0 5vw;
         margin-left: 0.5em;
         //START NAVBAR
         .navbar {
@@ -111,7 +113,7 @@ $background: #11d6b2;
                 background-color: white;
                 height: 10vh;
                 right: 0;
-                left: 18vw;
+                left: 21vw;
                 top: 0;
                 overflow: hidden;
                 box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);

@@ -7,7 +7,7 @@ const result = Object.keys(searchResultUser).map(key =>{
    last_name={searchResultUser[key].last_name} email={searchResultUser[key].email} username={searchResultUser[key].username} />
 })
   return (
-    <div className='searchContainer d-flex gap-2'>
+    <div className='searchContainer d-flex gap-2 mt-2'>
       <div className="card w-100 h-100">
         <div className="card-header">
             <div className={message.status == 'error' ? 'alert alert-danger' : 'alert alert-success'}>{message.message}</div>

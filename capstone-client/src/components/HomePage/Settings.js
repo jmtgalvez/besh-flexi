@@ -1,28 +1,92 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useContext } from 'react'
+import { UserContext } from '../UserContext';
+import * as Api from '../api/users';
 
 export default function Settings ()  {
 
+  const { user } = useContext(UserContext);
+
+
   const [isEdit, setIsEdit] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
-  const first_name_ref = useRef();
-  const last_name_ref = useRef();
-  const username_ref = useRef();
-0
-  function handleSubmitSec2(e){
+  const [first_name, setFirstName] = useState(user.first_name);
+  const [last_name, setLastName] = useState(user.last_name);
+  const [username, setUserName] = useState(user.username);
+  
+  const [errMessage, setErrMessage] = useState({
+    first_name: '',
+    last_name: '',
+    username: '',
+    hasError: 'false'
+  });
+
+  // let errMessage = {
+  //   first_name: '',
+  //   last_name: '',
+  //   username: '',
+  //   hasError: 'true'
+  // };
+
+  function handleFirstName(e){
+    setFirstName(e.target.value)
+    if(e.target.value == ''){
+      errMessage.first_name ='First name is required';
+      errMessage.hasError = 'true';
+    }else{
+      errMessage.first_name ='';
+      errMessage.hasError = 'false';
+    }
+  }
+
+  function handleLastName(e){
+    setLastName(e.target.value)
+    if(e.target.value == ''){
+      errMessage.last_name ='Last name is required';
+      errMessage.hasError = 'true';
+    }else{
+      errMessage.last_name ='';
+      errMessage.hasError = 'false';
+    }
+  }
+
+  function handleUserName(e){
+    setUserName(e.target.value)
+    if(e.target.value == ''){
+      errMessage.username = 'User name is required';
+      errMessage.hasError = 'true';
+    }else if(e.target.value.length >0 && e.target.value.length < 5){
+      errMessage.username = 'Please provide atleast 5 character';
+      errMessage.hasError = 'true';
+    }else{
+      errMessage.username = '';
+      errMessage.hasError = 'false';
+    }
+  }
+
+  async function handleSubmitSec2(e){
     e.preventDefault();
+
+    console.log(errMessage.hasError)
+
+    if(errMessage.hasError == 'false'){
+      const data = {
+        user_id: user.user_id,
+        first_name: first_name,
+        last_name: last_name,
+        username: username,
+        password: user.password
+      }
+
+      await Api.editUser(data)
+      .then( response => {
+        if ( response.status === 200 ) {
+          console.log('www')  
+        }
+      })
+      
+      
+    }
     
-    console.log(first_name_ref.current.value)
-
-    if(first_name_ref.current.value !== ''){
-      console.log('empty')
-    }
-    const user ={
-      user_id:'',
-      first_name: first_name_ref.current.value,
-      last_name: last_name_ref.current.value,
-      username: username_ref.current.value
-    }
-
   }
 
   const togglePassword = () => {
@@ -46,43 +110,51 @@ export default function Settings ()  {
         </div>
       <div className="settings_container_section2 card mt-2">
         
-        <form action="" method="put" className='form'>
+        <form action="" method="" className='form' onSubmit={handleSubmitSec2}>
 
           <div className="settings_first_name p-3 mx-2">
+              <h6 className='alert alert-danger' style={{display: errMessage.first_name ? 'block': 'none'}} >{errMessage.first_name ? errMessage.first_name : ''}</h6>
               <label htmlFor="first_name">First Name</label>
 
               <input type="text" 
-              name="first_name" 
+              name="first_name"
+              value={first_name}
+              onChange={handleFirstName}
               id="first_name" 
-              className='form-control'
-              ref={first_name_ref} />
+              className='form-control' />
 
           </div>
 
           <div className="settings_last_name p-3 mx-2">
-              <label htmlFor="username">Last Name</label>
+              <h6 className='alert alert-danger' style={{display: errMessage.last_name ? 'block': 'none'}} >{errMessage.last_name ? errMessage.last_name : ''}</h6>
+              <label htmlFor="last_name">Last Name</label>
 
               <input type="text" 
-              name="username" 
-              id="username" 
-              className='form-control' 
-              ref={last_name_ref} />
+              name="last_name" 
+              value={last_name}
+              onChange={handleLastName}
+              id="last_name" 
+              className='form-control'
+               />
           </div>
 
           <div className="settings_last_name p-3 mx-2">
+              <h6 className='alert alert-danger' style={{display: errMessage.username ? 'block': 'none'}} >{errMessage.username ? errMessage.username : ''}</h6>
+              
               <label htmlFor="last_name">User Name</label>
               <input 
               type="text"
-              name="last_name" 
-              id="last_name" 
+              name="username" 
+              value={username}
+              onChange={handleUserName}
+              id="username" 
               className='form-control'
-              username={username_ref} />
+               />
           </div>
 
           <button 
-          type="button" 
+          type="submit" 
           className='general__btns float-end m-3'
-          onSubmit={handleSubmitSec2}
           >Save</button> 
         
         </form>
