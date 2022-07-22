@@ -119,7 +119,7 @@ exports.searchStatus = ( search_query, user_id ) => {
             case when a.post_id IN (SELECT post_id FROM USER_LIKES_POST c WHERE c.user_id = ?)
                 then 'true'
                 else 'false'
-            end liked
+            end isLiked
             FROM posts a JOIN users b
             ON a.user_id = b.user_id
             WHERE 

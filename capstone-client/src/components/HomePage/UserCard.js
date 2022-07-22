@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { followUser, unfollowUser } from '../api/interaction';
 
 function UserCard({ user }) {
-    const [isFollowed, setIsFollowed] = useState(user.isFollowed);
+    const [isFollowed, setIsFollowed] = useState(user.isFollowed === 'true');
 
     const handleFollow = () => {
         setIsFollowed(!isFollowed);

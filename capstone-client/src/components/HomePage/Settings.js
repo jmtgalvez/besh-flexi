@@ -155,7 +155,7 @@ export default function Settings ()  {
           </div>
 
           <div className="p-3 mx-2">
-              <h6 className='alert alert-danger' style={{display: errMessage.username ? 'block': 'none'}} >{errMessage.username ? errMessage.username : ''}</h6>
+              <h6 className='alert alert-danger' style={{display: errMessage.password ? 'block': 'none'}} >{errMessage.password ? errMessage.password : ''}</h6>
               
               <label htmlFor="last_name">User Name</label>
               <input 
@@ -175,8 +175,8 @@ export default function Settings ()  {
         </form>
 
       </div>
-      <SettingsPassword togglePassword={togglePassword} isEdit={isEdit} 
-      showPassword={showPassword} isChecked={isChecked} />
+      {/* <SettingsPassword togglePassword={togglePassword} isEdit={isEdit} 
+      showPassword={showPassword} isChecked={isChecked} /> */}
 
   </div>
 

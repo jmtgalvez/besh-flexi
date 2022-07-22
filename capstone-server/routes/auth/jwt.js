@@ -10,6 +10,7 @@ exports.generateRefreshToken = payload => {
 
 exports.verifyToken = (req, res, next) => {
     // get token
+    if ( !req.headers.cookie ) return res.sendStatus(403);
     const cookies = [];
     req.headers.cookie.split(';').map( cookie => {
         const [key, value] = cookie.split('=');
@@ -27,6 +28,7 @@ exports.verifyToken = (req, res, next) => {
 }
 
 exports.verifyRefreshToken = ( req, res, next ) => {
+    if ( !req.headers.cookie ) return res.sendStatus(403);
     const cookies = [];
     req.headers.cookie.split(';').map( cookie => {
         const [key, value] = cookie.split('=');

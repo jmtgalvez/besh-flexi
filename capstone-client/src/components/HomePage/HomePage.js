@@ -1,7 +1,6 @@
 import { useState, useContext, useEffect } from "react";
 // components
 import SideNav from "./SideNav";
-import NewsFeedForm from './NewsFeedForm';
 import NewsFeed from "./NewsFeed";
 import Chat from "../Chat/Chat";
 import TopNavbar from "./TopNavbar";
@@ -21,7 +20,6 @@ import UiHeaderMobile from "../Body/UiHeaderMobile";
 // import DropdownMobile from "./DropdownMobile";
 
 // IMPORT API'S
-import { getAllPosts } from '../api/post';
 import { UserContext } from "../UserContext";
 
 export default function HomePage() {
@@ -40,17 +38,6 @@ export default function HomePage() {
   // const [message, setMessage] = useState([]); 
   const [posts, setPosts] = useState([]);
   const [users, setUsers] = useState([]);
-
-  const loadPosts = () => {
-    getAllPosts(user.access_token)
-    .then( response => {
-      setPosts([...(response.data.posts)]);
-    })
-  }
-
-  useEffect(() => {
-    loadPosts();
-  }, []);
 
   // const handleSearchValue = (e) =>{
   //   setSearch(e.target.value);
@@ -110,12 +97,7 @@ export default function HomePage() {
           <div className="newsfeeds">
             {window.innerWidth < 800 && <UiHeaderMobile />}
             {
-            activePage == 1 ? (
-              <>
-                <NewsFeedForm loadPosts={loadPosts} />
-                <NewsFeed posts={posts} />
-              </>
-            ) :
+            activePage == 1 ? <NewsFeed /> :
             activePage == 2 ? <Trending /> : 
             activePage == 3 ? <Chat /> :
             activePage == 4 ? <About /> :

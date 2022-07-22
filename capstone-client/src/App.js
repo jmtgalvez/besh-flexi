@@ -6,7 +6,6 @@ import Login from "./components/Forms/Login/Login";
 
 import { UserContext } from "./components/UserContext";
 import HomePage from "./components/HomePage/HomePage";
-import HomePage2 from "./components/Home/HomePage";
 import { getAccessToken } from './components/api/auth';
 
 function App() {
