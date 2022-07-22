@@ -21,7 +21,7 @@ exports.verifyToken = (req, res, next) => {
     jwt.verify(access_token, 'capstone', (err, user) => {
         if (err) return res.sendStatus(403);
         // return user
-        req.user_id = user.user_id;
+        req.user_id = parseInt(user.user_id);
         next();
     });
 }

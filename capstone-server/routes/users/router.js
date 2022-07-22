@@ -63,7 +63,7 @@ router.put('/:user_id', JWT.verifyToken, async (req, res) => {
 // delete a user
 router.delete('/:user_id', JWT.verifyToken, async (req, res) => {
   try {
-    if ( req.params.user_id === req.user_id ) {
+    if ( parseInt(req.params.user_id) === parseInt(req.user_id) ) {
       await CTRL.getUserByUserId(req.user_id);
       
       const credentials = {

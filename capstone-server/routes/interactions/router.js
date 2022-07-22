@@ -47,7 +47,7 @@ router.post('/unlike/:post_id', JWT.verifyToken, async (req, res) => {
     res.status(200)
       .json({
       status: 200,
-      message: 'Unike operation success',
+      message: 'Unlike operation success',
     })
   } catch (status) {
     res.status(status).json({ status });
@@ -56,7 +56,7 @@ router.post('/unlike/:post_id', JWT.verifyToken, async (req, res) => {
 
 router.post('/chat', JWT.verifyToken, async (req, res) => {
   try {
-    const chat_id = await CTRL.checkChatExists({ user1: req.user_id, user2: req.body.recipient_id });
+    const chat_id = CTRL.checkChatExists( req.user_id, req.body.recipient_id );
 
     const chatData = {
       content: req.body.content,
