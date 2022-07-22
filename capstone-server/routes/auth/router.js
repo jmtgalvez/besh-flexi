@@ -17,6 +17,7 @@ router.post('/login', async(req, res) => {
             httpOnly: true,
         }
         res.cookie('access_token', access_token, cookie_option);
+        res.cookie('refresh_token', refresh_token);
         res.status(200).json({
             status: 200,
             message: 'Login Success',
@@ -68,8 +69,10 @@ router.post('/register', async (req, res) => {
 router.post('/getAccessToken', JWT.verifyRefreshToken, async (req, res) => {
     try {
         let user = await CTRL.checkUserExistsByUserId(req.user.user_id);
+
         const access_token = JWT.generateAccessToken({ user_id: user.user_id });
         user = { ...user, access_token };
+        
         const cookie_option = {
             httpOnly: true,
         }
@@ -86,7 +89,7 @@ router.post('/getAccessToken', JWT.verifyRefreshToken, async (req, res) => {
 });
 
 router.post('/logout', JWT.verifyToken, (req, res) => {
-    res.clearCookie('access_token').end();
+    res.clearCookie('access_token').clearCookie('refresh_token').end();
 });
 
 module.exports = router;
