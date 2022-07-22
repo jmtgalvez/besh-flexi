@@ -8,11 +8,26 @@ router.post('/follow/:following_id', JWT.verifyToken, async (req, res) => {
   try {
     await CTRL.checkUserExists(req.params.following_id);
 
-    let result = CTRL.follow({ follower_id: req.user_id, following_id: req.params.following_id })
+    let result = await CTRL.follow( req.user_id, req.params.following_id );
     res.status(200)
       .json({
       status: 200,
       message: 'Follow operation success',
+    })
+  } catch (status) {
+    res.status(status).json({ status });
+  }
+})
+
+router.post('/unfollow/:following_id', JWT.verifyToken, async (req, res) => {
+  try {
+    await CTRL.checkUserExists(req.params.following_id);
+
+    let result = await CTRL.unfollow( req.user_id, req.params.following_id );
+    res.status(200)
+      .json({
+      status: 200,
+      message: 'Unollow operation success',
     })
   } catch (status) {
     res.status(status).json({ status });

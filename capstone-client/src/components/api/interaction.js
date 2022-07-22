@@ -17,6 +17,10 @@ export const followUser = async following_id => {
   return await axios.post(`${url}:${port}/api/interactions/follow/${following_id}`);
 }
 
+export const unfollowUser = async following_id => {
+  return await axios.post(`${url}:${port}/api/interactions/unfollow/${following_id}`);
+}
+
 // expected parameter
 // {
 //   access_token, // get from user.access_token

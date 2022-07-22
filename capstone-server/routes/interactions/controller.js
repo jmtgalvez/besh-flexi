@@ -14,11 +14,27 @@ exports.checkUserExists = user_id => {
   })
 }
 
-exports.follow = ({ follower_id, following_id }) => {
+exports.follow = ( follower_id, following_id ) => {
   return new Promise((resolve, reject) => {
     const sql = `INSERT INTO user_follows_user
       ( follower_id, following_id )
       VALUES ( ?, ?)`
+    const values = [ follower_id, following_id ];
+
+    db.query( sql, values, (err, rows) => {
+      if (err) {
+        console.log(`/routes/interactions/controller/follow DB Error: ${err.message}`);
+        return reject(500);
+      }
+      return resolve(rows.insertId);
+    })
+  })
+}
+
+exports.unfollow = ( follower_id, following_id ) => {
+  return new Promise((resolve, reject) => {
+    const sql = `DELETE FROM user_follows_user
+      WHERE follower_id = ? && following_id = ?`;
     const values = [ follower_id, following_id ];
 
     db.query( sql, values, (err, rows) => {

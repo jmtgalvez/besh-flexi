@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import UserCard from './UserCard';
 
 export default function SearchResult({message, searchResultUser}) {
 
-const result = Object.keys(searchResultUser).map(key =>{
-  return <Content key={searchResultUser[key].user_id} first_name={searchResultUser[key].first_name}
-   last_name={searchResultUser[key].last_name} email={searchResultUser[key].email} username={searchResultUser[key].username} />
-})
+  const result = Object.keys(searchResultUser).map(key =>{
+    return <UserCard key={searchResultUser[key].user_id} first_name={searchResultUser[key].first_name}
+    last_name={searchResultUser[key].last_name} email={searchResultUser[key].email} username={searchResultUser[key].username} user={searchResultUser[key]} />
+  })
+
   return (
     <div className='searchContainer d-flex gap-2 mt-2'>
       <div className="card w-100 h-100">
@@ -16,30 +17,4 @@ const result = Object.keys(searchResultUser).map(key =>{
     {result}
     </div>
   )
-}
-
-function Content({key, username, first_name, last_name, email}){
-  return(
-
-  <div className="card w-100" key={key} >
-
-      <div  className="searchResult d-flex gap-2 align-items-center justify-content-center row p-3">
-          <div className="searchPhoto col-3 d-flex justify-content-center">
-              <img src="https://picsum.photos/seed/picsum/200/300" alt="Profile" />
-          </div>
-          <div className="searhInfo col-7">
-          <h5>{`${last_name}, ${first_name}`}</h5>
-          <p>{username}</p>
-          </div>
-          <a className="follow col-2 btn btn-success sm">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" className="bi bi-person-plus-fill" viewBox="0 0 16 16">
-                <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-                <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
-            </svg>
-                <span className='ms-2'>Follow</span>
-          </a>
-      </div>
-  </div>
-      
-      )
 }

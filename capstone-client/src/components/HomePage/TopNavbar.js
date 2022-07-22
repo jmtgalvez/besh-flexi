@@ -11,19 +11,20 @@ handleSearchUser, handleSearchValue }) {
     setToggle(!toggle);
   };
 
+  const handleSearch = () => {
+    
+  }
+
   return (
 
     // Search input
     <div
-      className="navbar-content px-5 rounded-2 d-flex 
-    
-    align-items-center flex-1 justify-content-between">
+      className="navbar-content px-5 rounded-2 d-flex align-items-center flex-1 justify-content-between">
       
       <form  className="search d-flex align-items-center gap-1" onSubmit={handleSearchUser}>
         
         <input onChange={handleSearchValue} className="search-input py-2 px-4" type="search" placeholder="First Name or Last Name or Email" />
         <button className="search-button btn-success" onClick={()=> togglePage(0)} title='Search'>
-          
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="25"
