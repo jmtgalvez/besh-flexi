@@ -4,7 +4,9 @@ import * as Api from '../api/users';
 
 export default function Settings ()  {
 
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
+
+  const passwordRef = useRef();
 
 
   const [isEdit, setIsEdit] = useState(false);
@@ -63,10 +65,10 @@ export default function Settings ()  {
     }
   }
 
-  async function handleSubmitSec2(e){
+  async function handleEditFormSubmit(e){
     e.preventDefault();
 
-    console.log(errMessage.hasError)
+    // console.log(errMessage.hasError)
 
     if(errMessage.hasError == 'false'){
       const data = {
@@ -74,15 +76,15 @@ export default function Settings ()  {
         first_name: first_name,
         last_name: last_name,
         username: username,
-        password: user.password
+        password: passwordRef.current.value,
       }
 
       await Api.editUser(data)
-      .then( response => {
-        if ( response.status === 200 ) {
-          console.log('www')  
-        }
-      })
+        .then( response => {
+          if ( response.status === 200 ) {
+            setUser(response.data.user);
+          }
+        })
       
       
     }
@@ -110,7 +112,7 @@ export default function Settings ()  {
         </div>
       <div className="settings_container_section2 card mt-2">
         
-        <form action="" method="" className='form' onSubmit={handleSubmitSec2}>
+        <form className='form' onSubmit={handleEditFormSubmit}>
 
           <div className="settings_first_name p-3 mx-2">
               <h6 className='alert alert-danger' style={{display: errMessage.first_name ? 'block': 'none'}} >{errMessage.first_name ? errMessage.first_name : ''}</h6>
@@ -150,6 +152,19 @@ export default function Settings ()  {
               id="username" 
               className='form-control'
                />
+          </div>
+
+          <div className="p-3 mx-2">
+              <h6 className='alert alert-danger' style={{display: errMessage.username ? 'block': 'none'}} >{errMessage.username ? errMessage.username : ''}</h6>
+              
+              <label htmlFor="last_name">User Name</label>
+              <input 
+                type="password"
+                name="password"
+                id="password" 
+                className='form-control'
+                ref={passwordRef}
+              />
           </div>
 
           <button 

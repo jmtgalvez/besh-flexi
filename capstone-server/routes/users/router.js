@@ -24,7 +24,7 @@ router.get('/', JWT.verifyToken, async (req, res) => {
 // edit a user
 router.put('/:user_id', JWT.verifyToken, async (req, res) => {
   try {
-    if ( req.params.user_id === req.user_id ) {
+    if ( parseInt(req.params.user_id) === parseInt(req.user_id) ) {
       const oldUserData = await CTRL.getUserByUserId(req.user_id);
       
       const credentials = {
