@@ -1,6 +1,7 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 // components
 import SideNav from "./SideNav";
+import NewsFeedForm from './NewsFeedForm';
 import NewsFeed from "./NewsFeed";
 import Chat from "../Chat/Chat";
 import TopNavbar from "./TopNavbar";
@@ -20,7 +21,7 @@ import UiHeaderMobile from "../Body/UiHeaderMobile";
 // import DropdownMobile from "./DropdownMobile";
 
 // IMPORT API'S
-import * as ApiUser from '../api/users';
+import { getAllPosts } from '../api/post';
 import { UserContext } from "../UserContext";
 
 export default function HomePage() {
@@ -34,33 +35,46 @@ export default function HomePage() {
   const [activePage, setActivePage] = useState(1);
 
   // for search input (retrieve users)
-  const [searchResultUser, setSearchResultUser] = useState([]);
-  const [search, setSearch] = useState();
-  const [message, setMessage] = useState([]); 
+  // const [searchResultUser, setSearchResultUser] = useState([]);
+  // const [search, setSearch] = useState();
+  // const [message, setMessage] = useState([]); 
+  const [posts, setPosts] = useState([]);
+  const [users, setUsers] = useState([]);
 
-  const handleSearchValue = (e) =>{
-    setSearch(e.target.value);
+  const loadPosts = () => {
+    getAllPosts(user.access_token)
+    .then( response => {
+      setPosts([...(response.data.posts)]);
+    })
   }
 
-  const handleSearchUser = async ev =>{
-    ev.preventDefault();
+  useEffect(() => {
+    loadPosts();
+  }, []);
 
-    const search_query = search;
-    try{
+  // const handleSearchValue = (e) =>{
+  //   setSearch(e.target.value);
+  // }
+
+  // const handleSearchUser = async ev =>{
+  //   ev.preventDefault();
+
+  //   const search_query = search;
+  //   try{
         
-        await (search_query !== '' ? ApiUser.searchUsers : ApiUser.getAllUsers)(search_query).then(result =>{
-          if(result.status == 200){
-            const data = [...result.data.users].map((data, index)=>data)
-            setSearchResultUser(data);
-            setMessage({status: 'success', message: `${result.data.users.length} result/s found`});
-          }})
+  //       await (search_query !== '' ? ApiUser.searchUsers : ApiUser.getAllUsers)(search_query).then(result =>{
+  //         if(result.status == 200){
+  //           const data = [...result.data.users].map((data, index)=>data)
+  //           setSearchResultUser(data);
+  //           setMessage({status: 'success', message: `${result.data.users.length} result/s found`});
+  //         }})
         
-        } catch(err) {
-          setSearchResultUser('');
-          setMessage({status: 'error', message: 'No record found'});
-        }
+  //       } catch(err) {
+  //         setSearchResultUser('');
+  //         setMessage({status: 'error', message: 'No record found'});
+  //       }
   
-  }
+  // }
 
   // END SEARCH
 
@@ -89,22 +103,26 @@ export default function HomePage() {
       <div className="content">
         <div className="navbar">
           {window.innerWidth < 800 && <Hamburger handleShow={toggleMobileDropdown} />}
-          <TopNavbar togglePage={togglePage} activePage={activePage}
-          handleSearchUser={handleSearchUser} handleSearchValue={handleSearchValue} />
+          <TopNavbar togglePage={togglePage} activePage={activePage} setPosts={setPosts} setUsers={setUsers} />
         </div>
 
         <div className="content-body">
           <div className="newsfeeds">
             {window.innerWidth < 800 && <UiHeaderMobile />}
             {
-            activePage == 1 ? <NewsFeed /> :
+            activePage == 1 ? (
+              <>
+                <NewsFeedForm loadPosts={loadPosts} />
+                <NewsFeed posts={posts} />
+              </>
+            ) :
             activePage == 2 ? <Trending /> : 
             activePage == 3 ? <Chat /> :
             activePage == 4 ? <About /> :
             activePage == 5 ? <Settings /> :
             activePage == 6 ? <Help />  : 
             activePage == 7 ? <FeedBack /> :
-                              <SearchResult message={message} searchResultUser={searchResultUser} />
+                              <SearchResult posts={posts} users={users} />
             }
 
           </div>

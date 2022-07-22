@@ -112,14 +112,28 @@ exports.deleteStatus = status_id => {
     })
 }
 
-exports.searchStatus = ({ search_query, filters }) => {
+exports.searchStatus = ( search_query, user_id ) => {
     return new Promise( (resolve, reject) => {
         search_query = `%${search_query}%`;
-        const sql = `SELECT a.*, b.first_name, b.last_name, b.username FROM
-            posts a JOIN users b
+        const sql = `SELECT a.*, b.first_name, b.last_name, b.username,
+            case when a.post_id IN (SELECT post_id FROM USER_LIKES_POST c WHERE c.user_id = ?)
+                then 'true'
+                else 'false'
+            end liked
+            FROM posts a JOIN users b
             ON a.user_id = b.user_id
-            WHERE a.content LIKE ? OR b.username LIKE ?`
+            WHERE 
+            (b.user_id IN (SELECT following_id FROM USER_FOLLOWS_USER WHERE follower_id = ?)
+            OR b.user_id = ?)
+            AND 
+            (a.content LIKE ? OR b.username LIKE ? OR b.first_name LIKE ? OR b.last_name LIKE ?)
+            ORDER BY dateupdated DESC`
         const values = [
+            user_id,
+            user_id,
+            user_id,
+            search_query,
+            search_query,
             search_query,
             search_query
         ]

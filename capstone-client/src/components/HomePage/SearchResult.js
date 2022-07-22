@@ -1,20 +1,38 @@
 import UserCard from './UserCard';
+import PostCard from './PostCard';
+import NewsFeed from './NewsFeed';
+import { useResolvedPath } from 'react-router';
 
-export default function SearchResult({message, searchResultUser}) {
+export default function SearchResult({ posts, users }) {
 
-  const result = Object.keys(searchResultUser).map(key =>{
-    return <UserCard key={searchResultUser[key].user_id} first_name={searchResultUser[key].first_name}
-    last_name={searchResultUser[key].last_name} email={searchResultUser[key].email} username={searchResultUser[key].username} user={searchResultUser[key]} />
-  })
+  const displayUsers = [...users].map( user => <UserCard key={user.user_id} user={user} /> )
+
+  const displayPosts = [...posts].map( post => <PostCard key={post.post_id} post={post} /> )
+
+  const message =  ( users.length == 0 && posts.length == 0 ) ? 'No results found' : null;
 
   return (
     <div className='searchContainer d-flex gap-2 mt-2'>
-      <div className="card w-100 h-100">
+      { message
+      ? (
         <div className="card-header">
-            <div className={message.status == 'error' ? 'alert alert-danger' : 'alert alert-success'}>{message.message}</div>
+            <div className='alert alert-danger'>{message}</div>
         </div>
-      </div>
-    {result}
+      ) : ''}
+      { users && users.length > 0
+      ? (
+        <>
+          <h1>People</h1>
+          {displayUsers}
+        </>
+      ) : ''}
+      { posts && posts.length > 0
+      ? (
+        <>
+          <h1>Posts</h1>
+          {displayPosts}
+        </>
+      ) : ''}
     </div>
   )
 }
