@@ -22,7 +22,7 @@ export default function NewsFeedsForm({ loadPosts }){
 
     console.log(postData);
 
-    await Api.addPost(postData);
+    await Api.addPost(postData)
     setPostText('');
     loadPosts();
   }

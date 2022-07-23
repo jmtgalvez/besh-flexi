@@ -1,6 +1,6 @@
 import React, { useState, useRef, useContext } from 'react'
 import { UserContext } from '../UserContext';
-import * as Api from '../api/users';
+import { editUser } from '../api/users';
 
 export default function Settings ()  {
 
@@ -63,27 +63,28 @@ export default function Settings ()  {
     }
   }
 
-  async function handleSubmitSec2(e){
-    e.preventDefault();
+  const handleSubmitSec2 = async ev =>{
+    ev.preventDefault();
 
     console.log(errMessage.hasError)
 
     if(errMessage.hasError == 'false'){
       const data = {
+        access_token: user.access_token,
         user_id: user.user_id,
         first_name: first_name,
         last_name: last_name,
         username: username,
-        password: user.password
+        password: '123'
       }
 
-      await Api.editUser(data)
-      .then( response => {
-        if ( response.status === 200 ) {
-          console.log('www')  
-        }
+     editUser(data).then(response =>{
+        console.log('wwwwwwwwwwwwwwwwwwwwwwwww')
+      }).catch(err=>{
+        console.log(err)
       })
       
+      console.log(data)
       
     }
     
@@ -153,7 +154,7 @@ export default function Settings ()  {
           </div>
 
           <button 
-          type="submit" 
+          type="submit"
           className='general__btns float-end m-3'
           >Save</button> 
         
