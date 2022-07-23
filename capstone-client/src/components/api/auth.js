@@ -18,7 +18,7 @@ export const login = async credentials => {
 }
 
 export const getAccessToken = async refresh_token => {
-    return await axios.post(`${url}:${port}/api/getAccessToken`, {refresh_token});
+    return await axios.post(`${url}:${port}/api/getAccessToken`);
 }
 
 export const logout = async () => {

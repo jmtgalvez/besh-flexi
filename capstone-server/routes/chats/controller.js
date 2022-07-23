@@ -51,7 +51,7 @@ exports.sendReply = chat =>{
 
         const values = [
             chat.content,
-            chat.user_id,
+            chat.sender_id,
             chat.chat_id
         ]
 
@@ -60,8 +60,26 @@ exports.sendReply = chat =>{
                 console.log(`/routes/posts/controller/sendReply DB Error: ${err.message}`);
                 return reject(500);
             }
-            return resolve(rows[0]);
+            return resolve(rows);
         })
     })
 }
 
+exports.getConversation = chat =>{
+    return new Promise((resolve, reject)=>{
+        const sql = `SELECT a.*, b.sender_id, b.content, c.first_name, c.last_name, c.username  FROM user_chats_user a
+        JOIN chat_messages b on a.chat_id = b.chat_id
+        JOIN users c on user_id = b.sender_id
+        where a.chat_id = ? ORDER BY b.datecreated DESC`
+
+        const values = chat;
+
+        db.query(sql, values, (err, rows)=>{
+            if(err){
+                console.log(`/routes/posts/controller/getConversation DB Error: ${err.message}`);
+                return reject(500);
+            }
+            return resolve(rows);
+        })
+    })
+}

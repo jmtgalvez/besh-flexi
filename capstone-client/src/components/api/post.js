@@ -10,6 +10,13 @@ export const getAllPosts = async () => {
   return await axios.get(`${url}:${port}/api/status/`);
 }
 
+// search status in database
+// expected search_query
+// search_query (STRING required)
+export const searchPosts = async search_query => {
+  return await axios.get(`${url}:${port}/api/status/search/${search_query}`);
+}
+
 // adds a new status in database
 // expected postData contentb
 // {
@@ -44,11 +51,4 @@ export const deletePost = async status_id => {
 // status_id (INT required)
 export const getPost = async status_id => {
   return await axios.get(`${url}:${port}/api/status/${status_id}`);
-}
-
-// search status in database
-// expected search_query
-// search_query (STRING required)
-export const searchPosts = async search_query => {
-  return await axios.get(`${url}:${port}/search/status/${search_query}`);
 }

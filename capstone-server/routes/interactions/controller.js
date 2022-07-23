@@ -14,11 +14,27 @@ exports.checkUserExists = user_id => {
   })
 }
 
-exports.follow = ({ follower_id, following_id }) => {
+exports.follow = ( follower_id, following_id ) => {
   return new Promise((resolve, reject) => {
     const sql = `INSERT INTO user_follows_user
       ( follower_id, following_id )
       VALUES ( ?, ?)`
+    const values = [ follower_id, following_id ];
+
+    db.query( sql, values, (err, rows) => {
+      if (err) {
+        console.log(`/routes/interactions/controller/follow DB Error: ${err.message}`);
+        return reject(500);
+      }
+      return resolve(rows.insertId);
+    })
+  })
+}
+
+exports.unfollow = ( follower_id, following_id ) => {
+  return new Promise((resolve, reject) => {
+    const sql = `DELETE FROM user_follows_user
+      WHERE follower_id = ? && following_id = ?`;
     const values = [ follower_id, following_id ];
 
     db.query( sql, values, (err, rows) => {
@@ -83,7 +99,7 @@ exports.unlike = ({ user_id, post_id }) => {
   });
 }
 
-exports.checkChatExists = ({user1, user2}) => {
+exports.checkChatExists = (user1, user2) => {
   return new Promise((resolve, reject) => {
     const sql = `SELECT chat_id FROM USER_CHATS_USER
     WHERE
@@ -96,14 +112,32 @@ exports.checkChatExists = ({user1, user2}) => {
       user1, user2
     ];
 
-    db.query( sql, values, (err, rows) => {
+    db.query( sql, values, async (err, rows) => {
       if (err) {
         console.log(`/routes/interactions/controller/checkChatExists DB Error: ${err.message}`);
         return reject(500);
       }
-      if ( !rows || rows.length === 0 ) 
-        return reject(404);
+      if ( !rows || rows.length === 0 ) {
+        createChat(user1, user2)
+          .then( chat_id => resolve(chat_id) )
+          .catch( status => reject(status) )
+      }
+        // return reject(404);
       return resolve(rows[0].chat_id);
     });
   });
+}
+
+createChat = (user1, user2) => {
+  return new Promise((resolve, reject) => {
+    const sql = `INSERT INTO USER_CHATS_USER ( user1, user2 ) VALUES ( ?, ? )`
+    const values = [ user1, user2 ];
+    db.query( sql, values, (err, rows) => {
+      if (err) {
+        console.log(`/routes/interactions/controller/createChat DB Error: ${err.message}`);
+        return reject(500);
+      }
+      return resolve(rows.insertId);
+    })
+  })
 }

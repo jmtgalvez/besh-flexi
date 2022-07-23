@@ -1,3 +1,64 @@
+$primaryColor: #339966;
+$secondaryColor: #eff6f6;
+$blue: #215d5d;
+$background: #11d6b2;
 .chat-container {
-    height: 80vh;
+    position: fixed;
+    background-color: $background;
+    height: 85vh;
+    width: 70vw;
+    .card-body {
+        .followed_user {
+            position: fixed;
+            width: 20vw;
+            height: 80vh;
+            .followed_user_list {
+                display: flex;
+                flex-direction: column;
+                max-height: 80vh;
+                gap: 10px;
+                a {
+                    cursor: pointer;
+                    width: 100%;
+                    padding: 10px;
+                    border-bottom: 1px solid rgb(239, 233, 233);
+                    margin-bottom: 20px;
+                    &:hover {
+                        border-radius: 25px;
+                        background-color: gray;
+                    }
+                }
+                .active {
+                    border-radius: 25px;
+                    background-color: gray;
+                }
+            }
+        }
+        .conversation {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-left: 20vw;
+            width: 48vw;
+            // max-height: 80vh;
+            .chat_content {
+                display: flex;
+                align-items: center;
+                gap: 20px;
+                background-color: white;
+                padding: 10px;
+                border-radius: 25px;
+            }
+            .sender {
+                display: flex;
+                align-items: center;
+                justify-content: end;
+                gap: 20px;
+                background-color: $blue;
+                padding: 10px;
+                border-radius: 25px;
+                color: white;
+            }
+        }
+    }
 }

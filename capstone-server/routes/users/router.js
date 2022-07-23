@@ -8,7 +8,7 @@ const AuthCTRL = require('../auth/controller');
 // get all users
 router.get('/', JWT.verifyToken, async (req, res) => {
   try {
-    const users = await CTRL.getAllUsers();
+    const users = await CTRL.getAllFollowedUsers(req.user_id);
 
     res.status(200)
        .json({
@@ -24,7 +24,7 @@ router.get('/', JWT.verifyToken, async (req, res) => {
 // edit a user
 router.put('/:user_id', JWT.verifyToken, async (req, res) => {
   try {
-    if ( req.params.user_id === req.user_id ) {
+    if ( parseInt(req.params.user_id) === parseInt(req.user_id) ) {
       const oldUserData = await CTRL.getUserByUserId(req.user_id);
       
       const credentials = {
@@ -63,7 +63,7 @@ router.put('/:user_id', JWT.verifyToken, async (req, res) => {
 // delete a user
 router.delete('/:user_id', JWT.verifyToken, async (req, res) => {
   try {
-    if ( req.params.user_id === req.user_id ) {
+    if ( parseInt(req.params.user_id) === parseInt(req.user_id) ) {
       await CTRL.getUserByUserId(req.user_id);
       
       const credentials = {
@@ -104,11 +104,11 @@ router.get('/:user_id', JWT.verifyToken, async (req, res) => {
 // get users that has the name ':search_query'
 router.get('/search/:search_query', JWT.verifyToken, async (req, res) => {
   try {
-    const users = await CTRL.searchUsersByName(req.params.search_query);
+    const users = await CTRL.searchUsersByName(req.params.search_query, req.user_id);
 
     res.status(200).json({
       status: 200,
-      message: `Succuessfully retrieved users`,
+      message: `Succuessfully searched users`,
       users
     })
   } catch (status) {

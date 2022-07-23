@@ -4,7 +4,9 @@ import { editUser } from '../api/users';
 
 export default function Settings ()  {
 
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
+
+  const passwordRef = useRef();
 
 
   const [isEdit, setIsEdit] = useState(false);
@@ -63,10 +65,10 @@ export default function Settings ()  {
     }
   }
 
-  const handleSubmitSec2 = async ev =>{
-    ev.preventDefault();
+  async function handleEditFormSubmit(e){
+    e.preventDefault();
 
-    console.log(errMessage.hasError)
+    // console.log(errMessage.hasError)
 
     if(errMessage.hasError == 'false'){
       const data = {
@@ -75,14 +77,15 @@ export default function Settings ()  {
         first_name: first_name,
         last_name: last_name,
         username: username,
-        password: '123'
+        password: passwordRef.current.value,
       }
 
-     editUser(data).then(response =>{
-        console.log('wwwwwwwwwwwwwwwwwwwwwwwww')
-      }).catch(err=>{
-        console.log(err)
-      })
+      await Api.editUser(data)
+        .then( response => {
+          if ( response.status === 200 ) {
+            setUser(response.data.user);
+          }
+        })
       
       console.log(data)
       
@@ -111,7 +114,7 @@ export default function Settings ()  {
         </div>
       <div className="settings_container_section2 card mt-2">
         
-        <form action="" method="" className='form' onSubmit={handleSubmitSec2}>
+        <form className='form' onSubmit={handleEditFormSubmit}>
 
           <div className="settings_first_name p-3 mx-2">
               <h6 className='alert alert-danger' style={{display: errMessage.first_name ? 'block': 'none'}} >{errMessage.first_name ? errMessage.first_name : ''}</h6>
@@ -153,6 +156,19 @@ export default function Settings ()  {
                />
           </div>
 
+          <div className="p-3 mx-2">
+              <h6 className='alert alert-danger' style={{display: errMessage.password ? 'block': 'none'}} >{errMessage.password ? errMessage.password : ''}</h6>
+              
+              <label htmlFor="last_name">User Name</label>
+              <input 
+                type="password"
+                name="password"
+                id="password" 
+                className='form-control'
+                ref={passwordRef}
+              />
+          </div>
+
           <button 
           type="submit"
           className='general__btns float-end m-3'
@@ -161,8 +177,8 @@ export default function Settings ()  {
         </form>
 
       </div>
-      <SettingsPassword togglePassword={togglePassword} isEdit={isEdit} 
-      showPassword={showPassword} isChecked={isChecked} />
+      {/* <SettingsPassword togglePassword={togglePassword} isEdit={isEdit} 
+      showPassword={showPassword} isChecked={isChecked} /> */}
 
   </div>
 
@@ -179,7 +195,7 @@ function SettingsPassword({togglePassword, isEdit, isChecked,
 
           <div className="passwordToggle d-flex w-100 justify-content-between p-2" onClick={!isEdit ? togglePassword : ()=>{}}  >
               <label className='password_label' htmlFor=""  style={{display: !isEdit ? "block": "none"}}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" className="bi bi-lock-fill" viewBox="0 0 16 16">
                   <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
                 </svg>
                <span className='ms-2'>Password</span> </label>

@@ -1,5 +1,4 @@
 const db = require('../database/index');
-const bcrypt = require('bcrypt');
 
 exports.getAllUsers = () => {
   return new Promise((resolve, reject) => {
@@ -18,18 +17,38 @@ exports.getAllUsers = () => {
   });
 }
 
-exports.searchUsersByName = name => {
+exports.getAllFollowedUsers = user_id => {
+  return new Promise((resolve, reject) => {
+    const sql = `SELECT 
+      user_id, first_name, last_name, email, username
+      FROM users WHERE user_id IN (SELECT following_id FROM USER_FOLLOWS_USER WHERE follower_id = ?)`;
+
+    db.query(sql, user_id, (err, rows) => {
+      if (err) {
+        console.log(`/routes/users/controllers/getAllUsers DB Error: ${err.message}`);
+        return reject(500);
+      }
+      if (rows.length === 0) return reject(404)
+      return resolve(rows);
+    });
+  });
+}
+
+exports.searchUsersByName = (name, user_id) => {
   return new Promise((resolve, reject) => {
     name = `%${name}%`;
     const sql = `SELECT 
-      user_id, first_name, last_name, email, username
+      user_id, first_name, last_name, email, username,
+      case when user_id IN (SELECT following_id FROM USER_FOLLOWS_USER WHERE follower_id = ?)
+        then 'true'
+        else 'false'
+      end isFollowed
       FROM users
       WHERE 
-      first_name LIKE ? OR
-      last_name LIKE ? OR
-      username LIKE ?`;
+      (first_name LIKE ? OR last_name LIKE ? OR username LIKE ?)
+      AND user_id != ?`;
 
-    const values = [ name, name, name ];
+    const values = [ user_id, name, name, name, user_id ];
 
     db.query(sql, values, (err, rows) => {
       if (err) {

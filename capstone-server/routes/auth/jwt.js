@@ -10,6 +10,7 @@ exports.generateRefreshToken = payload => {
 
 exports.verifyToken = (req, res, next) => {
     // get token
+    if ( !req.headers.cookie ) return res.sendStatus(403);
     const cookies = [];
     req.headers.cookie.split(';').map( cookie => {
         const [key, value] = cookie.split('=');
@@ -21,12 +22,13 @@ exports.verifyToken = (req, res, next) => {
     jwt.verify(access_token, 'capstone', (err, user) => {
         if (err) return res.sendStatus(403);
         // return user
-        req.user_id = user.user_id;
+        req.user_id = parseInt(user.user_id);
         next();
     });
 }
 
 exports.verifyRefreshToken = ( req, res, next ) => {
+    if ( !req.headers.cookie ) return res.sendStatus(403);
     const cookies = [];
     req.headers.cookie.split(';').map( cookie => {
         const [key, value] = cookie.split('=');

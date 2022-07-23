@@ -77,11 +77,12 @@ router.delete('/:status_id', JWT.verifyToken, async (req, res) => {
   }
 });
 
-router.get('/:search_query', async (req, res) => {
+router.get('/search/:search_query', JWT.verifyToken, async (req, res) => {
   try {
+    const posts = await CTRL.searchStatus( req.params.search_query, req.user_id );
     res.status(200).json({
       status: 200,
-      data: await CTRL.searchStatus({ search_query: req.params.search_query })
+      posts
     })
   } catch (status) {
     res.status(status).json({ status });

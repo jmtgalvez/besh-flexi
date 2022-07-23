@@ -8,3 +8,7 @@ axios.defaults.withCredentials = true;
 export const sendChat = async chatData => {
     return await axios.post(`${url}:${port}/api/chats`, chatData);
 }
+
+export const getConversation = async conversation => {
+    return await axios.post(`${url}:${port}/api/chats/conversation`, conversation);
+}

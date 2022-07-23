@@ -1,9 +1,11 @@
 import React, { useState, useRef } from "react";
 import DropdownButtons from "./DropdownButtons";
+import { searchUsers } from '../api/users';
+import { searchPosts } from '../api/post';
 
 
 export default function UiNavbar({togglePage, activePage,
-handleSearchUser, handleSearchValue }) {
+setPosts, setUsers }) {
 
   const [toggle, setToggle] = useState(false);
 
@@ -11,19 +13,37 @@ handleSearchUser, handleSearchValue }) {
     setToggle(!toggle);
   };
 
+  const searchRef = useRef();
+
+  const handleSearch = ev => {
+    ev.preventDefault();
+    const search_query = searchRef.current.value;
+    searchPosts(search_query)
+      .then( result => {
+        setPosts(result.data.posts)
+      })
+    searchUsers(search_query)
+      .then( result => {
+        setUsers(result.data.users)
+      })
+  }
+
   return (
 
     // Search input
     <div
-      className="navbar-content px-5 rounded-2 d-flex 
-    
-    align-items-center flex-1 justify-content-between">
+      className="navbar-content px-5 rounded-2 d-flex align-items-center flex-1 justify-content-between">
       
-      <form  className="search d-flex align-items-center gap-1" onSubmit={handleSearchUser}>
+      <form className="search d-flex align-items-center gap-1" onSubmit={handleSearch}>
         
-        <input onChange={handleSearchValue} className="search-input py-2 px-4" type="search" placeholder="First Name or Last Name or Email" />
-        <button className="search-button btn-success" onClick={()=> togglePage(0)} title='Search'>
-          
+        <input 
+          // onChange={handleSearchValue} 
+          className="search-input py-2 px-4" type="search" placeholder="First Name or Last Name or Email" ref={searchRef}/>
+        <button 
+          className="search-button btn-success" 
+          onClick={()=> togglePage(0)} 
+          title='Search'
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="25"

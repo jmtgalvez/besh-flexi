@@ -1,3 +1,85 @@
 .chat-container {
+  position: fixed;
+  background-color: #11d6b2;
+  height: 85vh;
+  width: 70vw;
+}
+
+.chat-container .card-body .followed_user {
+  position: fixed;
+  width: 20vw;
   height: 80vh;
+}
+
+.chat-container .card-body .followed_user .followed_user_list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  max-height: 80vh;
+  gap: 10px;
+}
+
+.chat-container .card-body .followed_user .followed_user_list a {
+  cursor: pointer;
+  width: 100%;
+  padding: 10px;
+  border-bottom: 1px solid #efe9e9;
+  margin-bottom: 20px;
+}
+
+.chat-container .card-body .followed_user .followed_user_list a:hover {
+  border-radius: 25px;
+  background-color: gray;
+}
+
+.chat-container .card-body .followed_user .followed_user_list .active {
+  border-radius: 25px;
+  background-color: gray;
+}
+
+.chat-container .card-body .conversation {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 10px;
+  margin-left: 20vw;
+  width: 48vw;
+}
+
+.chat-container .card-body .conversation .chat_content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 20px;
+  background-color: white;
+  padding: 10px;
+  border-radius: 25px;
+}
+
+.chat-container .card-body .conversation .sender {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
+  gap: 20px;
+  background-color: #215d5d;
+  padding: 10px;
+  border-radius: 25px;
+  color: white;
 }
