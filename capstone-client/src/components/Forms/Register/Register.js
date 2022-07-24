@@ -1,4 +1,4 @@
-import React, { useRef, useContext } from 'react';
+import React, { useRef, useContext, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import Unsplash1 from '../../../images/unsplash1.webp';
 import { register } from '../../api/auth';
@@ -10,6 +10,7 @@ export default function Register() {
   const emailRef = useRef();
   const passwordRef = useRef();
   const cPasswordRef = useRef();
+  const [errMessage, setErrMessage] = useState();
 
   const { user, setUser } = useContext(UserContext);
 
@@ -17,6 +18,7 @@ export default function Register() {
     ev.preventDefault();
 
     if ( passwordRef.current.value !== cPasswordRef.current.value ) {
+      setErrMessage("Password did not match")
       return
     }
     
@@ -47,7 +49,8 @@ export default function Register() {
           <section className='register__section__container__form'>
             <form action="" method='post' className='register__form' onSubmit={handleSubmit}>
                 <h1>Create account</h1>
-      
+
+              <h6 style={{display: errMessage ? 'block': 'none'}} className='alert alert-danger form-control'>{errMessage ? errMessage : ''}</h6>
               <div>
                 <input 
                   className='register__form__input' 
@@ -56,6 +59,7 @@ export default function Register() {
                   id='first_name' 
                   placeholder=' ' 
                   autoComplete='off' 
+                  required
                   ref={firstNameRef}
                 />
                 <label htmlFor="first_name" className='register__form__label'>First Name</label>
@@ -68,6 +72,7 @@ export default function Register() {
                   className='register__form__input' 
                   placeholder=' ' 
                   autoComplete='off' 
+                  required
                   ref={lastNameRef}
                 />
                 <label htmlFor="last_name" className='register__form__label'>Last Name</label>
@@ -80,6 +85,7 @@ export default function Register() {
                   className='register__form__input' 
                   placeholder=' ' 
                   autoComplete='off' 
+                  required
                   ref={emailRef}
                 />
                 <label htmlFor="email" className='register__form__label'>Email</label>
@@ -91,6 +97,7 @@ export default function Register() {
                   id='password'
                   className='register__form__input' 
                   placeholder=' ' 
+                  required
                   ref={passwordRef}
                 />
                 <label htmlFor="password" className='register__form__label'>Password</label>
@@ -102,6 +109,7 @@ export default function Register() {
                   id='rep_pass' 
                   className='register__form__input' 
                   placeholder=' ' 
+                  required
                   ref={cPasswordRef}
                 />
                 <label htmlFor="rep_pass" className='register__form__label'>Repeat Password</label>

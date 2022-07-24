@@ -1,4 +1,4 @@
-import { useRef, useContext } from 'react';
+import { useRef, useContext, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { login } from '../../api/auth';
 
@@ -11,6 +11,7 @@ function Login() {
   const passwordRef = useRef()
 
   const {user, setUser} = useContext(UserContext);
+  const [errMessage, setErrMessage] = useState();
   
   async function handleSubmit(ev) {
     ev.preventDefault();
@@ -23,12 +24,12 @@ function Login() {
     await login(credentials)
       .then( response => {
         if ( response.status === 200 ) {
+          setErrMessage('');
           setUser(response.data.user);
           localStorage.setItem('refresh_token', JSON.stringify(response.data.refresh_token));
-        } else {
-          alert('Invalid credentials.');
-          return;
-        }
+        } 
+      }).catch(status =>{
+        setErrMessage('Email or Password incorrect');
       })
   }
     
@@ -42,6 +43,7 @@ function Login() {
           <section className="login__form__container">
               <form action="" method='' className='login__form' onSubmit={handleSubmit}>
                   <h1>Log In</h1>
+                  <div style={{display: errMessage ? 'block': 'none'}} className="alert alert-danger">{errMessage ? errMessage : ''}</div>
                   <div className='login__form__div'>
                       <input 
                           type="text" 
