@@ -17,14 +17,12 @@ export default function Chat () {
         ApiUsers.getAllUsers().then(response =>{
             setFollowed([...response.data.users]);
         })
-    }, [])
+    }, [user])
 
     const handleSendTo = async ev =>{
         setSendTo(ev.target.id)
     }
 
-    console.log(conversationData)
-    console.log(sendTo)
     const handleContent = ev =>{
         setContent(ev.target.value)
     }
@@ -43,10 +41,17 @@ export default function Chat () {
                 console.log(response.data.chat_id)
             })
             
-            setContent('')
-
+            setContent([''])
         }
     }
+
+    const displayFollowedUsers = [...followed].map(user => <FollowedUser user_id={user.user_id} name={`${user.last_name}, ${user.first_name}`}
+    sendTo={sendTo} handleSendTo={handleSendTo}  receiver_id={user.sender_id}/>)
+    const displayConversation = [...conversationData].map(data =>
+    
+    <Conversation name={data.username} sender_id={data.sender_id}
+    content={data.content} sendTo={sendTo} user_id={user.user_id} />)
+    
     useEffect(()=>{
         const conversation = {
             sender_id: user.user_id,
@@ -60,14 +65,8 @@ export default function Chat () {
             }
         })
         scrollEndRef.current?.scrollIntoView();
-    },[content, sendTo])
+    },[sendTo, content])
 
-    const displayFollowedUsers = [...followed].map(user => <FollowedUser user_id={user.user_id} name={`${user.last_name}, ${user.first_name}`}
-    sendTo={sendTo} handleSendTo={handleSendTo}  receiver_id={user.sender_id}/>)
-    const displayConversation = [...conversationData].map(data =>
-    
-    <Conversation name={data.username} sender_id={data.sender_id}
-    content={data.content} sendTo={sendTo} user_id={user.user_id} />)
 
     return (
         <div className="card chat-container">
@@ -84,8 +83,7 @@ export default function Chat () {
                     <div className="col-sm-8 p-2 conversation">
 
                         {displayConversation}
-                        <div ref={scrollEndRef}>
-                        </div>
+                        <div ref={scrollEndRef}></div>
 
                     </div>
                 </div>
@@ -114,7 +112,7 @@ export default function Chat () {
 }
 
 function FollowedUser({user_id, name, handleSendTo, sendTo, receiver_id}){
-    console.log(sendTo + user_id)
+  
     return(
         <div className='followed_user_list px-2'>
             <a className={sendTo == user_id ? 'active':''} id={user_id} key={user_id} onClick={handleSendTo}>{name}</a>
