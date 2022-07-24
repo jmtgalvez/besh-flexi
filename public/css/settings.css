@@ -1,0 +1,28 @@
+.settings_container .settings_container_section3:hover {
+  -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+.settings_container .settings_container_section3 .passwordToggle {
+  cursor: pointer;
+}
+
+.settings_container .settings_container_section3 .passwordToggle .edit_password {
+  text-decoration: none;
+}
+
+.settings_container .settings_container_section3 .passwordToggle .password_label {
+  cursor: pointer;
+}
+
+.settings_container .settings_container_section3 .passwordToggle:hover .edit_password {
+  text-decoration: underline;
+}
+
+.settings_container .show_password {
+  cursor: pointer;
+}
+
+.settings_container .show_password #showpassword {
+  cursor: pointer;
+}

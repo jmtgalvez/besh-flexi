@@ -110,12 +110,12 @@
   color: #339966;
 }
 
-.frontPage .header .header-content .menu .sidenav-active {
+.frontPage .header .header-content .menu .active {
   background-color: #eff6f6;
   color: #339966;
 }
 
-.frontPage .header .header-content .menu .sidenav-active svg {
+.frontPage .header .header-content .menu .active svg {
   color: #339966;
 }
 

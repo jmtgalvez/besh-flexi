@@ -1,5 +1,8 @@
 import { useContext } from "react";
 
+import logo from '../../images/logo_besh.png'
+import ads1 from '../../images/ads1.jpg'
+
 import { PageContext } from "../HomePage/PageContext";
 
 export default function SideNav() {
@@ -7,7 +10,7 @@ export default function SideNav() {
     <div className="header">
       <div className="header-content">
         <div className="logo">
-          <h2 className="p-1">besh</h2>
+            <img src={logo} alt="Logo" />
         </div>
         <div className="menu">
           <NavLink pageTo={'Home'} />
@@ -15,9 +18,11 @@ export default function SideNav() {
           <NavLink pageTo={'Chat'} />
           <NavLink pageTo={'About'} />
         </div>
-        {/* <div className="footer">
-          <h2 className="p-1">Ads Section</h2>
-        </div> */}
+        <div className="footer">
+          <a href="https://kodego.ph/" target="_blank">
+            <img src={ads1} alt="Ads Content" />
+          </a>
+        </div>
       </div>
     </div>
   );
