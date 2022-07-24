@@ -13,7 +13,7 @@ import Settings from './Settings';
 import Trending from './Trending';
 import PostPage from './PostPage';
 
-export default function PageContainer({ post, setPost }) {
+export default function PageContainer({ post, setPost, posts, users }) {
     const { activePage } = useContext(PageContext);
 
     return (

@@ -1,6 +1,6 @@
 import React, { useState, useRef, useContext } from 'react'
 import { UserContext } from '../UserContext';
-import * as Api from '../api/users';
+import { editUser } from '../api/users';
 
 export default function Settings ()  {
 
@@ -21,13 +21,6 @@ export default function Settings ()  {
     username: '',
     hasError: 'false'
   });
-
-  // let errMessage = {
-  //   first_name: '',
-  //   last_name: '',
-  //   username: '',
-  //   hasError: 'true'
-  // };
 
   function handleFirstName(e){
     setFirstName(e.target.value)
@@ -157,13 +150,14 @@ export default function Settings ()  {
           <div className="p-3 mx-2">
               <h6 className='alert alert-danger' style={{display: errMessage.password ? 'block': 'none'}} >{errMessage.password ? errMessage.password : ''}</h6>
               
-              <label htmlFor="last_name">User Name</label>
+              <label htmlFor="last_name">Password</label>
               <input 
                 type="password"
                 name="password"
                 id="password" 
                 className='form-control'
                 ref={passwordRef}
+                required
               />
           </div>
 

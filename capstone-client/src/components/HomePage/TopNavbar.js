@@ -29,13 +29,11 @@ setPosts, setUsers }) {
     ev.preventDefault();
     const search_query = searchRef.current.value;
     searchPosts(search_query)
-      .then( result => {
-        setPosts(result.data.posts)
-      })
+      .then( result => setPosts(result.data.posts))
+      .catch( () => setPosts([]))
     searchUsers(search_query)
-      .then( result => {
-        setUsers(result.data.users)
-      })
+      .then( result => setUsers(result.data.users))
+      .catch( () => setUsers([]))
     setActivePage('SEARCH');
   }
 
@@ -51,8 +49,7 @@ setPosts, setUsers }) {
             // onChange={handleSearchValue} 
             className="search-input py-2 px-4" type="search" placeholder="First Name or Last Name or Email" ref={searchRef}/>
           <button 
-            className="search-button btn-success" 
-            onClick={()=> togglePage(0)} 
+            className="search-button btn-success"
             title='Search'
           >
             <svg

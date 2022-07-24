@@ -42,7 +42,7 @@ export default function HomePage() {
           <TopNavbar setPosts={setPosts} setUsers={setUsers} />
 
           <div className="content-body">
-            <PageContainer post={post} setPost={setPost} />
+            <PageContainer post={post} setPost={setPost} posts={posts} users={users} />
 
             {/* {window.innerWidth > 800 && (
               <div className="side">
