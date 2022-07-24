@@ -20,10 +20,12 @@ exports.getAllFollowedPosts = user_id => {
         case when a.post_id IN (SELECT post_id FROM USER_LIKES_POST c WHERE c.user_id = ?)
             then 'true'
             else 'false'
-        end liked
+        end liked,
+        (SELECT COUNT(*) FROM USER_LIKES_POST d WHERE d.post_id = a.post_id ) as 'likes'
         FROM posts a JOIN users b ON a.user_id = b.user_id
-        WHERE b.user_id IN (SELECT following_id FROM USER_FOLLOWS_USER WHERE follower_id = ?)
-        OR b.user_id = ?
+        WHERE (a.user_id IN (SELECT following_id FROM USER_FOLLOWS_USER WHERE follower_id = ?)
+        OR a.user_id = ?)
+        AND a.reply_id IS NULL
         ORDER BY dateupdated DESC`
 
         const values = [ user_id, user_id, user_id ]

@@ -59,3 +59,11 @@
 #frontpage__header__btn:hover {
     background: var(--hovercolor1);
 }
+
+.sidenav-active {
+    border-radius: 0px;
+}
+
+.navlink {
+    cursor: pointer;
+}

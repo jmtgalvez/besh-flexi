@@ -80,26 +80,24 @@ export default function Settings ()  {
         password: passwordRef.current.value,
       }
 
-      await Api.editUser(data)
+      editUser(data)
         .then( response => {
           if ( response.status === 200 ) {
             setUser(response.data.user);
           }
         })
       
-      console.log(data)
-      
     }
     
   }
 
-  const togglePassword = () => {
-    setIsEdit(!isEdit)
-  }
+  // const togglePassword = () => {
+  //   setIsEdit(!isEdit)
+  // }
   
-  const showPassword = () =>{
-    setIsChecked(!isChecked)
-  }
+  // const showPassword = () =>{
+  //   setIsChecked(!isChecked)
+  // }
 
   return (
     <div className='settings_container container p-3'>
