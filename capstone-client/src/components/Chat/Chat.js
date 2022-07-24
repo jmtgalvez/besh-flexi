@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react'
+import React, {useContext, useEffect, useState, useRef} from 'react'
 import ChatContent from './ChatContent';
 import './Chat.css'
 import * as ApiChat from '../api/chat';
@@ -7,10 +7,11 @@ import { UserContext } from '../UserContext';
 
 export default function Chat () {
     const { user } = useContext(UserContext);
-    const [content, setContent] = useState();
+    const [content, setContent] = useState([]);
     const [followed, setFollowed] = useState([]);
     const [sendTo, setSendTo] = useState();
     const [conversationData, setConversationData] = useState([]);
+    const scrollEndRef = useRef();
 
     useEffect(()=>{
         ApiUsers.getAllUsers().then(response =>{
@@ -20,20 +21,10 @@ export default function Chat () {
 
     const handleSendTo = async ev =>{
         setSendTo(ev.target.id)
-        const conversation = {
-            sender_id: user.user_id,
-            receiver_id: ev.target.id
-        }
-
-        await ApiChat.getConversation(conversation)
-        .then(response=>{
-            if(response.status === 200){
-                setConversationData([...response.data.conversation])
-            }
-        })
-        
     }
 
+    console.log(conversationData)
+    console.log(sendTo)
     const handleContent = ev =>{
         setContent(ev.target.value)
     }
@@ -51,21 +42,36 @@ export default function Chat () {
                 console.log(response)
                 console.log(response.data.chat_id)
             })
+            
+            setContent('')
+
         }
-        handleSendTo
     }
+    useEffect(()=>{
+        const conversation = {
+            sender_id: user.user_id,
+            receiver_id: sendTo
+        }
+
+        ApiChat.getConversation(conversation)
+        .then(response=>{
+            if(response.status === 200){
+                setConversationData([...response.data.conversation])
+            }
+        })
+        scrollEndRef.current?.scrollIntoView();
+    },[content, sendTo])
 
     const displayFollowedUsers = [...followed].map(user => <FollowedUser user_id={user.user_id} name={`${user.last_name}, ${user.first_name}`}
     sendTo={sendTo} handleSendTo={handleSendTo}  receiver_id={user.sender_id}/>)
     const displayConversation = [...conversationData].map(data =>
     
     <Conversation name={data.username} sender_id={data.sender_id}
-        content={data.content} sendTo={sendTo} user_id={user.user_id} />)
+    content={data.content} sendTo={sendTo} user_id={user.user_id} />)
 
     return (
         <div className="card chat-container">
-            <div className="card-header d-flex justify-content-center p-2 hideoverflow">
-            </div>
+            
             <div className="card-body row">
                 <div className="col-sm-4 d-flex justify-content-center followed_user p-2">
                         <div className="card p-2 w-100">
@@ -74,18 +80,33 @@ export default function Chat () {
                         
                         </div>
                 </div>
-                <div className="col-sm-8 p-2 conversation">
+                <div className="chatbox">
+                    <div className="col-sm-8 p-2 conversation">
+
                         {displayConversation}
-                        <div className="chat_box">
-                            <input
-                            type="text" placeholder='Chat' 
+                        <div ref={scrollEndRef}>
+                        </div>
+
+                    </div>
+                </div>
+                
+                <div className="footer">
+                    <div className='footer_col_1'>
+                            
+                    </div>
+                    <div className="footer_col_2">
+                        <input
+                            type="text"
+                            placeholder='Chat' 
                             value={content} 
                             onChange={handleContent}
                             className='form-control p-2' 
-                            onKeyDown={handleSubmit} />
-                        </div>
+                            onKeyDown={handleSubmit}
+                            />
+
+                    </div>
+                    
                 </div>
-                
             </div>
             
         </div>
@@ -93,14 +114,11 @@ export default function Chat () {
 }
 
 function FollowedUser({user_id, name, handleSendTo, sendTo, receiver_id}){
-
+    console.log(sendTo + user_id)
     return(
-        
-       
-            <div className={sendTo == receiver_id ? 'active followed_user_list px-2 ' : 'followed_user_list px-2' }>
-             
-               <a id={user_id} key={user_id} onClick={handleSendTo}>{name}</a>
-            </div>
+        <div className='followed_user_list px-2'>
+            <a className={sendTo == user_id ? 'active':''} id={user_id} key={user_id} onClick={handleSendTo}>{name}</a>
+        </div>
     )
 }
 

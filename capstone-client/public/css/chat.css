@@ -1,3 +1,10 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
 .chat-container {
   position: fixed;
   background-color: #11d6b2;
@@ -8,7 +15,7 @@
 .chat-container .card-body .followed_user {
   position: fixed;
   width: 20vw;
-  height: 80vh;
+  height: 78vh;
 }
 
 .chat-container .card-body .followed_user .followed_user_list {
@@ -29,19 +36,30 @@
   padding: 10px;
   border-bottom: 1px solid #efe9e9;
   margin-bottom: 20px;
+  text-decoration: none;
+  color: black;
 }
 
 .chat-container .card-body .followed_user .followed_user_list a:hover {
   border-radius: 25px;
   background-color: gray;
+  color: white;
+  font-weight: bold;
 }
 
 .chat-container .card-body .followed_user .followed_user_list .active {
   border-radius: 25px;
   background-color: gray;
+  color: white;
+  font-weight: bold;
 }
 
-.chat-container .card-body .conversation {
+.chat-container .card-body .chatbox {
+  height: 65vh;
+  width: 100%;
+}
+
+.chat-container .card-body .chatbox .conversation {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -51,10 +69,10 @@
           flex-direction: column;
   gap: 10px;
   margin-left: 20vw;
-  width: 48vw;
+  min-height: 50vh;
 }
 
-.chat-container .card-body .conversation .chat_content {
+.chat-container .card-body .chatbox .conversation .chat_content {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -67,7 +85,7 @@
   border-radius: 25px;
 }
 
-.chat-container .card-body .conversation .sender {
+.chat-container .card-body .chatbox .conversation .sender {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -82,4 +100,26 @@
   padding: 10px;
   border-radius: 25px;
   color: white;
+}
+
+.chat-container .card-body .footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: transparent;
+  height: 7vh;
+}
+
+.chat-container .card-body .footer .footer_col_1 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 30%;
+}
+
+.chat-container .card-body .footer .footer_col_2 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 70%;
 }

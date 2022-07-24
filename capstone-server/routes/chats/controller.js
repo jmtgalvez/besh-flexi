@@ -70,7 +70,7 @@ exports.getConversation = chat =>{
         const sql = `SELECT a.*, b.sender_id, b.content, c.first_name, c.last_name, c.username  FROM user_chats_user a
         JOIN chat_messages b on a.chat_id = b.chat_id
         JOIN users c on user_id = b.sender_id
-        where a.chat_id = ? ORDER BY b.datecreated DESC`
+        where a.chat_id = ? ORDER BY b.datecreated ASC`
 
         const values = chat;
 
@@ -83,3 +83,4 @@ exports.getConversation = chat =>{
         })
     })
 }
+
