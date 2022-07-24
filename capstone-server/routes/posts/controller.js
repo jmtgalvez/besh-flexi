@@ -3,6 +3,11 @@ const db = require('../database/index');
 exports.getAllStatus = () => {
     return new Promise((resolve, reject) => {
         const sql = `SELECT a.*, b.first_name, b.last_name, b.username FROM posts a JOIN users b ON a.user_id = b.user_id ORDER BY dateupdated DESC`;
+        // const sql = `SELECT a.*, c.first_name, c.last_name, c.username, count(b.post_id) as 'likesCount' FROM posts a 
+        // LEFT JOIN user_likes_post b ON b.post_id = a.post_id
+        // JOIN users c ON a.user_id = c.user_id 
+        // group by a.post_id
+        // ORDER BY dateupdated DESC`
 
         db.query(sql, (err, rows) => {
             if (err) {
@@ -16,16 +21,28 @@ exports.getAllStatus = () => {
 
 exports.getAllFollowedPosts = user_id => {
     return new Promise((resolve, reject) => {
-        const sql = `SELECT a.*, b.first_name, b.last_name, b.username,
+        // const sql = `SELECT a.*, b.first_name, b.last_name, b.username,
+        // case when a.post_id IN (SELECT post_id FROM USER_LIKES_POST c WHERE c.user_id = ?)
+        //     then 'true'
+        //     else 'false'
+        // end liked
+        // FROM posts a JOIN users b ON a.user_id = b.user_id
+        // WHERE b.user_id IN (SELECT following_id FROM USER_FOLLOWS_USER WHERE follower_id = ?)
+        // OR b.user_id = ?
+        // ORDER BY dateupdated DESC`
+
+        const sql = `SELECT a.*, b.first_name, b.last_name, b.username, count(d.post_id) as 'countLikes',
         case when a.post_id IN (SELECT post_id FROM USER_LIKES_POST c WHERE c.user_id = ?)
             then 'true'
             else 'false'
         end liked
-        FROM posts a JOIN users b ON a.user_id = b.user_id
+        FROM posts a 
+        LEFT JOIN user_likes_post d ON d.post_id = a.post_id
+        JOIN users b ON a.user_id = b.user_id
         WHERE b.user_id IN (SELECT following_id FROM USER_FOLLOWS_USER WHERE follower_id = ?)
         OR b.user_id = ?
-        ORDER BY dateupdated DESC`
-
+        group by d.post_id
+        ORDER BY dateupdated DESC`;
         const values = [ user_id, user_id, user_id ]
 
         db.query( sql, values, (err, rows) => {
@@ -147,3 +164,4 @@ exports.searchStatus = ( search_query, user_id ) => {
         })
     })
 }
+

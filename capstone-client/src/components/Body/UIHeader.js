@@ -1,10 +1,12 @@
 import React from "react";
+import logo from '../../images/logo_besh.png'
+import ads1 from '../../images/ads1.jpg'
 
 export default function UIHeader({togglePage, activePage}) {
   return (
     <div className="header-content">
       <div className="logo">
-        <h2 className="p-1">besh</h2>
+          <img src={logo} alt="" />
       </div>
       <div className="menu">
         <a onClick={() =>  togglePage(1)} className={activePage == 1 ? 'active' : ''} >
@@ -71,7 +73,10 @@ export default function UIHeader({togglePage, activePage}) {
         </a>
       </div>
       <div className="footer">
-        <h2 className="p-1">Ads Section</h2>
+        <a href="https://kodego.ph/" target="_blank">
+          <img src={ads1} alt="Ads Section" className="img img-thumbnail" />
+        </a>
+          
       </div>
     </div>
   );

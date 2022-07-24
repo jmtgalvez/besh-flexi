@@ -6,6 +6,7 @@ const CTRL = require('./controller');
 
 router.get('/', JWT.verifyToken, async (req, res) => {
   try {
+
     const posts = await CTRL.getAllFollowedPosts(req.user_id);
 
     res.status(200)

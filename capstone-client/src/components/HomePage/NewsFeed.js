@@ -22,7 +22,7 @@ function NewsFeed() {
   return (
     <>
       <NewsFeedForm />
-      {posts && posts.map( post => <PostCard key={post.post_id} post={post} /> )}
+      {posts && posts.map( post => <PostCard key={post.post_id} post={post} countLikes={post.countLikes} /> )}
     </>
   )
 }

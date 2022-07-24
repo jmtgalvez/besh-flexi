@@ -27,12 +27,10 @@ $background: #11d6b2;
             padding: 0 10px;
             .logo {
                 display: flex;
-                justify-content: center;
-                align-items: center;
                 height: 20vh;
                 width: 100%;
-                color: white;
                 border-bottom: 1px solid $secondaryColor;
+                cursor: pointer;
             }
             .menu {
                 display: flex;
@@ -84,12 +82,20 @@ $background: #11d6b2;
             }
             .footer {
                 display: flex;
-                justify-content: center;
                 align-items: center;
                 height: 30vh;
                 width: 100%;
                 color: white;
                 border-top: 1px solid $secondaryColor;
+                padding: 10px;
+                a {
+                    height: 100%;
+                    width: 100%;
+                    img {
+                        width: 80%;
+                        height: 100%;
+                    }
+                }
             }
         }
     }
