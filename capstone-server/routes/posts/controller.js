@@ -3,6 +3,11 @@ const db = require('../database/index');
 exports.getAllStatus = () => {
     return new Promise((resolve, reject) => {
         const sql = `SELECT a.*, b.first_name, b.last_name, b.username FROM posts a JOIN users b ON a.user_id = b.user_id ORDER BY dateupdated DESC`;
+        // const sql = `SELECT a.*, c.first_name, c.last_name, c.username, count(b.post_id) as 'likesCount' FROM posts a 
+        // LEFT JOIN user_likes_post b ON b.post_id = a.post_id
+        // JOIN users c ON a.user_id = c.user_id 
+        // group by a.post_id
+        // ORDER BY dateupdated DESC`
 
         db.query(sql, (err, rows) => {
             if (err) {
@@ -21,10 +26,10 @@ exports.getAllFollowedPosts = user_id => {
             then 'true'
             else 'false'
         end liked,
-        (SELECT COUNT(*) FROM USER_LIKES_POST d WHERE d.post_id = a.post_id ) as 'likes'
+        (SELECT COUNT(*) FROM USER_LIKES_POST d WHERE d.post_id = a.post_id) as 'likes'
         FROM posts a JOIN users b ON a.user_id = b.user_id
-        WHERE (a.user_id IN (SELECT following_id FROM USER_FOLLOWS_USER WHERE follower_id = ?)
-        OR a.user_id = ?)
+        WHERE (b.user_id IN (SELECT following_id FROM USER_FOLLOWS_USER WHERE follower_id = ?)
+        OR b.user_id = ?)
         AND a.reply_id IS NULL
         ORDER BY dateupdated DESC`
 
@@ -149,3 +154,4 @@ exports.searchStatus = ( search_query, user_id ) => {
         })
     })
 }
+

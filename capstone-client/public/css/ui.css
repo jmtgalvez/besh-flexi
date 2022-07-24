@@ -37,16 +37,10 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   height: 20vh;
   width: 100%;
-  color: white;
   border-bottom: 1px solid #eff6f6;
+  cursor: pointer;
 }
 
 .frontPage .header .header-content .menu {
@@ -129,9 +123,6 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -139,6 +130,17 @@
   width: 100%;
   color: white;
   border-top: 1px solid #eff6f6;
+  padding: 10px;
+}
+
+.frontPage .header .header-content .footer a {
+  height: 100%;
+  width: 100%;
+}
+
+.frontPage .header .header-content .footer a img {
+  width: 80%;
+  height: 100%;
 }
 
 .frontPage .content {

@@ -32,15 +32,30 @@ export default function PostCard({ userPostPhoto, post, setPost }) {
     .then( () => commentRef.current.value = '');
   }
 
+  const formatTimeSince = date => {
+    
+    let timeSince = Date.now() - new Date(date);
+    if ( timeSince < 1000 ) return `~${timeSince}ms`;
+    timeSince /= 1000;
+    if ( timeSince < 60 ) return `~${Math.floor(timeSince)}s`;
+    timeSince /= 60;
+    if ( timeSince < 60 ) return `~${Math.floor(timeSince)}m`;
+    timeSince /= 60;
+    if ( timeSince < 24 ) return `~${Math.floor(timeSince)}hr`;
+    timeSince /= 24;
+    if ( timeSince < 30 ) return `~${Math.floor(timeSince)}d`;
+    return date;
+  }
+
   return (
     <div className='mt-3 w-100'>
       <div className="newsfeeds-content p-3 d-flex flex-column gap-4 card"style={{ cursor: 'pointer'}}>
-        <div className="card-header user-info d-flex" onClick={openPost} >
+        <div className="card-header user-info d-flex" >
           <a href="#" className="newsfeeds-content-photo bg-light p-1 rounded-circle" >
             <ProfPicSvg />
           </a>
           <div>
-            <h6 className="p-2">{post.username}</h6>
+            <h6 className="p-2">{post.first_name} {post.last_name} <span className='text-muted'><a>@{post.username} </a> {formatTimeSince(post.dateupdated)}</span></h6>
           </div>
         </div>
         <div className="card-body" onClick={openPost} >

@@ -1,6 +1,6 @@
 import React, { useState, useRef, useContext } from 'react'
 import { UserContext } from '../UserContext';
-import { editUser } from '../api/users';
+import * as Api from '../api/users';
 
 export default function Settings ()  {
 

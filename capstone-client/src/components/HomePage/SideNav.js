@@ -2,7 +2,7 @@ import { useContext } from "react";
 
 import { PageContext } from "../HomePage/PageContext";
 
-export default function UIHeader() {
+export default function SideNav() {
   return (
     <div className="header">
       <div className="header-content">
