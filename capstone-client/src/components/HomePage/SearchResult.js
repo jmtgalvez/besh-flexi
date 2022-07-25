@@ -1,7 +1,5 @@
 import UserCard from './UserCard';
 import PostCard from './PostCard';
-import NewsFeed from './NewsFeed';
-import { useResolvedPath } from 'react-router';
 
 export default function SearchResult({ posts, users }) {
 

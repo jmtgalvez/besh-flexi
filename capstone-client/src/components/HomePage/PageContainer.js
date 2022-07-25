@@ -21,7 +21,7 @@ export default function PageContainer({ post, setPost, posts, users }) {
             {window.innerWidth < 800 && <UiHeaderMobile />}
               {
                 activePage == 'HOME' ? <NewsFeed setPost={setPost} /> :
-                activePage == 'TRENDING' ? <Trending /> : 
+                activePage == 'TRENDING' ? <Trending setPost={setPost} /> : 
                 activePage == 'CHAT' ? <Chat /> :
                 activePage == 'ABOUT' ? <About /> :
                 activePage == 'SETTINGS' ? <Settings /> :

@@ -3,16 +3,13 @@ import TrendingContent from "./TrendingContent";
 import PostCard from './PostCard';
 import { getTrending } from '../api/post';
 
-export default function Trending() {
+export default function Trending({ setPost }) {
 
   const [posts, setPosts] = useState([]);
   
   const loadTrending = () => {
     getTrending()
-    .then( result => {
-      console.log(result);
-      setPosts(result.data.posts);
-    })
+    .then( result => setPosts(result.data.posts))
   }
 
   useEffect(() => {
@@ -23,7 +20,7 @@ export default function Trending() {
     <>
       <h3 className="ms-5">Trending right now</h3>
       {
-        posts && posts.map( post => <PostCard key={post.post_id} post={post} />)
+        posts && posts.map( post => <PostCard key={post.post_id} post={post} setPost={setPost}/>)
       }
     </>
   );
