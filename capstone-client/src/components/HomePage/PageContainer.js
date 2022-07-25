@@ -8,12 +8,12 @@ import About from './About';
 import Chat from '../Chat/Chat';
 import FeedBack from './FeedBack';
 import NewsFeed from './NewsFeed';
-import SearchResult from './SearchResult';
+import SearchPage from './SearchPage';
 import Settings from './Settings';
 import Trending from './Trending';
 import PostPage from './PostPage';
 
-export default function PageContainer({ post, setPost, posts, users }) {
+export default function PageContainer({ post, setPost }) {
     const { activePage } = useContext(PageContext);
 
     return (
@@ -27,7 +27,7 @@ export default function PageContainer({ post, setPost, posts, users }) {
                 activePage == 'SETTINGS' ? <Settings /> :
                 activePage == 'HELP & SUPPORT' ? <Help />  : 
                 activePage == 'GIVE FEEDBACK' ? <FeedBack /> :
-                activePage == 'SEARCH' ? <SearchResult posts={posts} users={users} /> :
+                activePage == 'SEARCH' ? <SearchPage /> :
                 activePage == 'POST' ? <PostPage post={post} setPost={setPost} /> :
                 ''
               }
