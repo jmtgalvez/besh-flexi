@@ -90,4 +90,16 @@ router.get('/search/:search_query', JWT.verifyToken, async (req, res) => {
   }
 });
 
+router.get('/trending', JWT.verifyToken, async (req, res) => {
+  try {
+    const posts = await CTRL.getTrending( req.user_id )
+    res.status(200).json({
+      status: 200,
+      posts
+    })
+  } catch (status) {
+    res.status(status).json({ status });
+  }
+})
+
 module.exports = router;
