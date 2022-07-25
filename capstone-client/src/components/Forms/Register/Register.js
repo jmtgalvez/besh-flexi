@@ -35,10 +35,9 @@ export default function Register() {
       .then( response => {
         if (response.status === 200) {
           setUser(response.data.user);
-          localStorage.setItem('refresh_token', JSON.stringify(response.data.refresh_token));
         }
       })
-      .catch( err => console.log(err) )
+      .catch( err => setErrMessage(err.response.data.message) )
   }
 
   return (
@@ -50,7 +49,7 @@ export default function Register() {
         <div className='register__section'>
           <section className='register__section__container__form'>
             <form action="" method='post' className='register__form' onSubmit={handleSubmit}>
-                <h1>Create account</h1>
+              <h1>Create account</h1>
 
               <h6 style={{display: errMessage ? 'block': 'none'}} className='alert alert-danger form-control'>{errMessage ? errMessage : ''}</h6>
               <div>

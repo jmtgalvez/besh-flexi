@@ -9,8 +9,6 @@ export default function SearchResult() {
 
   const { searchResult } = useContext(SearchContext);
 
-  console.log(searchResult);
-
   const displayUsers = [...(searchResult.users)].map( user => <UserCard key={user.user_id} user={user} /> )
 
   const displayPosts = [...(searchResult.posts)].map( post => <PostCard key={post.post_id} post={post} /> )
