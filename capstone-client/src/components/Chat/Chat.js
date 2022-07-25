@@ -88,7 +88,7 @@ export default function Chat () {
                         {conversationData.length > 0 ? (
                             displayConversation
                         ) : (
-                            <h1>No chat history</h1>
+                            <h1>No message history</h1>
                         )}
                         <div ref={scrollEndRef}></div>
 

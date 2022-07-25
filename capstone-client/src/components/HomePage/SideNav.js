@@ -39,7 +39,7 @@ const NavLink = ({ pageTo }) => {
         pageTo == 'About' ? <AboutSvg /> :
         ''
       }
-      <span>{pageTo}</span>
+      <span>{pageTo == 'Chat' ? 'Private Messages' : pageTo}</span>
     </a>
   )
 }
