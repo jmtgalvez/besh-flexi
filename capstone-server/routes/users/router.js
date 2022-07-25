@@ -27,7 +27,6 @@ router.get('/', JWT.verifyToken, async (req, res) => {
 // edit a user
 router.put('/:user_id', JWT.verifyToken, uploads.single('profilePicture'), async (req, res) => {
   try {
-    console.log(req.file);
     if ( parseInt(req.params.user_id) === parseInt(req.user_id) ) {
       const oldUserData = await CTRL.getUserByUserId(req.user_id);
       

@@ -132,8 +132,7 @@ export default function Register() {
               <input type="submit" value="Register" className='general__btns register__btn' />
             </form>
           </section>
-
-          {/* <ProfilePicture /> */}
+          
           <section className="register__section__container__image">
             <img src={Unsplash1} alt="Abstract" />
           </section>
@@ -143,43 +142,3 @@ export default function Register() {
     </>
   )
 }
-
-// function ProfilePicture() {
-
-//   const handleSubmit = ev => {
-//     ev.preventDefault();
-//   }
-
-//   return (
-    // <div className='container'>
-    //   <form onSubmit={handleSubmit}>
-    //     <div>
-    //       <label for="formFileLg" class="form-label">Profile Picture</label>
-    //       <input class="form-control form-control-lg" id="formFileLg" type="file" accept="image/*" />
-    //     </div>
-
-    //     <button className='btn btn-primary' type='submit'>Add Photo</button>
-    //   </form>
-    // </div>
-    
-    // <div className="col-md-6 mb-4">
-
-
-    //   <form className="md-form">
-    //     <div className="file-field">
-    //       <div className="mb-4">
-    //         <img src="https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg"
-    //           className="rounded-circle z-depth-1-half avatar-pic" alt="example placeholder avatar" />
-    //       </div>
-    //       <div className="d-flex justify-content-center">
-    //         <div className="btn btn-mdb-color btn-rounded float-left">
-    //           <span>Add photo</span>
-    //           <input type="file" />
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </form>
-
-    // </div>
-//   )
-// }
