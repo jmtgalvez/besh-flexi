@@ -11,8 +11,8 @@ export default function DropdownModal({toggleDropdown}) {
 
   const handleLogout = () => {
     setUser(null);
-    localStorage.removeItem('refresh_token');
     logout();
+    window.location.href = '/'
   }
 
   return (
