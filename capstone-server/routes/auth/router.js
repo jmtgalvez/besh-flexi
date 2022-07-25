@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const JWT = require('./jwt');
-const CTRL = require('./controller')
+const CTRL = require('./controller');
 
 router.post('/login', async(req, res) => {
     try {

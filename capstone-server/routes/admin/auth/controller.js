@@ -2,8 +2,6 @@ const db = require('../../database/index');
 
 exports.login = (req, res) => {
   const { email, password } = req.body;
-  console.log(req.body);
-  console.log(email);
 
   let sql = `SELECT * FROM users WHERE email = ? OR username = ?`;
   let values = [ email, email ];

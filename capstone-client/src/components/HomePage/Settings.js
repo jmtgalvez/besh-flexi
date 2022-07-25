@@ -6,20 +6,22 @@ export default function Settings ()  {
 
   const { user, setUser } = useContext(UserContext);
 
-  const passwordRef = useRef();
-
-
+  const profpicRef = useRef();
+  
+  
   const [isEdit, setIsEdit] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [first_name, setFirstName] = useState(user.first_name);
   const [last_name, setLastName] = useState(user.last_name);
   const [username, setUserName] = useState(user.username);
+  const [password, setPassword] = useState('');
   
   const [errMessage, setErrMessage] = useState({
     first_name: '',
     last_name: '',
     username: '',
-    hasError: 'false'
+    password: '',
+    hasError: 'false',
   });
 
   function handleFirstName(e){
@@ -58,6 +60,17 @@ export default function Settings ()  {
     }
   }
 
+  function handlePassword(e){
+    setPassword(e.target.value)
+    if(e.target.value == ''){
+      errMessage.password = 'User name is required';
+      errMessage.hasError = 'true';
+    }else{
+      errMessage.password = '';
+      errMessage.hasError = 'false';
+    }
+  }
+
   async function handleEditFormSubmit(e){
     e.preventDefault();
 
@@ -70,13 +83,21 @@ export default function Settings ()  {
         first_name: first_name,
         last_name: last_name,
         username: username,
-        password: passwordRef.current.value,
+        password: password,
+        profilePicture: profpicRef.current.value
       }
 
       editUser(data)
         .then( response => {
           if ( response.status === 200 ) {
             setUser(response.data.user);
+          }
+        })
+        .catch( err => {
+          if ( err.response.status == 403 ) {
+            errMessage.password = 'Invalid password';
+            errMessage.hasError = 'true';
+            setPassword('');
           }
         })
       
@@ -94,18 +115,24 @@ export default function Settings ()  {
 
   return (
     <div className='settings_container container p-3'>
-        
-        <div className="settings_container_section1 card p-2">
-          <section className="settings__profile__picture mb-2 d-flex justify-content-center ">
-            <img className='img img-thumbnail' src="https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png" width={200} height={200} alt="This is a photo" />
-            <div className='d-flex align-items-end'>
-                <input type="file" />
-            </div>
-          </section>
-        </div>
+      
       <div className="settings_container_section2 card mt-2">
         
         <form className='form' onSubmit={handleEditFormSubmit}>
+        
+          <div className="settings_container_section1 card p-2">
+            <section className="settings__profile__picture mb-2 d-flex justify-content-center ">
+              <img className='img img-thumbnail' src="https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png" width={200} height={200} alt="This is a photo" />
+              <div className='d-flex align-items-end'>
+                  <input 
+                    type="file" 
+                    accept='image/*'
+                    name="profilePicture"
+                    ref={profpicRef}
+                  />
+              </div>
+            </section>
+          </div>
 
           <div className="settings_first_name p-3 mx-2">
               <h6 className='alert alert-danger' style={{display: errMessage.first_name ? 'block': 'none'}} >{errMessage.first_name ? errMessage.first_name : ''}</h6>
@@ -156,7 +183,8 @@ export default function Settings ()  {
                 name="password"
                 id="password" 
                 className='form-control'
-                ref={passwordRef}
+                value={password}
+                onChange={handlePassword}
                 required
               />
           </div>

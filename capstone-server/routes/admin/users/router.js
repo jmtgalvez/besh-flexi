@@ -6,7 +6,6 @@ const userCtrl = require('./controller');
 router.get('/users', async (req, res) => {
   try {
     let users = await userCtrl.getAllUsers();
-    console.log(users);
     res.status(200).json({
       status: 200,
       data: users

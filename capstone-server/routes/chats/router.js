@@ -16,7 +16,6 @@ router.post('/conversation', JWT.verifyToken, async(req, res) => {
                     message: 'Success',
                     conversation: response
                 })
-                console.log(response)
             })
         })
     }catch(status){

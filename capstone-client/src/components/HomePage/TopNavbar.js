@@ -47,13 +47,8 @@ export default function UiNavbar() {
         
         <form className="search d-flex align-items-center gap-1" onSubmit={handleSearch}>
           
-          <input 
-            // onChange={handleSearchValue} 
-            className="search-input py-2 px-4" type="search" placeholder="First Name or Last Name or Email" ref={searchRef}/>
-          <button 
-            className="search-button btn-success"
-            title='Search'
-          >
+          <input className="search-input py-2 px-4" type="search" placeholder="Search" ref={searchRef} />
+          <button className="search-button btn-success" title='Search'>
             <SearchSvg />
           </button>
         </form>
