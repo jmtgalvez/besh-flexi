@@ -55,7 +55,6 @@ exports.searchUsersByName = (name, user_id) => {
         console.log(`/routes/users/controllers/searchUsersByName DB Error: ${err.message}`);
         return reject(500);
       }
-      if (rows.length === 0) return reject(404)
       return resolve(rows);
     });
   });

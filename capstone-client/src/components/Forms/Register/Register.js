@@ -7,6 +7,7 @@ import { UserContext } from '../../UserContext';
 export default function Register() {
   const firstNameRef = useRef();
   const lastNameRef = useRef();
+  const usernameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
   const cPasswordRef = useRef();
@@ -25,6 +26,7 @@ export default function Register() {
     const user = {
       first_name: firstNameRef.current.value,
       last_name: lastNameRef.current.value,
+      username: usernameRef.current.value,
       email: emailRef.current.value,
       password: passwordRef.current.value
     }
@@ -75,7 +77,20 @@ export default function Register() {
                   required
                   ref={lastNameRef}
                 />
-                <label htmlFor="last_name" className='register__form__label'>Last Name</label>
+                <label htmlFor="username" className='register__form__label'>Last Name</label>
+              </div>
+              <div>
+                <input 
+                  type="text" 
+                  name='username' 
+                  id='username' 
+                  className='register__form__input' 
+                  placeholder=' ' 
+                  autoComplete='off' 
+                  required
+                  ref={usernameRef}
+                />
+                <label htmlFor="username" className='register__form__label'>Username</label>
               </div>
               <div>
                 <input 

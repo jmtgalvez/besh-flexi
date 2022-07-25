@@ -26,10 +26,9 @@ function Login() {
         if ( response.status === 200 ) {
           setErrMessage('');
           setUser(response.data.user);
-          localStorage.setItem('refresh_token', JSON.stringify(response.data.refresh_token));
         } 
-      }).catch(status =>{
-        setErrMessage('Email or Password incorrect');
+      }).catch( err =>{
+        setErrMessage(err.response.data.message);
       })
   }
     

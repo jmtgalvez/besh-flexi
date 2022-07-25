@@ -52,3 +52,7 @@ export const deletePost = async status_id => {
 export const getPost = async status_id => {
   return await axios.get(`${url}:${port}/api/status/${status_id}`);
 }
+
+export const getTrending = async () => {
+  return await axios.get(`${url}:${port}/api/status/trending`)
+}

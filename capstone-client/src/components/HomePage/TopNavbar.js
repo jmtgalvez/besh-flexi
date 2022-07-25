@@ -4,13 +4,14 @@ import { searchUsers } from '../api/users';
 import { searchPosts } from '../api/post';
 
 import { PageContext } from "./PageContext";
+import { SearchContext } from "./SearchContext";
 
 import Hamburger from './Hamburger';
 
-export default function UiNavbar({togglePage,
-setPosts, setUsers }) {
+export default function UiNavbar() {
 
   const { setActivePage } = useContext(PageContext);
+  const { searchResult, setSearchResult } = useContext(SearchContext);
 
   const [toggle, setToggle] = useState(false);
   const [toggleMobile, setToggleMobile] = useState(false);
@@ -25,16 +26,17 @@ setPosts, setUsers }) {
 
   const searchRef = useRef();
 
-  const handleSearch = ev => {
+  const handleSearch = async ev => {
     ev.preventDefault();
-    const search_query = searchRef.current.value;
-    searchPosts(search_query)
-      .then( result => setPosts(result.data.posts))
-      .catch( () => setPosts([]))
-    searchUsers(search_query)
-      .then( result => setUsers(result.data.users))
-      .catch( () => setUsers([]))
+    const search_query = searchRef.current.value.trim();
+    const usersResult = await searchUsers(search_query)
+    const postsResult = await searchPosts(search_query)
+    setSearchResult({
+      users: usersResult.data.users,
+      posts: postsResult.data.posts
+    })
     setActivePage('SEARCH');
+    searchRef.current.value = ''
   }
 
   return (
@@ -52,16 +54,7 @@ setPosts, setUsers }) {
             className="search-button btn-success"
             title='Search'
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="25"
-              height="25"
-              fill="currentColor"
-              className="bi bi-search"
-              viewBox="0 0 16 16"
-            >
-              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-            </svg>
+            <SearchSvg />
           </button>
         </form>
 
@@ -103,3 +96,17 @@ function NavDropdownButton({toggleDropdown}) {
   )
 }
 
+const SearchSvg = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="25"
+      height="25"
+      fill="currentColor"
+      className="bi bi-search"
+      viewBox="0 0 16 16"
+    >
+      <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+    </svg>
+  )
+}

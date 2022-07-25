@@ -23,17 +23,18 @@ router.post('/login', async(req, res) => {
             message: 'Login Success',
             user
         });
-    } catch (status) {
-        res.status(status).json({
-            status,
-            message: 'Invalid username / email / password combination',
+    } catch (response) {
+        res.status(response.status).json({
+            status: response.status,
+            message: response.message ? response.message : 'Invalid username / email / password combination',
         });
     }
 });
 
 router.post('/register', async (req, res) => {
     try {
-        await CTRL.checkUserAvailable(req.body.email);
+        await CTRL.checkEmailAvailable(req.body.email);
+        await CTRL.checkUsernameAvailable(req.body.username);
 
         const user_id = await CTRL.addUser(req.body);
 
@@ -51,16 +52,16 @@ router.post('/register', async (req, res) => {
             httpOnly: true,
         }
         res.cookie('access_token', access_token, cookie_option);
+        res.cookie('refresh_token', refresh_token);
         res.status(200).json({
             status: 200,
             message: 'Login Success',
-            refresh_token,
             user
         });
-    } catch (status) {
-        res.status(status).json({
-            status: status,
-            message: 'Invalid username / email',
+    } catch (response) {
+        res.status(response.status).json({
+            status: response.status,
+            message: response.message ? response.message : 'Invalid username / email',
         });
     }
 });

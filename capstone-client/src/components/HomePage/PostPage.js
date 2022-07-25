@@ -1,9 +1,14 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import PostCard from './PostCard';
 import { getAllComments } from '../api/comments';
+import { PageContext } from './PageContext';
 
-export default function PostPage({ post, setPost }) {
+export default function PostPage({ post }) {
     const [comments, setComments] = useState([]);
+
+    const { setActivePage } = useContext(PageContext);
+
+    setActivePage('POST');
 
     const loadComments = () => {
         getAllComments(post.post_id)

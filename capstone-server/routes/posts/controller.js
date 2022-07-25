@@ -156,3 +156,26 @@ exports.searchStatus = ( search_query, user_id ) => {
     })
 }
 
+exports.getTrending = user_id => {
+    return new Promise((resolve, reject) => {
+        const sql = `SELECT a.*, b.first_name, b.last_name, b.username,
+        case when a.post_id IN (SELECT post_id FROM USER_LIKES_POST c WHERE c.user_id = ?)
+            then 'true'
+            else 'false'
+        end liked,
+        (SELECT COUNT(*) FROM USER_LIKES_POST d WHERE d.post_id = a.post_id) as 'likes'
+        FROM posts a JOIN users b ON a.user_id = b.user_id
+        WHERE 
+        (SELECT COUNT(*) FROM USER_LIKES_POST e WHERE e.post_id = a.post_id AND e.datecreated > CURDATE() - INTERVAL 1 DAY ) > 0 AND
+        a.reply_id IS NULL
+        ORDER BY likes DESC`
+
+        db.query( sql, user_id, (err, rows) => {
+            if (err) {
+                console.log(`/routes/post/controller/getTrending DB Error: ${err.message}`);
+                return reject(500);
+            }
+            return resolve(rows);
+        })
+    })
+}

@@ -13,7 +13,10 @@ exports.checkUserExists = email => {
                 return reject(500);
             }
             if (!(rows.length > 0))
-                return reject(404);
+                return reject({
+                    status: 404,
+                    message: 'Invalid username / password'
+                });
 
             return resolve(rows[0]);
         });
@@ -37,11 +40,31 @@ exports.checkUserExistsByUserId = user_id => {
     })
 }
 
-exports.checkUserAvailable = email => {
+exports.checkEmailAvailable = email => {
     return new Promise((resolve, reject) => {
-        const sql = `SELECT * FROM users WHERE email = ? OR username = ?`;
+        const sql = `SELECT * FROM users WHERE email = ?`;
 
-        const values = [email, email];
+        db.query(sql, email, (err, rows) => {
+            if (err) {
+                console.log(`/routes/auth/controller/checkUserAvailable DB Error: ${err.message}`);
+                return reject(500);
+            }
+            if (!(rows.length > 0))
+                return resolve();
+
+            return reject({
+                status: 409,
+                message: "Email not available"
+            });
+        });
+    });
+}
+
+exports.checkUsernameAvailable = username => {
+    return new Promise((resolve, reject) => {
+        const sql = `SELECT * FROM users WHERE username = ? OR username = ?`;
+
+        const values = [username.toLowerCase(), username.toLowerCase()];
 
         db.query(sql, values, (err, rows) => {
             if (err) {
@@ -51,7 +74,10 @@ exports.checkUserAvailable = email => {
             if (!(rows.length > 0))
                 return resolve();
 
-            return reject(409);
+            return reject({
+                status: 409,
+                message: "Username not available"
+            });
         });
     });
 }
@@ -93,8 +119,8 @@ exports.addUser = user => {
 
         const hashPwd = await bcrypt.hash(user.password, 8);
 
-        let username = user.username ? user.username : user.first_name + "." + user.last_name;
-        username = username.toLowerCase();
+        // let username = user.username ? user.username : user.first_name + "." + user.last_name;
+        // username = username.toLowerCase();
 
         const sql = `INSERT INTO users
       ( first_name, last_name, email, username, password )
@@ -105,7 +131,7 @@ exports.addUser = user => {
             user.first_name,
             user.last_name,
             user.email,
-            username,
+            user.username,
             hashPwd,
         ];
 
