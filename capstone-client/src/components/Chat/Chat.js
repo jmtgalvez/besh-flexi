@@ -64,6 +64,9 @@ export default function Chat () {
                 setConversationData([...response.data.conversation])
             }
         })
+        .catch( err => {
+            setConversationData([])
+        })
         scrollEndRef.current?.scrollIntoView();
     },[sendTo, content])
 
@@ -82,7 +85,11 @@ export default function Chat () {
                 <div className="chatbox">
                     <div className="col-sm-8 p-2 conversation">
 
-                        {displayConversation}
+                        {conversationData.length > 0 ? (
+                            displayConversation
+                        ) : (
+                            <h1>No chat history</h1>
+                        )}
                         <div ref={scrollEndRef}></div>
 
                     </div>
