@@ -64,6 +64,7 @@ function NewsFeedForm({ loadPosts }){
                   onChange={(e) => {setPostText(e.target.value)}}
                   value={postText}
                   title='Write your post.'
+                  maxLength={140}
                   required
                 />
             </div>

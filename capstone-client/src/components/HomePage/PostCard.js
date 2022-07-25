@@ -79,6 +79,7 @@ export default function PostCard({ userPostPhoto, post, setPost }) {
                   id="comments__form__textarea"
                   style={{height: "70px", resize: "none"}}
                   ref={commentRef}
+                  maxLength={140}
                 ></textarea>
                 <button type='submit' className="general__btns p-4" style={{ minWidth: 'max-content'}}>Send</button>
               </form>

@@ -3,7 +3,7 @@ import PostCard from './PostCard';
 import { getAllComments } from '../api/comments';
 import { PageContext } from './PageContext';
 
-export default function PostPage({ post }) {
+export default function PostPage({ post, setPost }) {
     const [comments, setComments] = useState([]);
 
     const { setActivePage } = useContext(PageContext);

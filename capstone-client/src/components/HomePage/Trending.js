@@ -18,7 +18,7 @@ export default function Trending({ setPost }) {
   return (
     <>
       <h3 className="ms-5">Trending right now</h3>
-      {posts && posts.map( post => <PostCard key={post.post_id} post={post} setPost={setPost}/>)}
+      {posts && posts.map( post => <PostCard key={post.post_id} post={post} setPost={setPost} />)}
     </>
   );
 }
