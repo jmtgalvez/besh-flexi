@@ -13,10 +13,7 @@ exports.checkUserExists = email => {
                 return reject(500);
             }
             if (!(rows.length > 0))
-                return reject({
-                    status: 404,
-                    message: 'Invalid username / password'
-                });
+                return reject({ status: 404 });
 
             return resolve(rows[0]);
         });

@@ -23,10 +23,10 @@ router.post('/login', async(req, res) => {
             message: 'Login Success',
             user
         });
-    } catch (response) {
-        res.status(response.status).json({
-            status: response.status,
-            message: response.message ? response.message : 'Invalid username / email / password combination',
+    } catch (status) {
+        res.status(status).json({
+            status,
+            message: 'Invalid username / email / password combination',
         });
     }
 });
