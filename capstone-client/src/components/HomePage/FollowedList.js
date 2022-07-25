@@ -10,7 +10,6 @@ export default function FollowedList() {
     //     setIsFollowed(!isFollowed);
     //     isFollowed ? unfollowUser(users.user_id) : followUser(users.user_id);
     // }
-console.log(users)
 
 useEffect(()=>{
     const listUsers = getAllUsers().then(response =>{
@@ -25,6 +24,10 @@ const displayUsers = [...users].map( user => <FollowedUsers key={user.user_id} u
 
   return (
     <div className='followed_list'>
+        <div className='w-100 px-4'>
+            <h3 className='text-start ms-5'>Following</h3>
+        </div>
+        
         {displayUsers}
         
     </div>
@@ -33,7 +36,7 @@ const displayUsers = [...users].map( user => <FollowedUsers key={user.user_id} u
 
 const FollowedUsers = ({user}) =>{
     return(
-        <div className="card w-100">
+        <div className="card w-100 my-2">
     
             <div  className="searchResult d-flex gap-2 align-items-center justify-content-center row p-3">
                 <div className="searchPhoto col-3 d-flex justify-content-center">
