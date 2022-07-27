@@ -6,7 +6,7 @@ const cors = require('cors');
 const app = express();
 
 const hostname = 'localhost';
-const port = 3001;
+const port = process.env.PORT || 3001;
 
 app.set('view engine', 'hbs');
 app.use(express.json());
@@ -17,8 +17,6 @@ app.use(cors({
   credentials: true
 }));
 
-
-app.use('/admin', require('./routes/admin/index'));
 app.use('/api', require('./routes/index'));
 
 app.listen(port, () => {
