@@ -15,7 +15,11 @@ export default function PostPage({ post, setPost }) {
         .then( response => setComments(response.data.comments) )
     }
 
-    loadComments();
+    useEffect(() => {
+        loadComments();
+    }, [])
+
+    setTimeout( loadComments, 60000);
 
     return (
         <>
