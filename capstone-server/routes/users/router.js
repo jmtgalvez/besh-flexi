@@ -5,8 +5,8 @@ const JWT = require('../auth/jwt');
 const CTRL = require('./controller');
 const AuthCTRL = require('../auth/controller');
 
-const multer = require('multer');
-const uploads = multer({ dest: '../images/profpic'});
+// const multer = require('multer');
+// const uploads = multer({ dest: '/images/profpic'});
 
 // get all users
 router.get('/', JWT.verifyToken, async (req, res) => {
@@ -25,7 +25,7 @@ router.get('/', JWT.verifyToken, async (req, res) => {
 })
 
 // edit a user
-router.put('/:user_id', JWT.verifyToken, uploads.single('profilePicture'), async (req, res) => {
+router.put('/:user_id', JWT.verifyToken, async (req, res) => {
   try {
     if ( parseInt(req.params.user_id) === parseInt(req.user_id) ) {
       const oldUserData = await CTRL.getUserByUserId(req.user_id);

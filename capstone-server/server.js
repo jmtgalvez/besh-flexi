@@ -6,7 +6,7 @@ const cors = require('cors');
 const app = express();
 
 const hostname = 'localhost';
-const port = process.env.PORT || 3001;
+const port = 3001;
 
 app.set('view engine', 'hbs');
 app.use(express.json());
@@ -17,8 +17,12 @@ app.use(cors({
   credentials: true
 }));
 
+// app.get('/', (req, res) => {
+//   res.status(200).send('Hello Heroku');
+// });
+
 app.use('/api', require('./routes/index'));
 
-app.listen(port, () => {
-  console.log(`Server started at http://${hostname}:${port} ...`);
+app.listen(process.env.PORT || port, () => {
+  console.log(`Server started at ${port} ...`);
 });

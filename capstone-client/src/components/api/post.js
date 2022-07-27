@@ -1,58 +1,33 @@
 import axios from 'axios';
 
-const url = 'http://localhost';
-const port = 3001;
+const url = 'https://besh-flexi.herokuapp.com/';
 
 axios.defaults.withCredentials = true;
 
-// gets all status in database
 export const getAllPosts = async () => {
-  return await axios.get(`${url}:${port}/api/status/`);
+  return await axios.get(`${url}/api/status/`);
 }
 
-// search status in database
-// expected search_query
-// search_query (STRING required)
 export const searchPosts = async search_query => {
-  return await axios.get(`${url}:${port}/api/status/search/${search_query}`);
+  return await axios.get(`${url}/api/status/search/${search_query}`);
 }
 
-// adds a new status in database
-// expected postData contentb
-// {
-//   user_id, (required)
-//   content, (required)
-//   reply_id, (optional)
-//   date, (optional)
-// }
 export const addPost = async postData => {
-  return await axios.post(`${url}:${port}/api/status`, postData);
+  return await axios.post(`${url}/api/status`, postData);
 }
 
-// edit status in database
-// expected postData content
-// {
-//   status_id, (required)
-//   content, (required)
-// }
 export const editPost = async postData => {
-  return await axios.put(`${url}:${port}/api/status/${postData.status_id}`, postData);
+  return await axios.put(`${url}/api/status/${postData.status_id}`, postData);
 }
 
-// delete status from database
-// expected status_id
-// status_id (INT required)
 export const deletePost = async status_id => {
-  return await axios.delete(`${url}:${port}/api/status/${status_id}`);
+  return await axios.delete(`${url}/api/status/${status_id}`);
 }
 
-// get a single status by status_id
-// expected status_id
-// status_id (INT required)
 export const getPost = async status_id => {
-  return await axios.get(`${url}:${port}/api/status/${status_id}`);
+  return await axios.get(`${url}/api/status/${status_id}`);
 }
 
 export const getTrending = async () => {
-  return await axios.get(`${url}:${port}/api/status/trending`)
+  return await axios.get(`${url}/api/status/trending`)
 }

@@ -1,14 +1,13 @@
 import axios from 'axios';
 
-const url = 'http://localhost';
-const port = 3001;
+const url = 'https://besh-flexi.herokuapp.com/';
 
 axios.defaults.withCredentials = true;
 
 export const sendChat = async chatData => {
-    return await axios.post(`${url}:${port}/api/chats`, chatData);
+    return await axios.post(`${url}/api/chats`, chatData);
 }
 
 export const getConversation = async conversation => {
-    return await axios.post(`${url}:${port}/api/chats/conversation`, conversation);
+    return await axios.post(`${url}/api/chats/conversation`, conversation);
 }
