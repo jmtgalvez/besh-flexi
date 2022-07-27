@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url = 'https://besh-flexi.herokuapp.com/';
+const url = 'https://besh-flexi.herokuapp.com';
 
 axios.defaults.withCredentials = true;
 
