@@ -35,7 +35,6 @@ export default function DropdownModal({toggleDropdown}) {
         <DropdownLink pageTo={'Settings'} toggleDropdown={toggleDropdown} />
         <DropdownLink pageTo={'Followed List'} toggleDropdown={toggleDropdown} />
         <DropdownLink pageTo={'Give Feedback'} toggleDropdown={toggleDropdown} />
-
       
         <a onClick={handleLogout}>
           <LogoutSvg />

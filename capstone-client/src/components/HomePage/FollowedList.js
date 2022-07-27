@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from 'react'
-import { getAllUsers } from '../api/users'
+import { getAllUsers } from '../api/users';
+
+import UserCard from './UserCard';
 
 export default function FollowedList() {
     const [users, setUsers] = useState([]);
@@ -17,7 +19,7 @@ useEffect(()=>{
     })
 }, [])
 
-const displayUsers = [...users].map( user => <FollowedUsers key={user.user_id} user={user} /> )
+const displayUsers = [...users].map( user => <UserCard key={user.user_id} user={user} /> )
 
 // const displayUsers = [...users].map( user => 
 // <UserCard key={user.user_id} user={user} /> )

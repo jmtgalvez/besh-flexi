@@ -29,7 +29,10 @@ export default function PostCard({ userPostPhoto, post, setPost }) {
       date: new Date(Date.now())
     }
     submitComment(commentData)
-    .then( () => commentRef.current.value = '');
+    .then( () => {
+      commentRef.current.value = ''
+      openPost();
+    });
   }
 
   const formatTimeSince = date => {
