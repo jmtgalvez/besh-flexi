@@ -61,7 +61,7 @@ router.post('/register', async (req, res) => {
     } catch (response) {
         res.status(response.status).json({
             status: response.status,
-            message: response.message ? response.message : 'Invalid username / email',
+            message: response.message ? response.message : 'Please try again later.',
         });
     }
 });

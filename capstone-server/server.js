@@ -4,9 +4,7 @@ const express = require('express');
 const cors = require('cors');
 
 const app = express();
-
-const hostname = 'localhost';
-const port = 3001;
+const port = process.env.PORT || 3001;
 
 app.set('view engine', 'hbs');
 app.use(express.json());
@@ -20,6 +18,6 @@ app.use(cors({
 
 app.use('/api', require('./routes/index'));
 
-app.listen(process.env.PORT || port, () => {
+app.listen(port, () => {
   console.log(`Server started at port ${port} ...`);
 });
