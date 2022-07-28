@@ -44,7 +44,10 @@ exports.checkEmailAvailable = email => {
         db.query(sql, email, (err, rows) => {
             if (err) {
                 console.log(`/routes/auth/controller/checkUserAvailable DB Error: ${err.message}`);
-                return reject(500);
+                return reject({
+                    status: 500,
+                    message: err.message
+                });
             }
             if (!(rows.length > 0))
                 return resolve();
@@ -66,7 +69,10 @@ exports.checkUsernameAvailable = username => {
         db.query(sql, values, (err, rows) => {
             if (err) {
                 console.log(`/routes/auth/controller/checkUserAvailable DB Error: ${err.message}`);
-                return reject(500);
+                return reject({
+                    status: 500,
+                    message: err.message
+                });
             }
             if (!(rows.length > 0))
                 return resolve();
@@ -135,7 +141,10 @@ exports.addUser = user => {
         db.query(sql, values, (err, rows) => {
             if (err) {
                 console.log(`/routes/auth/controller/register DB Error: ${err.message}`);
-                return reject(500);
+                return reject({
+                    status: 500,
+                    message: err.message
+                });
             }
             return resolve(rows.insertId);
         });
