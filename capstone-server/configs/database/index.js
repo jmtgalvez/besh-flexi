@@ -1,10 +1,10 @@
 const mysql = require('mysql2');
 
 let db = mysql.createConnection({
-    host: 'us-cdbr-east-06.cleardb.net',
-    user: 'bd11f83fb51443',
-    password: '87eebf2e',
-    database: 'heroku_27d48bef9ad971a'
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DATABASE
 });
 
 // const handleDisconnect = () => {
