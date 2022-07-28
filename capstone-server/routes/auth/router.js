@@ -17,7 +17,7 @@ router.post('/login', async(req, res) => {
             httpOnly: true,
         }
         res.cookie('access_token', access_token, cookie_option);
-        res.cookie('refresh_token', refresh_token);
+        res.cookie('refresh_token', refresh_token, cookie_option);
         res.status(200).json({
             status: 200,
             message: 'Login Success',
@@ -52,7 +52,7 @@ router.post('/register', async (req, res) => {
             httpOnly: true,
         }
         res.cookie('access_token', access_token, cookie_option);
-        res.cookie('refresh_token', refresh_token);
+        res.cookie('refresh_token', refresh_token, cookie_option);
         res.status(200).json({
             status: 200,
             message: 'Login Success',
