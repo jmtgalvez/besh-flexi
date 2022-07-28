@@ -1,4 +1,4 @@
-const db = require('../database/index');
+const db = require('../../configs/database/index');
 
 exports.getAllComments = (post_id, user_id) => {
     return new Promise((resolve, reject) => {

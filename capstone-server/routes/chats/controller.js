@@ -1,4 +1,4 @@
-const db = require('../database/index');
+const db = require('../../configs/database/index');
 
 exports.checkChatExists = (sender_id, receiver_id) =>{
     return new Promise((resolve, reject)=>{

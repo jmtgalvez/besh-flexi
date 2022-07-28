@@ -21,7 +21,7 @@ const handleDisconnect = () => {
     //         return setTimeout(handleDisconnect, 2000);
     //     }
     //     console.log('Successfully connected to database ...');
-    // })
+    // });
 
     db.on('error', (err) => {
         console.log(`DB Error: ${err}`);

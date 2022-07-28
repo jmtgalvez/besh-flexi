@@ -15,6 +15,7 @@ import UiHeaderMobile from "../Body/UiHeaderMobile";
 import { UserContext } from "../UserContext";
 import { PageContext } from './PageContext';
 import { SearchContext } from './SearchContext';
+import { PostContext } from "./PostContext";
 
 export default function HomePage() {
   const { user } = useContext(UserContext);
@@ -29,32 +30,34 @@ export default function HomePage() {
   return (
     <PageContext.Provider value={{activePage, setActivePage}}>
       <SearchContext.Provider value={{searchResult, setSearchResult}}>
-        <div className="frontPage">
-          {/* {toggleMobile && (
-            <>
-              <DropdownMobile />
-              <div style={{position: "fixed", zIndex: 300, right: "30px", top: "30px"}}>
-                <Exit handleExit={toggleMobileDropdown} />
-              </div>
-            </>
-          )} */}
-          
-          {window.innerWidth > 800 && <SideNav activePage={activePage} />}
-
-          <div className="content">
-            <TopNavbar />
-
-            <div className="content-body">
-              <PageContainer post={post} setPost={setPost} />
-
-              {/* {window.innerWidth > 800 && (
-                <div className="side">
-                  <Side />
+        <PostContext.Provider value={{post, setPost}}>
+          <div className="frontPage">
+            {/* {toggleMobile && (
+              <>
+                <DropdownMobile />
+                <div style={{position: "fixed", zIndex: 300, right: "30px", top: "30px"}}>
+                  <Exit handleExit={toggleMobileDropdown} />
                 </div>
-              )} */}
+              </>
+            )} */}
+            
+            {window.innerWidth > 800 && <SideNav activePage={activePage} />}
+
+            <div className="content">
+              <TopNavbar />
+
+              <div className="content-body">
+                <PageContainer />
+
+                {/* {window.innerWidth > 800 && (
+                  <div className="side">
+                    <Side />
+                  </div>
+                )} */}
+              </div>
             </div>
           </div>
-        </div>
+        </PostContext.Provider>
       </SearchContext.Provider>
     </PageContext.Provider>
   );

@@ -2,10 +2,12 @@ import { useState, useRef, useContext } from 'react';
 import { likePost, unlikePost } from '../api/interaction';
 import { submitComment } from '../api/comments';
 import { PageContext } from './PageContext';
+import { PostContext } from './PostContext';
 
-export default function PostCard({ userPostPhoto, post, setPost }) {
+export default function PostCard({ userPostPhoto, post }) {
   
   const { setActivePage } = useContext(PageContext);
+  const { setPost } = useContext(PostContext);
   const [isLiked, setIsLiked] = useState(post.liked === "true");
   const [likes, setLikes] = useState(parseInt(post.likes));
   const commentRef = useRef();

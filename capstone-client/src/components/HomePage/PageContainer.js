@@ -15,22 +15,22 @@ import PostPage from './PostPage';
 import FollowedList from './FollowedList';
 
 
-export default function PageContainer({ post, setPost }) {
+export default function PageContainer() {
     const { activePage } = useContext(PageContext);
 
     return (
         <div className='newsfeeds'>
             {window.innerWidth < 800 && <UiHeaderMobile />}
               {
-                activePage == 'HOME' ? <NewsFeed setPost={setPost} /> :
-                activePage == 'TRENDING' ? <Trending setPost={setPost} /> : 
+                activePage == 'HOME' ? <NewsFeed /> :
+                activePage == 'TRENDING' ? <Trending /> : 
                 activePage == 'CHAT' ? <Chat /> :
                 activePage == 'ABOUT' ? <About /> :
                 activePage == 'SETTINGS' ? <Settings /> :
                 activePage == 'FOLLOWED LIST' ? <FollowedList />  : 
                 activePage == 'GIVE FEEDBACK' ? <FeedBack /> :
                 activePage == 'SEARCH' ? <SearchPage /> :
-                activePage == 'POST' ? <PostPage post={post} setPost={setPost} /> :
+                activePage == 'POST' ? <PostPage /> :
                 ''
               }
         </div>

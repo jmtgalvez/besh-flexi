@@ -12,17 +12,14 @@ app.set('view engine', 'hbs');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
-  origin: `https://capstone-b10g2.netlify.app`,
+  origin: `https://besh-flexi.netlify.app`,
+  // origin: 'http://localhost:3000',
   allowedHeaders: ['Content-Type','Authorization'],
   credentials: true
 }));
 
-// app.get('/', (req, res) => {
-//   res.status(200).send('Hello Heroku');
-// });
-
 app.use('/api', require('./routes/index'));
 
 app.listen(process.env.PORT || port, () => {
-  console.log(`Server started at ${port} ...`);
+  console.log(`Server started at port ${port} ...`);
 });

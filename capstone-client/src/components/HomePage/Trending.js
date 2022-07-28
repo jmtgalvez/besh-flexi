@@ -1,10 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import PostCard from './PostCard';
 import { getTrending } from '../api/post';
+import { PostContext } from './PostContext';
 
-export default function Trending({ setPost }) {
+export default function Trending() {
 
   const [posts, setPosts] = useState([]);
+  const { setPost } = useContext(PostContext);
   
   const loadTrending = () => {
     getTrending()

@@ -1,4 +1,4 @@
-const db = require('../database/index');
+const db = require('../../configs/database/index');
 
 exports.checkUserExists = user_id => {
   return new Promise((resolve, reject) => {

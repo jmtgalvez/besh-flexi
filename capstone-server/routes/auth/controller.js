@@ -1,4 +1,4 @@
-const db = require('../database/index');
+const db = require('../../configs/database/index');
 const bcrypt = require('bcrypt');
 
 exports.checkUserExists = email => {

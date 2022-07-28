@@ -1,15 +1,24 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import PostCard from './PostCard';
 
 import { getAllPosts, addPost } from '../api/post';
 
-export default function NewsFeed({ setPost }) {
+import { PostContext } from './PostContext';
+
+export default function NewsFeed() {
   const [posts, setPosts] = useState([]);
+  const { setPost } = useContext(PostContext);
 
   const loadPosts = () => {
+    console.log('getting all posts ...')
     getAllPosts()
     .then( response => {
       setPosts([...(response.data.posts)]);
+      console.log(posts);
+    })
+    .catch( err => {
+      console.log(err)
+      setPosts([]);
     })
   }
 
@@ -21,7 +30,7 @@ export default function NewsFeed({ setPost }) {
   return (
     <>
       <NewsFeedForm loadPosts={loadPosts} />
-      {posts && posts.map( post => <PostCard key={post.post_id} post={post} setPost={setPost} /> )}
+      {posts && [...posts].map( post => <PostCard key={post.post_id} post={post} /> )}
     </>
   )
 }
