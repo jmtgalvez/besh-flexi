@@ -1,6 +1,6 @@
 const mysql = require('mysql2');
 
-let db = mysql.createPool({
+let db = mysql.createConnection({
     host: 'us-cdbr-east-06.cleardb.net',
     user: 'bd11f83fb51443',
     password: '87eebf2e',
