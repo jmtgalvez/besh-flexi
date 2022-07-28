@@ -7,6 +7,23 @@ let db = mysql.createConnection({
     database: process.env.DATABASE
 });
 
+db.connect((err) => {
+    if (err) {
+        console.log('Error connectiong to database ...' + err);
+        return setTimeout(handleDisconnect, 2000);
+    }
+    console.log('Successfully connected to database ...');
+});
+
+db.on('error', (err) => {
+    console.log(`DB Error: ${err}`);
+    if ( err.code === 'PROTOCOL_CONNECTION_LOST' ) {
+        handleDisconnect();
+    } else {
+        throw err;
+    }
+});
+
 // const handleDisconnect = () => {
 //     db = mysql.createPool({
 //         host: 'us-cdbr-east-06.cleardb.net',
