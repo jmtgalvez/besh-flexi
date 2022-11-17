@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {},
     colors: {
-      pallette1: "rgba(104, 243, 139, 0.952)",
+      pallette1: "rgb(49, 196, 141)",
       pallette2: "rgb(244, 242, 242)",
       pallette3: "#273444",
     },
