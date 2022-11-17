@@ -1,4 +1,4 @@
-export const layout = "h-auto w-screen min-h-[100vh] bg-pallette3";
+export const layout = "h-auto w-screen p-5 min-h-[100vh] bg-pallette3";
 
 export const styleDiv1 = "h-[80vh] w-[100%] grid place-content-center";
 
